@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using University_Domain.PersonEntities.Interface;
+using University_EfCore.Context;
 using University_EfCore.Repository;
 
 namespace University_Common.Domain
@@ -8,6 +9,7 @@ namespace University_Common.Domain
     public interface IUnitOfWork: IDisposable
     {
         Lazy<IPersonRepository> Person { get; }
+        ApplicationContext DbContext { get; }
 
         int Save();
         Task<int> SaveAsync();

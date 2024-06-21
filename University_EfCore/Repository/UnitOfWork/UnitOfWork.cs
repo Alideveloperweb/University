@@ -19,19 +19,24 @@ namespace University_EfCore.Repository
             Person = personRepository;
         }
 
+        public ApplicationContext DbContext => _dbContext;
+
         public void CommitTransaction()
         {
             try
             {
                 _dbContext.SaveChanges();
                 _transaction?.Commit();
-
             }
             catch (Exception)
             {
-
-               RollbackTransaction();
+                RollbackTransaction();
                 throw;
+            }
+            finally
+            {
+                _transaction?.Dispose();
+                _transaction = null;
             }
         }
 
@@ -43,12 +48,11 @@ namespace University_EfCore.Repository
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally
             {
-                _transaction.Dispose();
+                _transaction?.Dispose();
                 _transaction = null;
             }
         }
@@ -60,7 +64,7 @@ namespace University_EfCore.Repository
 
         public DbSet<TEntity> Entity<TEntity>() where TEntity : class
         {
-          return _dbContext.Set<TEntity>();
+            return _dbContext.Set<TEntity>();
         }
 
         public void ChangeState<TEntity>(TEntity entity, EntityState state) where TEntity : class
@@ -68,24 +72,26 @@ namespace University_EfCore.Repository
             _dbContext.Entry(entity).State = state;
         }
 
-                public void Dispose()
+        public IDbContextTransaction BeginTransaction()
+        {
+            return _dbContext.Database.BeginTransaction();
+        }
+
+        public void Dispose()
         {
             _dbContext.Dispose();
+            _transaction?.Dispose();
         }
 
         public int Save()
         {
-          return _dbContext.SaveChanges();
+            return _dbContext.SaveChanges();
         }
 
         public async Task<int> SaveAsync()
         {
             return await _dbContext.SaveChangesAsync();
         }
-
-        public IDbContextTransaction BeginTransaction()
-        {
-            return _dbContext.Database.BeginTransaction();
-        }
     }
+
 }
