@@ -5,5 +5,6 @@ namespace University_Domain.PersonEntities.Interface
 {
     public interface IPersonRepository:IRepositoryBase<int, Person>
     {
+
     }
 }
