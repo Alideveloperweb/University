@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using University_Domain.PersonEntities.Interface;
 using University_EfCore.Repository;
 
@@ -11,7 +12,7 @@ namespace University_Common.Domain
         int Save();
         Task<int> SaveAsync();
 
-        UnitOfWork TransactionBeginTransaction();
+        IDbContextTransaction BeginTransaction();
         void CommitTransaction();
         void RollbackTransaction();
         bool ExistTransaction();

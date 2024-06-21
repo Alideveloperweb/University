@@ -68,12 +68,6 @@ namespace University_EfCore.Repository
             _dbContext.Entry(entity).State = state;
         }
 
-        public UnitOfWork TransactionBeginTransaction()
-        {
-            _transaction = _dbContext.Database.BeginTransaction();
-            return this;
-        }
-
                 public void Dispose()
         {
             _dbContext.Dispose();
@@ -87,6 +81,11 @@ namespace University_EfCore.Repository
         public async Task<int> SaveAsync()
         {
             return await _dbContext.SaveChangesAsync();
+        }
+
+        public IDbContextTransaction BeginTransaction()
+        {
+            return _dbContext.Database.BeginTransaction();
         }
     }
 }
