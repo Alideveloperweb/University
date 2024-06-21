@@ -10,30 +10,13 @@ namespace University_EfCore.Repository
     {
         private readonly ApplicationContext _dbContext;
         private IDbContextTransaction _transaction;
-        private Dictionary<Type, object> _repositories;
 
         public Lazy<IPersonRepository> Person { get; }
 
         public UnitOfWork(ApplicationContext dbContext, Lazy<IPersonRepository> personRepository)
         {
             _dbContext = dbContext;
-            _repositories = new Dictionary<Type, object>();
             Person = personRepository;
-        }
-
-        public void Dispose()
-        {
-            _dbContext.Dispose();
-        }
-
-        public int Save()
-        {
-          return _dbContext.SaveChanges();
-        }
-
-        public async Task<int> SaveAsync()
-        {
-            return await _dbContext.SaveChangesAsync();
         }
 
         public void CommitTransaction()
@@ -54,7 +37,20 @@ namespace University_EfCore.Repository
 
         public void RollbackTransaction()
         {
-            _transaction?.Rollback();
+            try
+            {
+                _transaction?.Rollback();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                _transaction.Dispose();
+                _transaction = null;
+            }
         }
 
         public bool ExistTransaction()
@@ -76,6 +72,21 @@ namespace University_EfCore.Repository
         {
             _transaction = _dbContext.Database.BeginTransaction();
             return this;
+        }
+
+                public void Dispose()
+        {
+            _dbContext.Dispose();
+        }
+
+        public int Save()
+        {
+          return _dbContext.SaveChanges();
+        }
+
+        public async Task<int> SaveAsync()
+        {
+            return await _dbContext.SaveChangesAsync();
         }
     }
 }
