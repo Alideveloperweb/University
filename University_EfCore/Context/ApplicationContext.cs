@@ -1,6 +1,8 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore;
+using University_Domain.PersonEntities;
+using University_EfCore.Mapping.PersonMapper;
 
 namespace University_EfCore.Context
 {
@@ -12,7 +14,7 @@ namespace University_EfCore.Context
 
         #region Entity
 
-
+        public DbSet<Person> Person { get; set; }
 
         #endregion
 
@@ -20,7 +22,7 @@ namespace University_EfCore.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.ApplyConfiguration(new PersonMap());
             base.OnModelCreating(modelBuilder);
         }
 

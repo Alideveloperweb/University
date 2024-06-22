@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using University_Domain.PersonEntities.Interface;
-using University_EfCore.Context;
 
 namespace University_Common.Domain
 {

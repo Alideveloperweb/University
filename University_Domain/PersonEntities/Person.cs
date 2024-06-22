@@ -59,23 +59,23 @@ namespace University_Domain.PersonEntities
         /// <summary>
         /// معدل آخرین مدرک تحصیلی
         /// </summary>
-        public string GPAOfThelastDegree { get; set; }
+        public double GPAOfThelastDegree { get; set; }
 
         /// <summary>
         /// جنسیت 
         /// </summary>
-        public string Gender { get; set; }
+        public bool Gender { get; set; }
 
         /// <summary>
         /// وضعیت تاهل 
         /// </summary>
-        public string MaritalStatus { get; set; }
+        public bool MaritalStatus { get; set; }
 
 
         /// <summary>
         /// تاریخ تولد 
         /// </summary>
-        public string DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
 
         /// <summary>
