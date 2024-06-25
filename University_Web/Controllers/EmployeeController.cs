@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using University_Common.Application;
 using University_Common.Domain;
 using University_Contract.EmployeeViewModel;
 using University_Domain.EmployeeEntities;
@@ -38,8 +39,24 @@ namespace University_Web.Controllers
         [HttpPost]
         public IActionResult CreateEmployee(CreateEmployeeItem createEmployee)
         {
+            if (ModelState.IsValid)
+            {
+                OperationResult result = new();
+                ApplicationMessage message = new("کارمند");
 
-          //  Employee employee = new();
+                Employee employee = new(createEmployee.FirstName, createEmployee.LastName,createEmployee.NationalCode,createEmployee.Mobile,createEmployee.Homephone,createEmployee.CountryName
+                    ,createEmployee.CityName,createEmployee.Address,createEmployee.LastEducationalCertificate,createEmployee.GPAOfThelastDegree,createEmployee.Gender,createEmployee.MaritalStatus
+                    ,createEmployee.DateOfBirth,createEmployee.EmergencyContactNumber,createEmployee.SpouseNationalID,createEmployee.BloodType,createEmployee.MedicalHistory,createEmployee.EmployeeNumber
+                    ,createEmployee.JobTitle,createEmployee.Department,createEmployee.HireDate,createEmployee.Salary,createEmployee.EmploymentStatus,createEmployee.WeeklyWorkingHours,createEmployee.RemainingLeaveDays
+                    ,createEmployee.Supervisor,createEmployee.Skills,createEmployee.Certifications,createEmployee.PerformanceReview,createEmployee.RecentProjects,createEmployee.Password);
+
+                bool create = _unitOfWork.Employee.Value.Create(employee);
+                if (create)
+                    return result.Success(Operation.Success, message.Create());
+
+
+            }
+    
 
             return View();
         }
