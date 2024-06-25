@@ -22,7 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\University_Application\University_Application.csproj" />
+    <ProjectReference Include="..\University_Common\University_Common.csproj" />
     <ProjectReference Include="..\University_Configuration\University_Configuration.csproj" />
+    <ProjectReference Include="..\University_Contract\University_Contract.csproj" />
+    <ProjectReference Include="..\University_Domain\University_Domain.csproj" />
     <ProjectReference Include="..\University_EfCore\University_EfCore.csproj" />
   </ItemGroup>
 

@@ -1,11 +1,11 @@
 ﻿
-
-using University_Common.Domain;
-
-namespace University_Domain.PersonEntities
+namespace University_Common.Domain
 {
-    public class Person : EntityBase<int>
+    public class PersonalInformation : EntityBase<int>
     {
+        #region Properties
+
+
         /// <summary>
         /// نام 
         /// </summary>
@@ -85,12 +85,6 @@ namespace University_Domain.PersonEntities
 
 
         /// <summary>
-        /// کد پرسونلی
-        /// </summary>
-        public string PostalCode { get; set; }
-
-
-        /// <summary>
         /// شماره ملی همسر در صورت متاهل بودن
         /// </summary>
         public string SpouseNationalID { get; set; }
@@ -106,20 +100,8 @@ namespace University_Domain.PersonEntities
         ///سابقه بیماری مهم
         /// </summary>
         public string MedicalHistory { get; set; }
+
+        #endregion
+
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

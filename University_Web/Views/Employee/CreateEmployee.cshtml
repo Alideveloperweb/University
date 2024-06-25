@@ -1,0 +1,250 @@
+﻿@{
+    ViewData["Title"] = "ثبت کارمند جدید";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-lg-3">
+    <div class="iq-card">
+        <div class="iq-card-header d-flex justify-content-between">
+            <div class="iq-header-title">
+                <h4 class="card-title">افزودن کارمند</h4>
+            </div>
+        </div>
+        <div class="iq-card-body">
+            <form>
+                <div class="form-group">
+                    <div class="add-img-user profile-img-edit">
+                        <img class="profile-pic img-fluid" src="data:image/jpeg;base64,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" alt="profile-pic">
+                        <div class="p-image">
+                            <a href="javascript:void();" class="upload-button btn iq-bg-primary">آپلود عکس </a>
+                            <input class="file-upload" type="file" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="img-extension mt-3">
+                        <div class="d-inline-block align-items-center">
+                            <span>Only</span>
+                            <a href="javascript:void();">.jpg</a>
+                            <a href="javascript:void();">.png</a>
+                            <a href="javascript:void();">.jpeg</a>
+                            <span>allowed</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="furl">شماره پرسنلی :</label>
+                    <input type="text" class="form-control" id="furl" placeholder="1234">
+                </div>
+                <div class="form-group">
+                    <label>سمت شغلی :</label>
+                    <select class="form-control" id="selectuserrole">
+                        <option>Select</option>
+                        <option>Web Designer</option>
+                        <option>Web Developer</option>
+                        <option>Tester</option>
+                        <option>Php Developer</option>
+                        <option>Ios Developer </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>بخش :</label>
+                    <select class="form-control" id="selectuserrole">
+                        <option>Select</option>
+                        <option>Web Designer</option>
+                        <option>Web Developer</option>
+                        <option>Tester</option>
+                        <option>Php Developer</option>
+                        <option>Ios Developer </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>مهارت ها :</label>
+                    <select class="form-control" id="selectuserrole">
+                        <option>Select</option>
+                        <option>Web Designer</option>
+                        <option>Web Developer</option>
+                        <option>Tester</option>
+                        <option>Php Developer</option>
+                        <option>Ios Developer </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>گواهینامه ها و مدارک حرفه ای</label>
+                    <select class="form-control" id="selectuserrole">
+                        <option>Select</option>
+                        <option>Web Designer</option>
+                        <option>Web Developer</option>
+                        <option>Tester</option>
+                        <option>Php Developer</option>
+                        <option>Ios Developer </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>پروژه های اخیر</label>
+                    <select class="form-control" id="selectuserrole">
+                        <option>Select</option>
+                        <option>Web Designer</option>
+                        <option>Web Developer</option>
+                        <option>Tester</option>
+                        <option>Php Developer</option>
+                        <option>Ios Developer </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="furl">تاریخ شروع همکاری :</label>
+                    <input type="text" class="form-control"  id="furl" placeholder="1403/03/03">
+                </div>
+                <div class="form-group">
+                    <label for="turl">حقوق :</label>
+                    <input type="text" class="form-control" id="turl" placeholder="1234">
+                </div>
+                <div class="form-group">
+                    <label for="instaurl">وضعیت شغلی :</label>
+                    <input type="text" class="form-control" id="instaurl" placeholder="فعال / غیر فعال ">
+                </div>
+                <div class="form-group">
+                    <label for="lurl">ساعت کاری هفتگی :</label>
+                    <input type="text" class="form-control" id="lurl" placeholder="8 ساعت">
+                </div>
+                <div class="form-group">
+                    <label for="lurl">مرخصی باقی مانده :</label>
+                    <input type="text" class="form-control" id="lurl" placeholder="8">
+                </div>
+                <div class="form-group">
+                    <label for="lurl">مسئول مستقیم :</label>
+                    <input type="text" class="form-control" id="lurl" placeholder="احمد حسینی">
+                </div>
+                <div class="form-group">
+                    <label for="lurl">ارزیابی عملکرد :</label>
+                    <input type="text" class="form-control" id="lurl" placeholder="خوب">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-lg-9">
+    <div class="iq-card">
+        <div class="iq-card-header d-flex justify-content-between">
+            <div class="iq-header-title">
+                <h4 class="card-title">اطلاعات شخصی کارمند</h4>
+            </div>
+        </div>
+        <div class="iq-card-body">
+            <div class="new-user-info">
+                <form>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="fname">نام :</label>
+                            <input type="text" class="form-control" id="fname" placeholder="علی">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lname">نام خانوادگی :</label>
+                            <input type="text" class="form-control" id="lname" placeholder="محمدی">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="add1">کد ملی :</label>
+                            <input type="text" class="form-control" id="add1" placeholder="0552685978">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="add2">موبایل:</label>
+                            <input type="text" class="form-control" id="add2" placeholder="09198564823">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="cname">تلفن منزل:</label>
+                            <input type="text" class="form-control" id="cname" placeholder="02184596325">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">ایمیل :</label>
+                            <input type="email" class="form-control" id="email" placeholder="info@gmail.com">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">نام کشور :</label>
+                            <input type="email" class="form-control" id="email" placeholder="ایران">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">نام شهر :</label>
+                            <input type="email" class="form-control" id="email" placeholder="تهران">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">آدرس :</label>
+                            <textarea type="" class="form-control" id="email" placeholder="لطفا آدرس کامل خود را وارد نمایید">
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>آخرین مدرک تحصیلی:</label>
+                            <select class="form-control" id="selectcountry">
+                                <option>یک مورد راانتخاب کنید</option>
+                                <option>لیسانس</option>
+                                <option>فوق ایسانس</option>
+                                <option>دکترا</option>
+                                <option>فوق دکترا</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="mobno">معدل آخرین مدرک تحصیلی</label>
+                            <input type="text" class="form-control" id="mobno" placeholder="17.65">
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>جنسیت</label>
+                            <select class="form-control" id="selectcountry">
+                                <option>یک مورد راانتخاب کنید</option>
+                                <option>مرد</option>
+                                <option>زن</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>وضعیت تاهل</label>
+                            <select class="form-control" id="selectcountry">
+                                <option>یک مورد راانتخاب کنید</option>
+                                <option>مجرد</option>
+                                <option>متاهل</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="pno">شماره ملی همسر (درصورت ماهل بودن)</label>
+                            <input type="text" class="form-control" id="pno" placeholder="Pin Code">
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label>گروه خونی </label>
+                            <select class="form-control" id="selectcountry">
+                                <option>یک مورد راانتخاب کنید</option>
+                                <option>A</option>
+                                <option>A+</option>
+                                <option>B</option>
+                                <option>B+</option>
+                                <option>AB</option>
+                                <option>AB+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="pno">سابقه بیماری :</label>
+                        <input type="text" class="form-control" id="pno" placeholder="">
+                    </div>
+                    <hr>
+                    <h5 class="mb-3">Security</h5>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="uname">User Name:</label>
+                            <input type="text" class="form-control" id="uname" placeholder="User Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="pass">Password:</label>
+                            <input type="password" class="form-control" id="pass" placeholder="Password">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="rpass">Repeat Password:</label>
+                            <input type="password" class="form-control" id="rpass" placeholder="Repeat Password ">
+                        </div>
+                    </div>
+                    <div class="checkbox">
+                        <label><input class="mr-2" type="checkbox">Enable Two-Factor-Authentication</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add New User</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

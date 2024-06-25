@@ -12,8 +12,8 @@ using University_EfCore.Context;
 namespace University_EfCore.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240622185504_Create_Table_Person")]
-    partial class Create_Table_Person
+    [Migration("20240625062003_Upddate_Data")]
+    partial class Upddate_Data
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace University_EfCore.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("University_Domain.PersonEntities.Person", b =>
+            modelBuilder.Entity("University_Domain.EmployeeEntities.Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,6 +43,10 @@ namespace University_EfCore.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("Certifications")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CityName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -59,6 +63,11 @@ namespace University_EfCore.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(300)
@@ -68,6 +77,14 @@ namespace University_EfCore.Migrations
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("EmployeeNumber")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("EmploymentStatus")
+                        .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -81,6 +98,9 @@ namespace University_EfCore.Migrations
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Homephone")
                         .IsRequired()
                         .HasMaxLength(11)
@@ -91,6 +111,11 @@ namespace University_EfCore.Migrations
 
                     b.Property<bool>("IsRemove")
                         .HasColumnType("bit");
+
+                    b.Property<string>("JobTitle")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("LastEducationalCertificate")
                         .IsRequired()
@@ -123,19 +148,39 @@ namespace University_EfCore.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("PostalCode")
+                    b.Property<string>("PerformanceReview")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecentProjects")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RemainingLeaveDays")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Skills")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SpouseNationalID")
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
+                    b.Property<string>("Supervisor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WeeklyWorkingHours")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Person");
+                    b.ToTable("Employee");
                 });
 #pragma warning restore 612, 618
         }

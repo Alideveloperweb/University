@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using University_Domain.PersonEntities;
+using University_Domain.EmployeeEntities;
 
-namespace University_EfCore.Mapping.PersonMapper
+namespace University_EfCore.Mapping.EmployeeMapper
 {
-    public class PersonMap : IEntityTypeConfiguration<Person>
+    public class EmployeeMap : IEntityTypeConfiguration<Employee>
     {
-        public void Configure(EntityTypeBuilder<Person> builder)
+        public void Configure(EntityTypeBuilder<Employee> builder)
         {
+
             #region Properties
 
             builder.HasKey(p => p.Id);
@@ -25,15 +26,22 @@ namespace University_EfCore.Mapping.PersonMapper
             builder.Property(p => p.MaritalStatus);
             builder.Property(p => p.DateOfBirth).HasMaxLength(80);
             builder.Property(p => p.EmergencyContactNumber).HasMaxLength(11);
-            builder.Property(p => p.PostalCode).HasMaxLength(20);
             builder.Property(p => p.SpouseNationalID).HasMaxLength(11);
             builder.Property(p => p.BloodType).HasMaxLength(20);
             builder.Property(p => p.MedicalHistory).HasMaxLength(200);
-
-
-            #endregion
-
-            #region Relation
+            builder.Property(p => p.EmployeeNumber).HasMaxLength(200);
+            builder.Property(p => p.JobTitle).HasMaxLength(60);
+            builder.Property(p => p.Department).HasMaxLength(50);
+            builder.Property(p => p.HireDate);
+            builder.Property(p => p.Salary);
+            builder.Property(p => p.EmploymentStatus);
+            builder.Property(p => p.WeeklyWorkingHours);
+            builder.Property(p => p.RemainingLeaveDays);
+            builder.Property(p => p.Supervisor);
+            builder.Property(p => p.Skills);
+            builder.Property(p => p.Certifications);
+            builder.Property(p => p.PerformanceReview);
+            builder.Property(p => p.RecentProjects);
 
             #endregion
         }

@@ -1,8 +1,6 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
-using University_Domain.PersonEntities;
-using University_EfCore.Mapping.PersonMapper;
+﻿using Microsoft.EntityFrameworkCore;
+using University_Domain.EmployeeEntities;
+using University_EfCore.Mapping.EmployeeMapper;
 
 namespace University_EfCore.Context
 {
@@ -14,7 +12,7 @@ namespace University_EfCore.Context
 
         #region Entity
 
-        public DbSet<Person> Person { get; set; }
+        public DbSet<Employee> Employee { get; set; }
 
         #endregion
 
@@ -22,7 +20,7 @@ namespace University_EfCore.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new PersonMap());
+            modelBuilder.ApplyConfiguration(new EmployeeMap());
             base.OnModelCreating(modelBuilder);
         }
 

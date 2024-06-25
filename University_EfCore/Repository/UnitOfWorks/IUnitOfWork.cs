@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using University_Domain.PersonEntities.Interface;
+using University_Domain.EmployeeEntities.Interface;
+
 
 namespace University_Common.Domain
 {
     public interface IUnitOfWork: IDisposable
     {
-        Lazy<IPersonRepository> Person { get; }
+        Lazy<IEmployeeRepository> Employee { get; }
       //  ApplicationContext DbContext { get; }
 
         int Save();
