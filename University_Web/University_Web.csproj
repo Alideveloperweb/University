@@ -19,14 +19,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+    <PackageReference Include="NonFactors.Grid.Mvc6" Version="7.2.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\University_Application\University_Application.csproj" />
     <ProjectReference Include="..\University_Common\University_Common.csproj" />
     <ProjectReference Include="..\University_Configuration\University_Configuration.csproj" />
-    <ProjectReference Include="..\University_Contract\University_Contract.csproj" />
-    <ProjectReference Include="..\University_Domain\University_Domain.csproj" />
     <ProjectReference Include="..\University_EfCore\University_EfCore.csproj" />
   </ItemGroup>
 

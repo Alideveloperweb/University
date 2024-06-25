@@ -18,6 +18,7 @@ namespace University_Common.Application
         }
         #endregion
 
+         
         #region 
 
         public bool Create(TEntity entity)
@@ -61,6 +62,7 @@ namespace University_Common.Application
         {
             return db.ToList();
         }
+
 
         public async Task<TEntity> GetFirstOrDefaultAsync(string name)
         {

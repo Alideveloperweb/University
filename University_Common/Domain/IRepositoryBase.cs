@@ -16,5 +16,44 @@ namespace University_Common.Domain
         bool Exist(Expression<Func<TEntity,bool>> entity);
         bool SaveChanges();
        Task<int> SaveChangesAsync();
+
+
+        //int SaveChanges();
+        //Task<int> SaveChangesAsync();
+        //int SaveChangesWithoutValidation();
+        //IQueryable<T> AsQueryable();
+        //IQueryable<T> AsQueryable(Expression<Func<T, bool>> predicate);
+        //T First();
+        //T First(Expression<Func<T, bool>> predicate);
+        //T FirstOrDefault();
+        //T FirstOrDefault(Expression<Func<T, bool>> predicate);
+        //List<T> ToList();
+        //List<T> ToList(Expression<Func<T, bool>> predicate);
+        //int Delete(Expression<Func<T, bool>> predicate);
+        //int Update(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T>> updateExpression);
+        //void ChangeState(T entity, EntityState state);
+        //bool Any();
+        //bool Any(Expression<Func<T, bool>> predicate);
+        //int Count();
+        //int Count(Expression<Func<T, bool>> predicate);
+        //IQueryable<T> Including(params Expression<Func<T, object>>[] includeProperties);
+        //T Attach(T entity);
+        //IOrderedQueryable<T> OrderBy<TKey>(Expression<Func<T, TKey>> keySelector);
+        //IOrderedQueryable<T> OrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector);
+        //int? MaxNullableInt(Expression<Func<T, int?>> predicate);
+        //int? MinNullableInt(Expression<Func<T, int?>> predicate);
+
+        //void TryUpdateManyToMany<TRel, TKey>(IEnumerable<TRel> currentItems, IEnumerable<TRel> newItems,
+        //    Func<TRel, TKey> getKey) where TRel : class;
+
+        //DbSet<T> Entity();
+
+        //IEnumerable<TRel> Except<TRel, TKey>(IEnumerable<TRel> items, IEnumerable<TRel> other,
+        //    Func<TRel, TKey> getKeyFunc);
+
+        //IEnumerable<TRel> Subscription<TRel, TKey>(IEnumerable<TRel> items, IEnumerable<TRel> other,
+        //    Func<TRel, TKey> getKeyFunc);
+
+        //void AddIfNotExists(T entity, Expression<Func<T, bool>>? predicate = null, bool update = false);
     }
 }

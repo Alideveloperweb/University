@@ -2,10 +2,11 @@
 
 namespace University_Domain.EmployeeEntities
 {
-    public class Employee: PersonalInformation
+    public class Employee : PersonalInformation
     {
 
         #region Properties
+
         /// <summary>
         /// شماره کارمندی
         /// </summary>
@@ -71,16 +72,20 @@ namespace University_Domain.EmployeeEntities
         /// </summary>
         public List<string> RecentProjects { get; set; }
 
+        /// <summary>
+        ///    کلمه عبور
+        /// </summary>
+        public string Password { get; set; }
 
         #endregion
 
         #region Create
 
-        public Employee(string FirstName, string LastName, string NationalCode, string Mobile, string Homephone,string CountryName, string CityName, string Address,
-                        string LastEducationalCertificate, double GPAOfThelastDegree, bool Gender, bool MaritalStatus,DateTime DateOfBirth, string EmergencyContactNumber,
-                        string SpouseNationalID, string BloodType,string MedicalHistory, string EmployeeNumber, string JobTitle, string Department,
+        public Employee(string FirstName, string LastName, string NationalCode, string Mobile, string Homephone, string CountryName, string CityName, string Address,
+                        string LastEducationalCertificate, double GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
+                        string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber, string JobTitle, string Department,
                         DateTime HireDate, decimal Salary, bool EmploymentStatus, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor, List<string> Skills,
-                        List<string> Certifications, string PerformanceReview, List<string> RecentProjects)
+                        List<string> Certifications, string PerformanceReview, List<string> RecentProjects, string Password)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;
@@ -100,19 +105,20 @@ namespace University_Domain.EmployeeEntities
             this.BloodType = BloodType;
             this.MedicalHistory = MedicalHistory;
             this.EmployeeNumber = EmployeeNumber;
-            this.JobTitle = JobTitle;    
-            this.Department = Department;    
-            this.HireDate = HireDate;    
-            this.Salary = Salary;    
-            this.EmploymentStatus = EmploymentStatus;    
-            this.WeeklyWorkingHours = WeeklyWorkingHours;    
-            this.RemainingLeaveDays = RemainingLeaveDays;    
+            this.JobTitle = JobTitle;
+            this.Department = Department;
+            this.HireDate = HireDate;
+            this.Salary = Salary;
+            this.EmploymentStatus = EmploymentStatus;
+            this.WeeklyWorkingHours = WeeklyWorkingHours;
+            this.RemainingLeaveDays = RemainingLeaveDays;
             this.Supervisor = Supervisor;
             this.Skills = Skills;
-            this.Certifications = Certifications;    
-            this.PerformanceReview = PerformanceReview;    
-            this.RecentProjects = RecentProjects;       
-           
+            this.Certifications = Certifications;
+            this.PerformanceReview = PerformanceReview;
+            this.RecentProjects = RecentProjects;
+            this.Password = Password;
+
         }
 
         #endregion

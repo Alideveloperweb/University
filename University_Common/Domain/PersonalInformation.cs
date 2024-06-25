@@ -101,6 +101,11 @@ namespace University_Common.Domain
         /// </summary>
         public string MedicalHistory { get; set; }
 
+        /// <summary>
+        ///  عکس
+        /// </summary>
+        public string ImageName { get; set; }
+
         #endregion
 
     }

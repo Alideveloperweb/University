@@ -1014,7 +1014,7 @@ form.comment-text input { padding-right: 130px; }
 /*---------------------------------------------------------------------
 Profile Edit 
 -----------------------------------------------------------------------*/
-.profile-pic { max-width: 100%; display: block; border-radius: 50%; -webkit-border-radius: 50%; }
+.profile-pic { max-width: 100%; display: block; border-radius: 50%; -webkit-border-radius: 0px; }
 .profile-img-edit { position: relative; display: inline-block; height: 150px; width: 150px; }
 .file-upload { display: none; }
 .p-image { position: absolute; top: auto; right: 8px; bottom: 10px; transition: all .3s cubic-bezier(.175, .885, .32, 1.275); background: var(--iq-primary); color: var(--iq-white); border-radius: 50%; height: 30px; width: 30px; line-height: 28px; text-align: center; font-size: 12px; cursor: pointer; }

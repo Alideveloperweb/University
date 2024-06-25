@@ -1,8 +1,126 @@
-﻿
+﻿@using University_Contract.EmployeeViewModel
+@model List<GetAllEmployeeItem>
+
 @{
     ViewData["Title"] = "کارمندان";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="col-sm-12">
+    <div class="iq-card">
+        <div class="iq-card-header d-flex justify-content-between">
+            <div class="iq-header-title">
+                <h4 class="card-title">لیست کارمندان</h4>
+            </div>
+        </div>
+        <div class="iq-card-body">
+            <div class="table-responsive">
+                <div class="row justify-content-between">
+                    <div class="col-sm-12 col-md-6">
+                        <div id="user_list_datatable_info" class="dataTables_filter">
+                            <form class="mr-3 position-relative">
+                                <div class="form-group mb-0">
+                                    <input type="search" class="form-control" id="exampleInputSearch" placeholder="Search" aria-controls="user-list-table">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="user-list-files d-flex float-left">
+                            <a class="iq-bg-primary" href="javascript:void();">
+                                Print
+                            </a>
+                            <a class="iq-bg-primary" href="javascript:void();">
+                                Excel
+                            </a>
+                            <a class="iq-bg-primary" href="javascript:void();">
+                                Pdf
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <table id="user-list-table" class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">
+                    <thead>
+                        <tr>
+                            <th>عکس</th>
+                            <th>کد پرسنلی</th>
+                            <th>نام و نام خانوادگی</th>
+                            <th>کد ملی</th>
+                            <th>شماه تماس </th>
+                            <th> وضعیت شغلی</th>
+                            <th>سمت شغلی</th>
+                            <th>مدرک تحصیلی</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.NationalCode != null)
+                            {
+                                <tr>
+                                    <td class="text-center"><img class="rounded img-fluid avatar-40" src="@item.ImageName" alt="profile"></td>
+                                    <td>@item.EmployeeNumber</td>
+                                    <td>@item.FullName</td>
+                                    <td>@item.NationalCode</td>
+                                    <td>@item.Mobile</td>
+                                    <td>
+                                        <div class="custom-control custom-switch custom-switch-text custom-switch-color custom-control-inline">
+                                            <div class="custom-switch-inner">
+                                                <p class="mb-0"> Danger </p>
+                                                <input type="checkbox" class="custom-control-input bg-danger" id="customSwitch-33" checked="">
+                                                <label class="custom-control-label" for="customSwitch-33" data-on-label="Yes" data-off-label="No">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Acme Corporation</td>
+                                    <td>2019/12/01</td>
+                                    <td>
+                                        <div class="flex align-items-center list-user-action">
+                                            <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add" href="#"><i class="ri-user-add-line"></i></a>
+                                            <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line"></i></a>
+                                            <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="9">اطلاعاتی برای نمایش وجود ندارد </td>
+                                </tr>
+                            }
+                            
 
+                              
+
+
+                        }
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row justify-content-between mt-3">
+                    <div id="user-list-page-info" class="col-md-6">
+                        <span>Showing 1 to 5 of 5 entries</span>
+                    </div>
+                    <div class="col-md-6">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-end mb-0">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

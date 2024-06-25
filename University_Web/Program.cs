@@ -1,4 +1,7 @@
+
+
 using University_Configuration;
+using University_Configuration.UnitOfWorkConfig;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,7 @@ string Connection = builder.Configuration.GetConnectionString("UniversityContext
 
 #region Configuration
 ConnectionConfig.Configure(builder.Services, Connection);
+UnitOfWorkConfiguration.Configure(builder.Services);
 #endregion
 
 var app = builder.Build();
