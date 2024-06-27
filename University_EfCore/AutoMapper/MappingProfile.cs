@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using University_Contract.EmployeeViewModel;
+
 using University_Domain.EmployeeEntities;
 
 namespace University_EfCore.AutoMapper
@@ -8,7 +8,7 @@ namespace University_EfCore.AutoMapper
     {
         public MappingProfile() 
         {
-            CreateMap<Employee, GetAllEmployeeItem>();
+           // CreateMap<Employee, GetAllEmployeeItem>();
         }
     }
 }

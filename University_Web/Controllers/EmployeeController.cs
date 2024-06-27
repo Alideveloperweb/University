@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using University_Common.Application;
 using University_Common.Domain;
-using University_Contract.EmployeeViewModel;
+
 using University_Domain.EmployeeEntities;
+using University_Web.ViewModel.EmployeeViewModel;
 
 namespace University_Web.Controllers
 {
@@ -25,8 +26,8 @@ namespace University_Web.Controllers
         public IActionResult Index(bool isRemove)
         {
             var employees = _unitOfWork.Employee.Value.AsQueryable().Where(e => e.IsRemove == isRemove);
-            var employeeViewModel = employees.Select(e => _mapper.Map<GetAllEmployeeItem>(e));
-            return View(employeeViewModel);
+            //var employeeViewModel = employees.Select(e => _mapper.Map<GetAllEmployeeItem>(e));
+            return View();
         }
 
         #region Create

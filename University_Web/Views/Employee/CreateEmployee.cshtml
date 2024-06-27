@@ -1,11 +1,10 @@
-﻿@using University_Contract.EmployeeViewModel
-@model CreateEmployeeItem
+﻿
 @{
     ViewData["Title"] = "ثبت کارمند جدید";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+@* 
 <div class="col-lg-3">
     <div class="iq-card">
         <div class="iq-card-header d-flex justify-content-between">
@@ -201,7 +200,7 @@
                         </div>
                         <div class="form-group col-sm-12">
                             <label>وضعیت تاهل</label>
-                            <select@*  asp-items="Html.GetEnumSelectList<Gender>()" asp-for="Gender" *@ class="form-control"
+                            <select  asp-items="Html.GetEnumSelectList<Gender>()" asp-for="Gender"  class="form-control"
                                 id="selectcountry">
                                 <option>یک مورد راانتخاب کنید</option>
 
@@ -253,3 +252,4 @@
         </div>
     </div>
 </div>
+ *@
