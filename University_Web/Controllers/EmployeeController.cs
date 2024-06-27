@@ -19,9 +19,9 @@ namespace University_Web.Controllers
         }
         #endregion
 
-        public IActionResult Index()
+        public IActionResult Index(bool isRemove)
         {
-          var employees=  _unitOfWork.Employee.Value.GetAllEmployee(false);
+          var employees=  _unitOfWork.Employee.Value.AsQueryable().Where(e=>e.IsRemove==isRemove);
 
             return View(employees);
         }
@@ -37,7 +37,7 @@ namespace University_Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateEmployee(CreateEmployeeItem createEmployee)
+        public async Task<IActionResult> CreateEmployee(CreateEmployeeItem createEmployee)
         {
             if (ModelState.IsValid)
             {
@@ -52,8 +52,15 @@ namespace University_Web.Controllers
 
                 bool create = _unitOfWork.Employee.Value.Create(employee);
                 if (create)
-                    return result.Success(Operation.Success, message.Create());
+                    return Ok(result.Success(Operation.Success, message.Create()));
+                else
+                    Ok(result.Failed(Operation.ErrorCreate, message.ErrorCreate()));
 
+                int save = await _unitOfWork.SaveAsync();
+                if (save == 0)
+                    return Ok(result.Success(Operation.Success, message.Save()));
+                else
+                    return Ok(result.Failed(Operation.ErrorSave, message.ErrorSave()));
 
             }
     

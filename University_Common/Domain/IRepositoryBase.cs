@@ -21,8 +21,8 @@ namespace University_Common.Domain
         //int SaveChanges();
         //Task<int> SaveChangesAsync();
         //int SaveChangesWithoutValidation();
-        //IQueryable<T> AsQueryable();
-        //IQueryable<T> AsQueryable(Expression<Func<T, bool>> predicate);
+        IQueryable<TEntity> AsQueryable();
+        IQueryable<TEntity> AsQueryable(Expression<Func<TEntity, bool>> predicate);
         //T First();
         //T First(Expression<Func<T, bool>> predicate);
         //T FirstOrDefault();

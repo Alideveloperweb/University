@@ -50,6 +50,12 @@ namespace University_Common.Application
             string message = $"خطا در ذخیره {Message}";
             return message;
         }
+
+        public string Save()
+        {
+            string message = $" موفقیت در ذخیره شد {Message}";
+            return message;
+        }
         public string Create()
         {
             string message = $"{Message} با موفقیت ایجاد شد .";
