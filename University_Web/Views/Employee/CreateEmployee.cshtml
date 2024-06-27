@@ -1,4 +1,6 @@
-﻿@{
+﻿@using University_Contract.EmployeeViewModel
+@model CreateEmployeeItem
+@{
     ViewData["Title"] = "ثبت کارمند جدید";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -32,13 +34,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="furl">شماره پرسنلی :</label>
-                    <input type="text" class="form-control" id="furl" placeholder="1234">
+                    <label asp-for="EmployeeNumber">شماره پرسنلی :</label>
+                    <input type="text" class="form-control" asp-for="EmployeeNumber" placeholder="1234">
+                    <span asp-validation-for="EmployeeNumber"></span>
                 </div>
+
                 <div class="form-group">
                     <label>سمت شغلی :</label>
                     <select class="form-control" id="selectuserrole">
-                        <option>Select</option>
+                        <option>یک سمت را انتخاب کنید</option>
                         <option>Web Designer</option>
                         <option>Web Developer</option>
                         <option>Tester</option>
@@ -47,9 +51,9 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>بخش :</label>
+                    <label>دپارتمان :</label>
                     <select class="form-control" id="selectuserrole">
-                        <option>Select</option>
+                        <option>یک دپارتمان را انتخاب کنید</option>
                         <option>Web Designer</option>
                         <option>Web Developer</option>
                         <option>Tester</option>

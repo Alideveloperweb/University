@@ -2,6 +2,7 @@
 
 using University_Configuration;
 using University_Configuration.UnitOfWorkConfig;
+using University_EfCore.AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +15,17 @@ string Connection = builder.Configuration.GetConnectionString("UniversityContext
 
 #endregion
 
+#region AutoMapper 
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+#endregion
+
 #region Configuration
+
 ConnectionConfig.Configure(builder.Services, Connection);
 UnitOfWorkConfiguration.Configure(builder.Services);
+
 #endregion
 
 var app = builder.Build();

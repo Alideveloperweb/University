@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using University_Common.Application;
 using University_Common.Domain;
 using University_Contract.EmployeeViewModel;
@@ -12,18 +13,20 @@ namespace University_Web.Controllers
         #region Create
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper ;
 
-        public EmployeeController(IUnitOfWork unitOfWork)
+        public EmployeeController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper=mapper;
         }
         #endregion
 
         public IActionResult Index(bool isRemove)
         {
-          var employees=  _unitOfWork.Employee.Value.AsQueryable().Where(e=>e.IsRemove==isRemove);
-
-            return View(employees);
+            var employees = _unitOfWork.Employee.Value.AsQueryable().Where(e => e.IsRemove == isRemove);
+            var employeeViewModel = employees.Select(e => _mapper.Map<GetAllEmployeeItem>(e));
+            return View(employeeViewModel);
         }
 
         #region Create
@@ -31,7 +34,7 @@ namespace University_Web.Controllers
         [HttpGet]
         public IActionResult CreateEmployee()
         {
-          
+
 
             return View();
         }
@@ -44,11 +47,11 @@ namespace University_Web.Controllers
                 OperationResult result = new();
                 ApplicationMessage message = new("کارمند");
 
-                Employee employee = new(createEmployee.FirstName, createEmployee.LastName,createEmployee.NationalCode,createEmployee.Mobile,createEmployee.Homephone,createEmployee.CountryName
-                    ,createEmployee.CityName,createEmployee.Address,createEmployee.LastEducationalCertificate,createEmployee.GPAOfThelastDegree,createEmployee.Gender,createEmployee.MaritalStatus
-                    ,createEmployee.DateOfBirth,createEmployee.EmergencyContactNumber,createEmployee.SpouseNationalID,createEmployee.BloodType,createEmployee.MedicalHistory,createEmployee.EmployeeNumber
-                    ,createEmployee.JobTitle,createEmployee.Department,createEmployee.HireDate,createEmployee.Salary,createEmployee.EmploymentStatus,createEmployee.WeeklyWorkingHours,createEmployee.RemainingLeaveDays
-                    ,createEmployee.Supervisor,createEmployee.Skills,createEmployee.Certifications,createEmployee.PerformanceReview,createEmployee.RecentProjects,createEmployee.Password);
+                Employee employee = new(createEmployee.FirstName, createEmployee.LastName, createEmployee.NationalCode, createEmployee.Mobile, createEmployee.Homephone, createEmployee.CountryName
+                    , createEmployee.CityName, createEmployee.Address, createEmployee.LastEducationalCertificate, createEmployee.GPAOfThelastDegree, createEmployee.Gender, createEmployee.MaritalStatus
+                    , createEmployee.DateOfBirth, createEmployee.EmergencyContactNumber, createEmployee.SpouseNationalID, createEmployee.BloodType, createEmployee.MedicalHistory, createEmployee.EmployeeNumber
+                    , createEmployee.JobTitle, createEmployee.Department, createEmployee.HireDate, createEmployee.Salary, createEmployee.EmploymentStatus, createEmployee.WeeklyWorkingHours, createEmployee.RemainingLeaveDays
+                    , createEmployee.Supervisor, createEmployee.Skills, createEmployee.Certifications, createEmployee.PerformanceReview, createEmployee.RecentProjects, createEmployee.Password);
 
                 bool create = _unitOfWork.Employee.Value.Create(employee);
                 if (create)
@@ -63,7 +66,7 @@ namespace University_Web.Controllers
                     return Ok(result.Failed(Operation.ErrorSave, message.ErrorSave()));
 
             }
-    
+
 
             return View();
         }
