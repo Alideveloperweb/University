@@ -1,5 +1,5 @@
 ﻿
-namespace University_Contract.EmployeeViewModel
+namespace University_Web.ViewModel.EmployeeViewModel
 {
     public class GetAllEmployeeItem
     {

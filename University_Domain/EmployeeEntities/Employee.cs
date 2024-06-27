@@ -18,7 +18,7 @@ namespace University_Domain.EmployeeEntities
         public string JobTitle { get; set; }
 
         /// <summary>
-        /// بخش
+        /// دپارتمان
         /// </summary>
         public string Department { get; set; }
 
@@ -58,7 +58,7 @@ namespace University_Domain.EmployeeEntities
         public List<string> Skills { get; set; }
 
         /// <summary>
-        /// گواهینامه‌ها و مدارک حرفه‌ای
+        /// گواهینامه‌ها و مدارک حرفه‌ای    
         /// </summary>
         public List<string> Certifications { get; set; }
 

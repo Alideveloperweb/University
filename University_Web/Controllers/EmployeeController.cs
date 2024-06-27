@@ -72,5 +72,16 @@ namespace University_Web.Controllers
         }
 
         #endregion
+
+        #region Edit
+
+        [HttpGet]
+        public IActionResult EditEmployee()
+        {
+            return View();
+        }
+
+        #endregion
+
     }
 }

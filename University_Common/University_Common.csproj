@@ -10,4 +10,19 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="ResourceType\Language.Fa.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Language.Fa.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ResourceType\Language.Fa.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.Fa.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
