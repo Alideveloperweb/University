@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using University_Common.Application;
 using University_Common.Domain;
-
 using University_Domain.EmployeeEntities;
 using University_Web.ViewModel.EmployeeViewModel;
 
@@ -11,23 +9,22 @@ namespace University_Web.Controllers
     public class EmployeeController : Controller
     {
 
-        #region Create
+        #region Cnstarctor
 
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper ;
 
-        public EmployeeController(IUnitOfWork unitOfWork, IMapper mapper)
+        public EmployeeController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _mapper=mapper;
         }
+
         #endregion
 
-        public IActionResult Index(bool isRemove)
+        public IActionResult Index(GetAllEmployeeItem getAllEmployee)
         {
-            var employees = _unitOfWork.Employee.Value.AsQueryable().Where(e => e.IsRemove == isRemove);
+            var employees = _unitOfWork.Employee.Value.AsQueryable().Where(e => e.IsRemove == getAllEmployee.IsRemove);
             //var employeeViewModel = employees.Select(e => _mapper.Map<GetAllEmployeeItem>(e));
-            return View();
+            return View(getAllEmployee);
         }
 
         #region Create

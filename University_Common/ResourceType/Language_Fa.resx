@@ -126,8 +126,8 @@
     <comment>گروه خونی</comment>
   </data>
   <data name="Certifications" xml:space="preserve">
-    <value>گواهینامه ها</value>
-    <comment>گواهینامه ها</comment>
+    <value>گواهینامه </value>
+    <comment>گواهینامه</comment>
   </data>
   <data name="CityName" xml:space="preserve">
     <value>نام شهر</value>
@@ -181,7 +181,7 @@
     <value>تلفن منزل</value>
     <comment>تلفن منزل</comment>
   </data>
-  <data name="ImageName" xml:space="preserve">
+  <data name="Image" xml:space="preserve">
     <value>عکس</value>
     <comment>عکس</comment>
   </data>
@@ -207,7 +207,7 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>نام</value>
-    <comment>نام </comment>
+    <comment>نام</comment>
   </data>
   <data name="NationalCode" xml:space="preserve">
     <value>کد ملی</value>
@@ -228,6 +228,10 @@
   <data name="RemainingLeaveDays" xml:space="preserve">
     <value>تعداد مرخصی</value>
     <comment>تعداد مرخصی</comment>
+  </data>
+  <data name="RePassword" xml:space="preserve">
+    <value>تکرارکلمه عبور</value>
+    <comment>تکرارکلمه عبور</comment>
   </data>
   <data name="Salary" xml:space="preserve">
     <value>حقوق</value>

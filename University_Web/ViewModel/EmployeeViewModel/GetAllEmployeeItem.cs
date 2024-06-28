@@ -3,7 +3,8 @@ namespace University_Web.ViewModel.EmployeeViewModel
 {
     public class GetAllEmployeeItem
     {
-        
+        public bool IsRemove { get; set; }
+
         public string ImageName { get; set; }
 
         public string FullName { get; set; }

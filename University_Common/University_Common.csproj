@@ -11,17 +11,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ResourceType\Language.Fa.Designer.cs">
+    <Compile Update="ConstantsType\Constants.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Language.Fa.resx</DependentUpon>
+      <DependentUpon>Constants.resx</DependentUpon>
+    </Compile>
+    <Compile Update="ResourceType\Language_Fa.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Language_Fa.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="ResourceType\Language.Fa.resx">
+    <EmbeddedResource Update="ConstantsType\Constants.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Language.Fa.Designer.cs</LastGenOutput>
+      <LastGenOutput>Constants.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ResourceType\Language_Fa.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language_Fa.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
