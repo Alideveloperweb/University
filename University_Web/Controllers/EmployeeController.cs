@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 using University_Common.Application;
 using University_Common.Domain;
 using University_Domain.EmployeeEntities;
+using University_Domain.JobEntities;
 using University_Web.ViewModel.EmployeeViewModel;
 
 namespace University_Web.Controllers
@@ -22,9 +25,19 @@ namespace University_Web.Controllers
 
         public IActionResult Index(GetAllEmployeeItem getAllEmployee)
         {
+            if (!ModelState.IsValid)
+            {
+                return NotFound();
+            }
             var employees = _unitOfWork.Employee.Value.AsQueryable().Where(e => e.IsRemove == getAllEmployee.IsRemove);
-            //var employeeViewModel = employees.Select(e => _mapper.Map<GetAllEmployeeItem>(e));
-            return View(getAllEmployee);
+
+            GetAllEmployeeItem getEmployee = new GetAllEmployeeItem
+            {
+                Employees = employees,
+            };
+
+
+            return View(getEmployee);
         }
 
         #region Create
@@ -32,9 +45,29 @@ namespace University_Web.Controllers
         [HttpGet]
         public IActionResult CreateEmployee()
         {
+            CreateEmployeeItem createEmployee = new CreateEmployeeItem();
+            var departmant = _unitOfWork.Department.Value.AsQueryable().Where(e => e.IsRemove == createEmployee.IsRemove);
+            if (departmant == null || !departmant.Any())
+            {
+                ModelState.AddModelError(string.Empty, "دپارتمانی یافت نشد");
+                return View(new CreateEmployeeItem());
+            }
+
+            ViewBag.Departmant = new SelectList(departmant, "DepartmentsId", "DepartmentName");
+
+            var job = _unitOfWork.Job.Value.AsQueryable().Where(e => e.IsRemove == createEmployee.IsRemove);
+            if (job == null || !job.Any())
+            {
+                ModelState.AddModelError(string.Empty, "سمتی یافت نشد");
+                return View(new CreateEmployeeItem());
+            }
+
+            ViewBag.Position = new SelectList(job, "JobId", "Title");
 
 
-            return View();
+
+
+            return View(createEmployee);
         }
 
         [HttpPost]
@@ -48,7 +81,7 @@ namespace University_Web.Controllers
                 Employee employee = new(createEmployee.FirstName, createEmployee.LastName, createEmployee.NationalCode, createEmployee.Mobile, createEmployee.Homephone, createEmployee.CountryName
                     , createEmployee.CityName, createEmployee.Address, createEmployee.LastEducationalCertificate, createEmployee.GPAOfThelastDegree, createEmployee.Gender, createEmployee.MaritalStatus
                     , createEmployee.DateOfBirth, createEmployee.EmergencyContactNumber, createEmployee.SpouseNationalID, createEmployee.BloodType, createEmployee.MedicalHistory, createEmployee.EmployeeNumber
-                    , createEmployee.JobTitle, createEmployee.Department, createEmployee.HireDate, createEmployee.Salary, createEmployee.EmploymentStatus, createEmployee.WeeklyWorkingHours, createEmployee.RemainingLeaveDays
+                    , createEmployee.HireDate, createEmployee.Salary, createEmployee.EmploymentStatus, createEmployee.WeeklyWorkingHours, createEmployee.RemainingLeaveDays
                     , createEmployee.Supervisor, createEmployee.Skills, createEmployee.Certifications, createEmployee.PerformanceReview, createEmployee.RecentProjects, createEmployee.Password);
 
                 bool create = _unitOfWork.Employee.Value.Create(employee);

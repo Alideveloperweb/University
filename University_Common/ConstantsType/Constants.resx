@@ -117,6 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CountryName" xml:space="preserve">
+    <value>30</value>
+    <comment>حدلکثز کاراکتر </comment>
+  </data>
+  <data name="EmailLength" xml:space="preserve">
+    <value>80</value>
+    <comment>حداکثر مقدار کاراکتر ایمیل</comment>
+  </data>
+  <data name="MobileLength" xml:space="preserve">
+    <value>11</value>
+    <comment>حداکثر مقدار شماره موبایل</comment>
+  </data>
+  <data name="NationalCodeLength" xml:space="preserve">
+    <value>10</value>
+    <comment>حداکثر مقدار کد ملی</comment>
+  </data>
   <data name="TelLength" xml:space="preserve">
     <value>11</value>
     <comment>حداکثر مقدار شماره موبایل</comment>

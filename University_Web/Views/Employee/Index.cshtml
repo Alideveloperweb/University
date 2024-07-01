@@ -1,5 +1,5 @@
 ﻿@using University_Web.ViewModel.EmployeeViewModel
-@model IQueryable<GetAllEmployeeItem>
+@model GetAllEmployeeItem
 
 @{
     ViewData["Title"] = "کارمندان";
@@ -54,14 +54,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.Employees)
                         {
                             if (item.NationalCode != null)
                             {
                                 <tr>
                                     <td class="text-center"><img class="rounded img-fluid avatar-40" src="@item.ImageName" alt="profile"></td>
                                     <td>@item.EmployeeNumber</td>
-                                    <td>@item.FullName</td>
+                                    <td>@item.FirstName</td>
                                     <td>@item.NationalCode</td>
                                     <td>@item.Mobile</td>
                                     <td>

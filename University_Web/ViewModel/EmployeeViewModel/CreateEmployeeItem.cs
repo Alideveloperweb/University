@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using University_Common.ResourceType;
+using University_Domain.EmployeeEntities;
 
 
 namespace University_Web.ViewModel.EmployeeViewModel
@@ -270,5 +271,8 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [Compare(nameof(Password), ErrorMessage = "تکرار پسورد با خود پسورد متابقت ندارد .")]
         public string RePassword { get; set; }
+
+        public bool IsRemove { get; set; }
+
     }
 }

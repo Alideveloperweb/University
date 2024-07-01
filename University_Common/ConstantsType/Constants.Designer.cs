@@ -61,6 +61,42 @@ namespace University_Common.ConstantsType {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 30.
+        /// </summary>
+        public static string CountryName {
+            get {
+                return ResourceManager.GetString("CountryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 80.
+        /// </summary>
+        public static string EmailLength {
+            get {
+                return ResourceManager.GetString("EmailLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 11.
+        /// </summary>
+        public static string MobileLength {
+            get {
+                return ResourceManager.GetString("MobileLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10.
+        /// </summary>
+        public static string NationalCodeLength {
+            get {
+                return ResourceManager.GetString("NationalCodeLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 11.
         /// </summary>
         public static string TelLength {

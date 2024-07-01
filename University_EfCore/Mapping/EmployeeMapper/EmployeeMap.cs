@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using University_Domain.EmployeeEntities;
+using University_Domain.JobEntities;
 
 namespace University_EfCore.Mapping.EmployeeMapper
 {
@@ -30,7 +31,6 @@ namespace University_EfCore.Mapping.EmployeeMapper
             builder.Property(p => p.BloodType).HasMaxLength(20);
             builder.Property(p => p.MedicalHistory).HasMaxLength(200);
             builder.Property(p => p.EmployeeNumber).HasMaxLength(200);
-            builder.Property(p => p.JobTitle).HasMaxLength(60);
             builder.Property(p => p.Department).HasMaxLength(50);
             builder.Property(p => p.HireDate);
             builder.Property(p => p.Salary);
@@ -44,6 +44,16 @@ namespace University_EfCore.Mapping.EmployeeMapper
             builder.Property(p => p.RecentProjects);
 
             #endregion
+
+            
+            #region Relation
+            builder.HasOne(j => j.Job)
+               .WithMany(e => e.Employees)
+               .HasForeignKey(e => e.JobId);
+
+            #endregion
+
+
         }
     }
 }

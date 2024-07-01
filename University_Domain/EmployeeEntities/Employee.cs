@@ -1,4 +1,6 @@
 ﻿using University_Common.Domain;
+using University_Domain.DepartmentsEntities;
+using University_Domain.JobEntities;
 
 namespace University_Domain.EmployeeEntities
 {
@@ -12,15 +14,15 @@ namespace University_Domain.EmployeeEntities
         /// </summary>
         public string EmployeeNumber { get; set; }
 
-        /// <summary>
-        /// سمت شغلی
-        /// </summary>
-        public string JobTitle { get; set; }
+        ///// <summary>
+        ///// سمت شغلی
+        ///// </summary>
+        //public string JobTitle { get; set; }
 
-        /// <summary>
-        /// دپارتمان
-        /// </summary>
-        public string Department { get; set; }
+        ///// <summary>
+        ///// دپارتمان
+        ///// </summary>
+        //public string Department { get; set; }
 
         /// <summary>
         /// تاریخ شروع به کار
@@ -83,7 +85,7 @@ namespace University_Domain.EmployeeEntities
 
         public Employee(string FirstName, string LastName, string NationalCode, string Mobile, string Homephone, string CountryName, string CityName, string Address,
                         string LastEducationalCertificate, double GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
-                        string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber, string JobTitle, string Department,
+                        string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber,
                         DateTime HireDate, decimal Salary, bool EmploymentStatus, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor, List<string> Skills,
                         List<string> Certifications, string PerformanceReview, List<string> RecentProjects, string Password)
         {
@@ -105,8 +107,6 @@ namespace University_Domain.EmployeeEntities
             this.BloodType = BloodType;
             this.MedicalHistory = MedicalHistory;
             this.EmployeeNumber = EmployeeNumber;
-            this.JobTitle = JobTitle;
-            this.Department = Department;
             this.HireDate = HireDate;
             this.Salary = Salary;
             this.EmploymentStatus = EmploymentStatus;
@@ -132,7 +132,6 @@ namespace University_Domain.EmployeeEntities
 
         #endregion
 
-
         #region Remove
 
         public void Remove()
@@ -153,16 +152,13 @@ namespace University_Domain.EmployeeEntities
 
         #region Relation
 
+        public int JobId { get; set; }
+        public Job Job { get; set; }
+
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
+
         #endregion
-
-
-
-
-
-
-
-
-
 
     }
 }
