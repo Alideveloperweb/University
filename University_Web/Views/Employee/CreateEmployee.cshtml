@@ -55,15 +55,16 @@
                 </div>
                 <div class="form-group">
                     <label>دپارتمان :</label>
-                    <select class="form-control" id="selectuserrole">
-                        <option>یک دپارتمان را انتخاب کنید</option>
-                        <option>Web Designer</option>
-                        <option>Web Developer</option>
-                        <option>Tester</option>
-                        <option>Php Developer</option>
+                    <select asp-for="DepartmentId" class="form-control" id="selectuserrole">
+                        <option value="">یک دپارتمان را انتخاب کنید</option>
+                        @foreach (var departmant in ViewBag.Departmant)
+                        {
+                            <option value="@departmant.Value">@departmant.Text</option>
 
-                        <option>Ios Developer </option>
+                        }
+                    
                     </select>
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label>مهارت ها :</label>

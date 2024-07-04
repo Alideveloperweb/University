@@ -7,6 +7,9 @@ namespace University_Web.ViewModel.EmployeeViewModel
 {
     public class CreateEmployeeItem
     {
+
+        public int DepartmentId { get; set; }
+        public string DepartmentName { get; set; }
         /// <summary>
         /// نام 
         /// </summary>

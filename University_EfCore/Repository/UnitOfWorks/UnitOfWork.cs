@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using University_Common.Domain;
+using University_Domain.DepartmentsEntities.Interface;
 using University_Domain.EmployeeEntities.Interface;
+using University_Domain.JobEntities;
 using University_EfCore.Context;
 using University_EfCore.Repository.UnitOfWorks;
 
@@ -16,12 +18,18 @@ namespace University_EfCore.Repository.UnitOfWork
 
         public Lazy<IEmployeeRepository> Employee { get; private set; }
 
+        public Lazy<IDepartmentRepository> Department { get; private set; }
+
+        public Lazy<IJobRepository> Job { get; private set; }
+
         public UnitOfWork(ApplicationContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
             _logger = loggerFactory.CreateLogger("logs");
 
             Employee = new Lazy<IEmployeeRepository>(() => new EmployeeRepository.EmployeeRepository(context));
+            Department = new Lazy<IDepartmentRepository>(()=>new  DepartmentRepository.DepartmentRepository(context));
+            Job = new Lazy<IJobRepository>(() => new JobRepository.JobRepository(context));
         }
 
 

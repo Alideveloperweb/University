@@ -5,6 +5,7 @@ using University_Common.Application;
 using University_Common.Domain;
 using University_Domain.EmployeeEntities;
 using University_Domain.JobEntities;
+using University_Web.ViewModel.DepartmentViewModel;
 using University_Web.ViewModel.EmployeeViewModel;
 
 namespace University_Web.Controllers
@@ -46,14 +47,20 @@ namespace University_Web.Controllers
         public IActionResult CreateEmployee()
         {
             CreateEmployeeItem createEmployee = new CreateEmployeeItem();
-            var departmant = _unitOfWork.Department.Value.AsQueryable().Where(e => e.IsRemove == createEmployee.IsRemove);
-            if (departmant == null || !departmant.Any())
+            GetAllDepartmentItem getDepartment = new GetAllDepartmentItem();
+
+            var departmant = _unitOfWork.Department.Value.AsQueryable().Where(e => e.IsRemove == getDepartment.IsRemove);
+            var departmentList = departmant.ToList();
+
+            getDepartment.Department = departmant.AsQueryable();
+
+            if (getDepartment.Department == null || !getDepartment.Department.Any())
             {
                 ModelState.AddModelError(string.Empty, "دپارتمانی یافت نشد");
                 return View(new CreateEmployeeItem());
             }
 
-            ViewBag.Departmant = new SelectList(departmant, "DepartmentsId", "DepartmentName");
+            ViewBag.Departmant = new SelectList(getDepartment.Department, "DepartmentId", "DepartmentName");
 
             var job = _unitOfWork.Job.Value.AsQueryable().Where(e => e.IsRemove == createEmployee.IsRemove);
             if (job == null || !job.Any())

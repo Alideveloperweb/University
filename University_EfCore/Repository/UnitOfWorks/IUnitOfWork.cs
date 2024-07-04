@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using University_Domain.DepartmentsEntities.Interface;
 using University_Domain.EmployeeEntities.Interface;
+using University_Domain.JobEntities;
 
 
 namespace University_Common.Domain
@@ -7,6 +9,8 @@ namespace University_Common.Domain
     public interface IUnitOfWork: IDisposable
     {
         Lazy<IEmployeeRepository> Employee { get; }
+        Lazy<IDepartmentRepository> Department { get; }
+        Lazy<IJobRepository> Job { get; }
       //  ApplicationContext DbContext { get; }
 
         int Save();
