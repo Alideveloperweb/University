@@ -5,6 +5,10 @@ namespace University_Common.Domain
     {
         #region Properties
 
+        /// <summary>
+        /// نام کاربری
+        /// </summary>
+        public string Username { get; set; }
 
         /// <summary>
         /// نام 

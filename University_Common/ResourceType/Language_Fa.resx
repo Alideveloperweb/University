@@ -249,6 +249,10 @@
     <value>مسئول مستقیم</value>
     <comment>مسئول مستقیم</comment>
   </data>
+  <data name="Username" xml:space="preserve">
+    <value>نام کاربری</value>
+    <comment>نام کاربری</comment>
+  </data>
   <data name="WeeklyWorkingHours" xml:space="preserve">
     <value>ساعت کاری</value>
     <comment>ساعت کاری</comment>

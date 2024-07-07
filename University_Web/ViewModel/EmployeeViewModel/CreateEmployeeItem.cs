@@ -10,10 +10,23 @@ namespace University_Web.ViewModel.EmployeeViewModel
 
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
+
+        public int JobId { get; set; }
+        public string JobName { get; set; }
+
+        /// <summary>
+        /// نام کاربری 
+        /// </summary>
+        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Username))]
+        [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
+        [MaxLength(20, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
+        [MinLength(3, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
+        public string Username { get; set; }
+
         /// <summary>
         /// نام 
         /// </summary>
-        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.MaritalStatus))]
+        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Name))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [MaxLength(20, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
         [MinLength(3, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
@@ -178,16 +191,16 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// <summary>
         /// سمت شغلی
         /// </summary>
-        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.JobTitle))]
-        [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string JobTitle { get; set; }
+        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.JobTitle))]
+        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
+        //public string JobTitle { get; set; }
 
         /// <summary>
         /// بخش
         /// </summary>
-        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Department))]
-        [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string Department { get; set; }
+        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Department))]
+        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
+        //public string Department { get; set; }
 
         /// <summary>
         /// تاریخ شروع به کار
@@ -208,7 +221,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.EmploymentStatus))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public bool EmploymentStatus { get; set; }
+        public bool IsActive { get; set; }
 
         /// <summary>
         /// ساعات کاری هفتگی
@@ -233,16 +246,16 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// <summary>
         /// مهارت‌ها
         /// </summary>
-        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Skills))]
-        [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public List<string> Skills { get; set; }
+        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Skills))]
+        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
+        //public List<string> Skills { get; set; }
 
         /// <summary>
         /// گواهینامه‌ها و مدارک حرفه‌ای
         /// </summary>
-        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Certifications))]
-        [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public List<string> Certifications { get; set; }
+        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Certifications))]
+        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
+        //public List<string> Certifications { get; set; }
 
         /// <summary>
         /// ارزیابی عملکرد
@@ -254,9 +267,9 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// <summary>
         /// پروژه‌های اخیر
         /// </summary>
-        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.RecentProjects))]
-        [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public List<string> RecentProjects { get; set; }
+        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.RecentProjects))]
+        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
+        //public List<string> RecentProjects { get; set; }
 
 
         /// <summary>

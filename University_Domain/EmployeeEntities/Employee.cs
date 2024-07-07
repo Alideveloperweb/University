@@ -17,12 +17,12 @@ namespace University_Domain.EmployeeEntities
         ///// <summary>
         ///// سمت شغلی
         ///// </summary>
-        //public string JobTitle { get; set; }
+     //  public string JobTitle { get; set; }
 
         ///// <summary>
         ///// دپارتمان
         ///// </summary>
-        //public string Department { get; set; }
+       // public string Department { get; set; }
 
         /// <summary>
         /// تاریخ شروع به کار
@@ -37,7 +37,7 @@ namespace University_Domain.EmployeeEntities
         /// <summary>
         /// وضعیت شغلی (فعال/غیرفعال)
         /// </summary>
-        public bool EmploymentStatus { get; set; }
+        public bool IsActive { get; set; }
 
         /// <summary>
         /// ساعات کاری هفتگی
@@ -57,12 +57,12 @@ namespace University_Domain.EmployeeEntities
         /// <summary>
         /// مهارت‌ها
         /// </summary>
-        public List<string> Skills { get; set; }
+        //public List<string> Skills { get; set; }
 
         /// <summary>
         /// گواهینامه‌ها و مدارک حرفه‌ای    
         /// </summary>
-        public List<string> Certifications { get; set; }
+        //public List<string> Certifications { get; set; }
 
         /// <summary>
         /// ارزیابی عملکرد
@@ -72,7 +72,7 @@ namespace University_Domain.EmployeeEntities
         /// <summary>
         /// پروژه‌های اخیر
         /// </summary>
-        public List<string> RecentProjects { get; set; }
+      //  public List<string> RecentProjects { get; set; }
 
         /// <summary>
         ///    کلمه عبور
@@ -86,8 +86,8 @@ namespace University_Domain.EmployeeEntities
         public Employee(string FirstName, string LastName, string NationalCode, string Mobile, string Homephone, string CountryName, string CityName, string Address,
                         string LastEducationalCertificate, double GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
                         string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber,
-                        DateTime HireDate, decimal Salary, bool EmploymentStatus, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor, List<string> Skills,
-                        List<string> Certifications, string PerformanceReview, List<string> RecentProjects, string Password)
+                        DateTime HireDate, decimal Salary, bool IsActive, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor/*, List<string> Skills,*/
+                        /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;
@@ -109,14 +109,14 @@ namespace University_Domain.EmployeeEntities
             this.EmployeeNumber = EmployeeNumber;
             this.HireDate = HireDate;
             this.Salary = Salary;
-            this.EmploymentStatus = EmploymentStatus;
+            this.IsActive = IsActive;
             this.WeeklyWorkingHours = WeeklyWorkingHours;
             this.RemainingLeaveDays = RemainingLeaveDays;
             this.Supervisor = Supervisor;
-            this.Skills = Skills;
-            this.Certifications = Certifications;
+          //  this.Skills = Skills;
+           // this.Certifications = Certifications;
             this.PerformanceReview = PerformanceReview;
-            this.RecentProjects = RecentProjects;
+           // this.RecentProjects = RecentProjects;
             this.Password = Password;
 
         }

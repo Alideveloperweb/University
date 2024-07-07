@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 using University_Common.Application;
 using University_Common.Domain;
 using University_Domain.EmployeeEntities;
-using University_Domain.JobEntities;
-using University_Web.ViewModel.DepartmentViewModel;
 using University_Web.ViewModel.EmployeeViewModel;
 
 namespace University_Web.Controllers
@@ -44,35 +41,50 @@ namespace University_Web.Controllers
         #region Create
 
         [HttpGet]
-        public IActionResult CreateEmployee()
+        public async Task<IActionResult> CreateEmployee()
         {
+            // ایجاد یک نمونه از مدل CreateEmployeeItem
             CreateEmployeeItem createEmployee = new CreateEmployeeItem();
-            GetAllDepartmentItem getDepartment = new GetAllDepartmentItem();
 
-            var departmant = _unitOfWork.Department.Value.AsQueryable().Where(e => e.IsRemove == getDepartment.IsRemove);
-            var departmentList = departmant.ToList();
+          
+            if (_unitOfWork == null || _unitOfWork.Department == null || _unitOfWork.Department.Value == null)
+            {
+                ModelState.AddModelError(string.Empty, "مشکلی در دسترسی به اطلاعات دپارتمان‌ها وجود دارد");
+                return View(createEmployee);
+            }
 
-            getDepartment.Department = departmant.AsQueryable();
+            var departments = _unitOfWork.Department.Value.AsQueryable()
+                                      .Where(e => !e.IsRemove) 
+                                      .ToList();
 
-            if (getDepartment.Department == null || !getDepartment.Department.Any())
+            // بررسی اگر دپارتمانی وجود نداشته باشد
+            if (departments == null || !departments.Any())
             {
                 ModelState.AddModelError(string.Empty, "دپارتمانی یافت نشد");
-                return View(new CreateEmployeeItem());
+                return View(createEmployee);
             }
 
-            ViewBag.Departmant = new SelectList(getDepartment.Department, "DepartmentId", "DepartmentName");
+            // اختصاص دپارتمان‌ها به ViewBag برای استفاده در View
+            ViewBag.Departments = new SelectList(departments, "Id", "Name");
 
-            var job = _unitOfWork.Job.Value.AsQueryable().Where(e => e.IsRemove == createEmployee.IsRemove);
-            if (job == null || !job.Any())
+
+            if (_unitOfWork.Job == null || _unitOfWork.Job.Value == null)
             {
-                ModelState.AddModelError(string.Empty, "سمتی یافت نشد");
-                return View(new CreateEmployeeItem());
-            }
+                 ModelState.AddModelError(string.Empty, "مشکلی در دسترسی به اطلاعات سمت‌های شغلی وجود دارد");
+                 return View(createEmployee);
+             }
 
-            ViewBag.Position = new SelectList(job, "JobId", "Title");
+             var jobs = _unitOfWork.Job.Value.AsQueryable()
+                           .Where(e => !e.IsRemove)
+                           .ToList();
 
+             if (jobs == null || !jobs.Any())
+             {
+                 ModelState.AddModelError(string.Empty, "سمتی یافت نشد");
+                 return View(createEmployee);
+             }
 
-
+             ViewBag.Position = new SelectList(jobs, "Id", "Title");
 
             return View(createEmployee);
         }
@@ -88,8 +100,8 @@ namespace University_Web.Controllers
                 Employee employee = new(createEmployee.FirstName, createEmployee.LastName, createEmployee.NationalCode, createEmployee.Mobile, createEmployee.Homephone, createEmployee.CountryName
                     , createEmployee.CityName, createEmployee.Address, createEmployee.LastEducationalCertificate, createEmployee.GPAOfThelastDegree, createEmployee.Gender, createEmployee.MaritalStatus
                     , createEmployee.DateOfBirth, createEmployee.EmergencyContactNumber, createEmployee.SpouseNationalID, createEmployee.BloodType, createEmployee.MedicalHistory, createEmployee.EmployeeNumber
-                    , createEmployee.HireDate, createEmployee.Salary, createEmployee.EmploymentStatus, createEmployee.WeeklyWorkingHours, createEmployee.RemainingLeaveDays
-                    , createEmployee.Supervisor, createEmployee.Skills, createEmployee.Certifications, createEmployee.PerformanceReview, createEmployee.RecentProjects, createEmployee.Password);
+                    , createEmployee.HireDate, createEmployee.Salary, createEmployee.IsActive, createEmployee.WeeklyWorkingHours, createEmployee.RemainingLeaveDays
+                    , createEmployee.Supervisor,/* createEmployee.Skills, createEmployee.Certifications,*/ createEmployee.PerformanceReview, /*createEmployee.RecentProjects,*/ createEmployee.Password);
 
                 bool create = _unitOfWork.Employee.Value.Create(employee);
                 if (create)

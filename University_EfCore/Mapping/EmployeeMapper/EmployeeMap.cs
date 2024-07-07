@@ -33,14 +33,14 @@ namespace University_EfCore.Mapping.EmployeeMapper
             builder.Property(p => p.EmployeeNumber).HasMaxLength(200);
             builder.Property(p => p.HireDate);
             builder.Property(p => p.Salary);
-            builder.Property(p => p.EmploymentStatus);
+            builder.Property(p => p.IsActive);
             builder.Property(p => p.WeeklyWorkingHours);
             builder.Property(p => p.RemainingLeaveDays);
             builder.Property(p => p.Supervisor);
-            builder.Property(p => p.Skills);
-            builder.Property(p => p.Certifications);
+            //builder.Property(p => p.Skills);
+            //builder.Property(p => p.Certifications);
             builder.Property(p => p.PerformanceReview);
-            builder.Property(p => p.RecentProjects);
+          //  builder.Property(p => p.RecentProjects);
 
             #endregion
 
