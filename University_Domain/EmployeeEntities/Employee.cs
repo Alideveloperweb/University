@@ -76,12 +76,13 @@ namespace University_Domain.EmployeeEntities
 
         #region Create
 
-        public Employee(string FirstName, string LastName, string NationalCode, string Mobile, string Homephone, string CountryName, string CityName, string Address,
+        public Employee(string Username, string FirstName, string LastName, string NationalCode, string Mobile, string Homephone, string CountryName, string CityName, string Address,
                         string LastEducationalCertificate, double GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
                         string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber,
                         DateTime HireDate, decimal Salary, bool IsActive, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor/*, List<string> Skills,*/
-                        /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password ,string ImageName, int DepartmentId)
+                        /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password ,int DepartmentId,string Email,string ImageName,int JobId)
         {
+            this.Username = Username;
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.NationalCode = NationalCode;
@@ -107,12 +108,14 @@ namespace University_Domain.EmployeeEntities
             this.WeeklyWorkingHours = WeeklyWorkingHours;
             this.RemainingLeaveDays = RemainingLeaveDays;
             this.Supervisor = Supervisor;
-          //  this.Skills = Skills;
+            this.Email= Email;
            // this.Certifications = Certifications;
             this.PerformanceReview = PerformanceReview;
            // this.RecentProjects = RecentProjects;
             this.Password = Password;
-            this.ImageName = ImageName;
+            this.DepartmentId = DepartmentId;
+            this.ImageName=ImageName;
+            this.JobId = JobId;
         }
 
         #endregion

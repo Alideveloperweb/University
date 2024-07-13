@@ -234,12 +234,25 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="DepartmentId">دپارتمان</label>
+                        <label asp-for="DepartmentId"></label>
                         <select asp-for="DepartmentId" class="form-control">
                             <option value="">انتخاب کنید</option>
                             @foreach (var department in ViewBag.Departments)
                             {
                                 <option value="@department.Value">@department.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="JobId"></label>
+                        <select asp-for="JobId" class="form-control">
+                            <option value="">انتخاب کنید</option>
+                            @foreach (var position in ViewBag.Position)
+                            {
+                                <option value="@position.Value">@position.Text</option>
                             }
                         </select>
                     </div>

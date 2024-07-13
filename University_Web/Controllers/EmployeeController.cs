@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using University_Common.Application;
 using University_Common.Domain;
 using University_Domain.EmployeeEntities;
@@ -46,8 +48,6 @@ namespace University_Web.Controllers
             // ایجاد یک نمونه از مدل CreateEmployeeItem
             CreateEmployeeItem createEmployee = new CreateEmployeeItem();
 
-
-
             #region Select List departments
 
             if (_unitOfWork == null || _unitOfWork.Department == null || _unitOfWork.Department.Value == null)
@@ -93,15 +93,15 @@ namespace University_Web.Controllers
 
             #region Select List Skills 
 
-            if (_unitOfWork.Skills==null || _unitOfWork.Skills.Value==null)
+            if (_unitOfWork.Skills == null || _unitOfWork.Skills.Value == null)
             {
-                ModelState.AddModelError(string.Empty,"مشکلی در دسترسی به اطلاعات مهارت ها پیش آمده است");
+                ModelState.AddModelError(string.Empty, "مشکلی در دسترسی به اطلاعات مهارت ها پیش آمده است");
                 return View(createEmployee);
             }
 
             var skills = _unitOfWork.Skills.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
 
-            if (skills ==null || !skills.Any())
+            if (skills == null || !skills.Any())
             {
                 ModelState.AddModelError(string.Empty, "مهارتی یافت نشد");
                 return View(createEmployee);
@@ -155,18 +155,23 @@ namespace University_Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateEmployee(CreateEmployeeItem createEmployee ,IFormFile ImageName)
+        public async Task<IActionResult> CreateEmployee(CreateEmployeeItem createEmployee)
         {
-            if (ModelState.IsValid)
+            try
             {
+
+
+                //if (ModelState.IsValid)
+                //{
                 OperationResult result = new();
                 ApplicationMessage message = new("کارمند");
 
-                Employee employee = new(createEmployee.FirstName, createEmployee.LastName, createEmployee.NationalCode, createEmployee.Mobile, createEmployee.Homephone, createEmployee.CountryName
+                Employee employee = new(createEmployee.Username, createEmployee.FirstName, createEmployee.LastName, createEmployee.NationalCode, createEmployee.Mobile, createEmployee.Homephone, createEmployee.CountryName
                     , createEmployee.CityName, createEmployee.Address, createEmployee.LastEducationalCertificate, createEmployee.GPAOfThelastDegree, createEmployee.Gender, createEmployee.MaritalStatus
                     , createEmployee.DateOfBirth, createEmployee.EmergencyContactNumber, createEmployee.SpouseNationalID, createEmployee.BloodType, createEmployee.MedicalHistory, createEmployee.EmployeeNumber
                     , createEmployee.HireDate, createEmployee.Salary, createEmployee.IsActive, createEmployee.WeeklyWorkingHours, createEmployee.RemainingLeaveDays
-                    , createEmployee.Supervisor,/* createEmployee.Skills, createEmployee.Certifications,*/ createEmployee.PerformanceReview, /*createEmployee.RecentProjects,*/ createEmployee.Password,createEmployee.ImageName,createEmployee.DepartmentId);
+                    , createEmployee.Supervisor,/* createEmployee.Skills, createEmployee.Certifications,*/ createEmployee.PerformanceReview, /*createEmployee.RecentProjects,*/ createEmployee.Password, createEmployee.DepartmentId,createEmployee.Email,"ali.png",createEmployee.JobId);
+
 
                 var departments = _unitOfWork.Department.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
                 ViewBag.Departments = new SelectList(departments, "Id", "Name");
@@ -180,8 +185,13 @@ namespace University_Web.Controllers
                 var recentProjects = _unitOfWork.RecentProjects.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
                 ViewBag.RecentProjects = new SelectList(recentProjects, "Id", "Name");
 
+                var skills = _unitOfWork.Skills.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
+                ViewBag.Skills = new SelectList(skills, "Id", "Name");
+
+                bool createCertification = _unitOfWork.Certifications.Value.CreateRenge(certification);
+
                 bool create = _unitOfWork.Employee.Value.Create(employee);
-                if (create)
+                if (!create)
                     return Ok(result.Success(Operation.Success, message.Create()));
                 else
                     Ok(result.Failed(Operation.ErrorCreate, message.ErrorCreate()));
@@ -189,13 +199,32 @@ namespace University_Web.Controllers
                 int save = await _unitOfWork.SaveAsync();
                 if (save == 0)
                     return Ok(result.Success(Operation.Success, message.Save()));
-                else
-                    return Ok(result.Failed(Operation.ErrorSave, message.ErrorSave()));
+             
+
+                //}
+
 
             }
+            catch (DbUpdateException dbEx)
+            {
+                // Log and handle DbUpdateException
+                var sqlEx = dbEx.GetBaseException() as SqlException;
+                if (sqlEx != null)
+                {
+                    if (sqlEx.Number == 544) // Error number for IDENTITY_INSERT issue
+                    {
+                        return StatusCode(500, "Cannot insert explicit value for identity column when IDENTITY_INSERT is set to OFF.");
+                    }
+                }
+                return StatusCode(500, dbEx.Message);
+            }
+            catch (Exception ex)
+            {
+                // Log and handle other exceptions
+                return StatusCode(500, ex.Message);
+            }
 
-
-            return View();
+            return View(createEmployee);
         }
 
         #endregion

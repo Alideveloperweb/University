@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using University_Common.ResourceType;
-using University_Domain.EmployeeEntities;
 
 
 namespace University_Web.ViewModel.EmployeeViewModel
@@ -246,14 +245,14 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// </summary>
         //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Skills))]
         //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        //public List<string> Skills { get; set; }
+      //  public string Skills { get; set; }
 
         /// <summary>
         /// گواهینامه‌ها و مدارک حرفه‌ای
         /// </summary>
         //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Certifications))]
         //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        //public List<string> Certifications { get; set; }
+      //  public string Certifications { get; set; }
 
         /// <summary>
         /// ارزیابی عملکرد
