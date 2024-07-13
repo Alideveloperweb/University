@@ -1,4 +1,5 @@
 ﻿using University_Common.Domain;
+using University_Domain.Associations;
 using University_Domain.DepartmentsEntities;
 using University_Domain.JobEntities;
 
@@ -9,6 +10,8 @@ namespace University_Domain.EmployeeEntities
 
         #region Properties
 
+        #region job information
+
         /// <summary>
         /// شماره کارمندی
         /// </summary>
@@ -17,12 +20,7 @@ namespace University_Domain.EmployeeEntities
         ///// <summary>
         ///// سمت شغلی
         ///// </summary>
-     //  public string JobTitle { get; set; }
-
-        ///// <summary>
-        ///// دپارتمان
-        ///// </summary>
-       // public string Department { get; set; }
+       //public string JobTitle { get; set; }
 
         /// <summary>
         /// تاریخ شروع به کار
@@ -55,16 +53,6 @@ namespace University_Domain.EmployeeEntities
         public string Supervisor { get; set; }
 
         /// <summary>
-        /// مهارت‌ها
-        /// </summary>
-        //public List<string> Skills { get; set; }
-
-        /// <summary>
-        /// گواهینامه‌ها و مدارک حرفه‌ای    
-        /// </summary>
-        //public List<string> Certifications { get; set; }
-
-        /// <summary>
         /// ارزیابی عملکرد
         /// </summary>
         public string PerformanceReview { get; set; }
@@ -72,7 +60,12 @@ namespace University_Domain.EmployeeEntities
         /// <summary>
         /// پروژه‌های اخیر
         /// </summary>
-      //  public List<string> RecentProjects { get; set; }
+     // public List<string> RecentProjects { get; set; }
+
+
+        #endregion Other Information
+
+
 
         /// <summary>
         ///    کلمه عبور
@@ -87,7 +80,7 @@ namespace University_Domain.EmployeeEntities
                         string LastEducationalCertificate, double GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
                         string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber,
                         DateTime HireDate, decimal Salary, bool IsActive, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor/*, List<string> Skills,*/
-                        /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password)
+                        /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password ,string ImageName)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;
@@ -118,7 +111,7 @@ namespace University_Domain.EmployeeEntities
             this.PerformanceReview = PerformanceReview;
            // this.RecentProjects = RecentProjects;
             this.Password = Password;
-
+            this.ImageName = ImageName;
         }
 
         #endregion
@@ -157,6 +150,12 @@ namespace University_Domain.EmployeeEntities
 
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
+
+        public ICollection<SkilsEmployee> SkilsEmployees { get; set; }
+        
+        public ICollection<CertificationsEmployee> CertificationsEmployees { get; set; }
+
+        public ICollection<RecentProjectsEmployee> RecentProjectsEmployee { get; set; }
 
         #endregion
 

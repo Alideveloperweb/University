@@ -46,7 +46,10 @@ namespace University_Web.Controllers
             // ایجاد یک نمونه از مدل CreateEmployeeItem
             CreateEmployeeItem createEmployee = new CreateEmployeeItem();
 
-          
+
+
+            #region Select List departments
+
             if (_unitOfWork == null || _unitOfWork.Department == null || _unitOfWork.Department.Value == null)
             {
                 ModelState.AddModelError(string.Empty, "مشکلی در دسترسی به اطلاعات دپارتمان‌ها وجود دارد");
@@ -54,8 +57,8 @@ namespace University_Web.Controllers
             }
 
             var departments = _unitOfWork.Department.Value.AsQueryable()
-                                      .Where(e => !e.IsRemove) 
-                                      .ToList();
+                          .Where(e => !e.IsRemove)
+                          .ToList();
 
             // بررسی اگر دپارتمانی وجود نداشته باشد
             if (departments == null || !departments.Any())
@@ -68,29 +71,95 @@ namespace University_Web.Controllers
             ViewBag.Departments = new SelectList(departments, "Id", "Name");
 
 
+            #endregion
+
+            #region Select List Job
+
             if (_unitOfWork.Job == null || _unitOfWork.Job.Value == null)
             {
-                 ModelState.AddModelError(string.Empty, "مشکلی در دسترسی به اطلاعات سمت‌های شغلی وجود دارد");
-                 return View(createEmployee);
-             }
+                ModelState.AddModelError(string.Empty, "مشکلی در دسترسی به اطلاعات سمت‌های شغلی وجود دارد");
+                return View(createEmployee);
+            }
 
-             var jobs = _unitOfWork.Job.Value.AsQueryable()
-                           .Where(e => !e.IsRemove)
-                           .ToList();
+            var jobs = _unitOfWork.Job.Value.AsQueryable()
+                          .Where(e => !e.IsRemove)
+                          .ToList();
 
-             if (jobs == null || !jobs.Any())
-             {
-                 ModelState.AddModelError(string.Empty, "سمتی یافت نشد");
-                 return View(createEmployee);
-             }
+            if (jobs == null || !jobs.Any())
+            {
+                ModelState.AddModelError(string.Empty, "سمتی یافت نشد");
+                return View(createEmployee);
+            }
 
-             ViewBag.Position = new SelectList(jobs, "Id", "Title");
+            ViewBag.Position = new SelectList(jobs, "Id", "Title");
+
+            #endregion
+
+            #region Select List Skills 
+
+            if (_unitOfWork.Skills==null || _unitOfWork.Skills.Value==null)
+            {
+                ModelState.AddModelError(string.Empty,"مشکلی در دسترسی به اطلاعات مهارت ها پیش آمده است");
+                return View(createEmployee);
+            }
+
+            var skills = _unitOfWork.Skills.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
+
+            if (skills ==null || !skills.Any())
+            {
+                ModelState.AddModelError(string.Empty, "مهارتی یافت نشد");
+                return View(createEmployee);
+            }
+
+            ViewBag.Skills = new SelectList(skills, "Id", "Name");
+
+            #endregion
+
+            #region Select List Certifications 
+
+            if (_unitOfWork.Certifications == null || _unitOfWork.Certifications.Value == null)
+            {
+                ModelState.AddModelError(string.Empty, "مشکلی در دسترسی به اطلاعات مدارک ها پیش آمده است");
+                return View(createEmployee);
+            }
+
+            var certification = _unitOfWork.Certifications.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
+
+            if (certification == null || !certification.Any())
+            {
+                ModelState.AddModelError(string.Empty, "مدرکی یافت نشد");
+                return View(createEmployee);
+            }
+
+            ViewBag.Certifications = new SelectList(certification, "Id", "Name");
+
+            #endregion
+
+            #region Select List RecentProjects 
+
+            if (_unitOfWork.RecentProjects == null || _unitOfWork.RecentProjects.Value == null)
+            {
+                ModelState.AddModelError(string.Empty, "مشکلی در دسترسی به اطلاعات پروژه ها پیش آمده است");
+                return View(createEmployee);
+            }
+
+            var recentProjects = _unitOfWork.RecentProjects.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
+
+            if (recentProjects == null || !recentProjects.Any())
+            {
+                ModelState.AddModelError(string.Empty, "پروژه ای  یافت نشد");
+                return View(createEmployee);
+            }
+
+            ViewBag.RecentProjects = new SelectList(recentProjects, "Id", "Name");
+
+            #endregion
 
             return View(createEmployee);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateEmployee(CreateEmployeeItem createEmployee)
+        public async Task<IActionResult> CreateEmployee(CreateEmployeeItem createEmployee ,IFormFile ImageName)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +170,7 @@ namespace University_Web.Controllers
                     , createEmployee.CityName, createEmployee.Address, createEmployee.LastEducationalCertificate, createEmployee.GPAOfThelastDegree, createEmployee.Gender, createEmployee.MaritalStatus
                     , createEmployee.DateOfBirth, createEmployee.EmergencyContactNumber, createEmployee.SpouseNationalID, createEmployee.BloodType, createEmployee.MedicalHistory, createEmployee.EmployeeNumber
                     , createEmployee.HireDate, createEmployee.Salary, createEmployee.IsActive, createEmployee.WeeklyWorkingHours, createEmployee.RemainingLeaveDays
-                    , createEmployee.Supervisor,/* createEmployee.Skills, createEmployee.Certifications,*/ createEmployee.PerformanceReview, /*createEmployee.RecentProjects,*/ createEmployee.Password);
+                    , createEmployee.Supervisor,/* createEmployee.Skills, createEmployee.Certifications,*/ createEmployee.PerformanceReview, /*createEmployee.RecentProjects,*/ createEmployee.Password,createEmployee.ImageName);
 
                 bool create = _unitOfWork.Employee.Value.Create(employee);
                 if (create)

@@ -1,9 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using University_Common.Domain;
+using University_Domain.CertificationsEntities.Interface;
 using University_Domain.DepartmentsEntities.Interface;
 using University_Domain.EmployeeEntities.Interface;
 using University_Domain.JobEntities;
+using University_Domain.RecentProjectsEntities;
+using University_Domain.RecentProjectsEntities.Interface;
+using University_Domain.SkillsEntities.Interface;
 using University_EfCore.Context;
 using University_EfCore.Repository.UnitOfWorks;
 
@@ -22,6 +26,12 @@ namespace University_EfCore.Repository.UnitOfWork
 
         public Lazy<IJobRepository> Job { get; private set; }
 
+        public Lazy<ISkilsRepository> Skills { get; private set; }
+
+        public Lazy<IRecentProjects> RecentProjects { get;private set; }
+
+        public Lazy<ICertificationsRepository> Certifications { get;private set; }
+
         public UnitOfWork(ApplicationContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
@@ -30,6 +40,9 @@ namespace University_EfCore.Repository.UnitOfWork
             Employee = new Lazy<IEmployeeRepository>(() => new EmployeeRepository.EmployeeRepository(context));
             Department = new Lazy<IDepartmentRepository>(()=>new  DepartmentRepository.DepartmentRepository(context));
             Job = new Lazy<IJobRepository>(() => new JobRepository.JobRepository(context));
+            Skills = new Lazy<ISkilsRepository>(() => new SkilsRepository.SkilsRepository(context));
+            RecentProjects = new Lazy<IRecentProjects>(() => new RecentProjectsRepository.RecentProjectsRepository(context));
+            Certifications = new Lazy<ICertificationsRepository>(() => new CertificationsRepository.CertificationsRepository(context));
         }
 
 

@@ -10281,7 +10281,7 @@ button.bg-dark:hover {
 }
 
 .text-left {
-	text-align: left!important
+	text-align: right !important
 }
 
 .text-right {

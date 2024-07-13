@@ -10,24 +10,32 @@
     <link rel="shortcut icon" href="~/images/favicon.ico" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/css/bootstrap.min.css" />
-    <!-- Typography CSS -->      
+    <!-- Typography CSS -->
     <link rel="stylesheet" href="~/css/typography.css" />
-    <!-- Style CSS -->           
+    <!-- Style CSS -->
     <link rel="stylesheet" href="~/css/style.css" />
-    <!-- Responsive CSS -->      
+    <!-- Responsive CSS -->
     <link rel="stylesheet" href="~/css/responsive.css" />
     <!-- Full calendar -->
     <link href="~/fullcalendar/core/main.css" rel="stylesheet" />
     <link href="~/fullcalendar/daygrid/main.css" rel="stylesheet" />
     <link href="~/fullcalendar/timegrid/main.css" rel="stylesheet" />
     <link href="~/fullcalendar/list/main.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/fontawesome/css/all.css" rel="stylesheet" />
+    <link href="~/fontawesome/css/all.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="~/css/flatpickr.min.css" />
+
+    <!-- select2 -->
+    <link href="~/select2/css/select2.css" rel="stylesheet" />
+    <link href="~/select2/css/select2.min.css" rel="stylesheet" />
+
 </head>
 <body dir="rtl">
     <!-- loader Start -->
-@*     <div id="loading">
-        <div id="loading-center"></div>
+    @*     <div id="loading">
+    <div id="loading-center"></div>
     </div> *@
     <!-- loader END -->
     <!-- Wrapper Start -->
@@ -793,6 +801,14 @@
     <script src="~/js/chart-custom.js"></script>
     <!-- Custom J~/avaScript -->
     <script src="~/js/custom.js"></script>
-   @RenderSection("script",false)
+    <!-- Font Awesome -->
+    <script src="~/fontawesome/js/all.js"></script>
+    <script src="~/fontawesome/js/all.min.js"></script>
+    <!-- select2 -->
+    <script src="~/select2/js/select2.full.js"></script>
+    <script src="~/select2/js/select2.full.min.js"></script>
+    <script src="~/select2/js/select2.js"></script>
+    <script src="~/select2/js/select2.min.js"></script>
+    @RenderSection("script", false)
 </body>
 </html>

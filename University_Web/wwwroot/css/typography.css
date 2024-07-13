@@ -207,7 +207,7 @@ loading
 .page-item.active .page-link{background-color: var(--iq-primary);border-color: var(--iq-primary); }
 .page-link{color: var(--iq-primary); border-color: var(--iq-primary);}
 .page-item.disabled .page-link{border-color: var(--iq-primary);}
-.form-control { height: 45px; line-height: 45px; background: transparent; border: 1px solid var(--iq-border-light); font-size: 14px; color: var(--iq-secondary); border-radius: 5px; }
+.form-control { height: 45px; line-height: 45px; background: transparent; border: 1px solid var(--iq-black); font-size: 14px; color: var(--iq-secondary); border-radius: 5px; }
 .form-control:focus { color: var(--iq-dark); border-color: var(--iq-primary); box-shadow: none; }
 .progress-bar{background-color: var(--iq-primary);}
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{background-color: var(--iq-primary-hover);border-color: var(--iq-primary-hover);}

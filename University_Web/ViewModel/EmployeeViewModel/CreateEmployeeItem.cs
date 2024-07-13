@@ -273,7 +273,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
 
 
         /// <summary>
-        /// تکرار کلمه عبور
+        ///  کلمه عبور
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Password))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]

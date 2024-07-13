@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using University_Domain.CertificationsEntities.Interface;
 using University_Domain.DepartmentsEntities.Interface;
 using University_Domain.EmployeeEntities.Interface;
 using University_Domain.JobEntities;
-
+using University_Domain.RecentProjectsEntities.Interface;
+using University_Domain.SkillsEntities.Interface;
 
 namespace University_Common.Domain
 {
@@ -11,6 +13,9 @@ namespace University_Common.Domain
         Lazy<IEmployeeRepository> Employee { get; }
         Lazy<IDepartmentRepository> Department { get; }
         Lazy<IJobRepository> Job { get; }
+        Lazy<ISkilsRepository> Skills { get; }
+        Lazy<IRecentProjects> RecentProjects { get; }
+        Lazy<ICertificationsRepository> Certifications{ get; }
       //  ApplicationContext DbContext { get; }
 
         int Save();

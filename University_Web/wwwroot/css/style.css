@@ -1,4 +1,4 @@
-/*
+﻿/*
 Template: FinDash - Responsive Bootstrap 4 Admin Dashboard Template
 Author: iqonicthemes.in
 Design and Developed by: iqonicthemes.in
@@ -905,6 +905,15 @@ Calender
 .has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline { color: var(--iq-danger); }
 .has-error .form-control { border: 1px solid var(--iq-danger); -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); }
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn { cursor: not-allowed; pointer-events: none; -webkit-box-shadow: none; box-shadow: none; }
+/*.icon-circle {
+    border: 2px solid #007bff;  
+    border-radius: 50%;  
+    padding: 10px; 
+    margin-left: 10px; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}*/
 
 /* vertical */
 #form-wizard3 fieldset:not(:first-of-type) { display: none }
@@ -1016,6 +1025,7 @@ Profile Edit
 -----------------------------------------------------------------------*/
 .profile-pic { max-width: 100%; display: block; border-radius: 50%; -webkit-border-radius: 0px; }
 .profile-img-edit { position: relative; display: inline-block; height: 150px; width: 150px; }
+.profile-img-edit1 { position: relative;height: 150px; width: 150px; }
 .file-upload { display: none; }
 .p-image { position: absolute; top: auto; right: 8px; bottom: 10px; transition: all .3s cubic-bezier(.175, .885, .32, 1.275); background: var(--iq-primary); color: var(--iq-white); border-radius: 50%; height: 30px; width: 30px; line-height: 28px; text-align: center; font-size: 12px; cursor: pointer; }
 .upload-button { font-size: 1.5em; }
@@ -1062,7 +1072,7 @@ User List Page
 /*---------------------------------------------------------------------
 Add User Page
 -----------------------------------------------------------------------*/
-.add-img-user .p-image { position: static; text-align: left; display: block; height: auto; width: auto; background: transparent; margin-top: 20px; }
+.add-img-user .p-image { position: static; text-align: right; display: block; height: auto; width: auto; background: transparent; margin-top: 20px; }
 .img-extension a, .img-extension span { color: var(--iq-body-text); padding: 0 3px; font-size: 13px; }
 
 /*---------------------------------------------------------------------

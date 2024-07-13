@@ -5,6 +5,8 @@ namespace University_Common.Domain
     {
         #region Properties
 
+        #region     Identity Information
+
         /// <summary>
         /// نام کاربری
         /// </summary>
@@ -26,6 +28,30 @@ namespace University_Common.Domain
         public string NationalCode { get; set; }
 
         /// <summary>
+        /// جنسیت 
+        /// </summary>
+        public bool Gender { get; set; }
+
+        /// <summary>
+        /// وضعیت تاهل 
+        /// </summary>
+        public bool MaritalStatus { get; set; }
+
+        /// <summary>
+        /// تاریخ تولد 
+        /// </summary>
+        public DateTime DateOfBirth { get; set; }
+
+        /// <summary>
+        /// شماره ملی همسر در صورت متاهل بودن
+        /// </summary>
+        public string SpouseNationalID { get; set; }
+
+        #endregion
+
+        #region Contacts
+
+        /// <summary>
         /// تلفن همراه 
         /// </summary>
         public string Mobile { get; set; }
@@ -39,6 +65,11 @@ namespace University_Common.Domain
         /// ایمیل  
         /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// شماره ضروری
+        /// </summary>
+        public string EmergencyContactNumber { get; set; }
 
         /// <summary>
         /// نام کشور  
@@ -55,6 +86,11 @@ namespace University_Common.Domain
         /// </summary>
         public string Address { get; set; }
 
+        #endregion
+
+
+        #region Educational Information
+
         /// <summary>
         /// آخرین مدرک تحصیلی
         /// </summary>
@@ -65,34 +101,9 @@ namespace University_Common.Domain
         /// </summary>
         public double GPAOfThelastDegree { get; set; }
 
-        /// <summary>
-        /// جنسیت 
-        /// </summary>
-        public bool Gender { get; set; }
+        #endregion
 
-        /// <summary>
-        /// وضعیت تاهل 
-        /// </summary>
-        public bool MaritalStatus { get; set; }
-
-
-        /// <summary>
-        /// تاریخ تولد 
-        /// </summary>
-        public DateTime DateOfBirth { get; set; }
-
-
-        /// <summary>
-        /// شماره ضروری
-        /// </summary>
-        public string EmergencyContactNumber { get; set; }
-
-
-        /// <summary>
-        /// شماره ملی همسر در صورت متاهل بودن
-        /// </summary>
-        public string SpouseNationalID { get; set; }
-
+        #region Medical Information
 
         /// <summary>
         /// گروه خونی
@@ -105,10 +116,16 @@ namespace University_Common.Domain
         /// </summary>
         public string MedicalHistory { get; set; }
 
+        #endregion
+
+        #region Other Information
+
         /// <summary>
         ///  عکس
         /// </summary>
         public string ImageName { get; set; }
+
+        #endregion
 
         #endregion
 
