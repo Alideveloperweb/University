@@ -9,10 +9,8 @@ namespace University_Web.ViewModel.EmployeeViewModel
     {
 
         public int DepartmentId { get; set; }
-        public string DepartmentName { get; set; }
 
         public int JobId { get; set; }
-        public string JobName { get; set; }
 
         /// <summary>
         /// نام کاربری 

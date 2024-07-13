@@ -56,9 +56,7 @@ namespace University_Web.Controllers
                 return View(createEmployee);
             }
 
-            var departments = _unitOfWork.Department.Value.AsQueryable()
-                          .Where(e => !e.IsRemove)
-                          .ToList();
+            var departments = _unitOfWork.Department.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
 
             // بررسی اگر دپارتمانی وجود نداشته باشد
             if (departments == null || !departments.Any())
@@ -81,9 +79,7 @@ namespace University_Web.Controllers
                 return View(createEmployee);
             }
 
-            var jobs = _unitOfWork.Job.Value.AsQueryable()
-                          .Where(e => !e.IsRemove)
-                          .ToList();
+            var jobs = _unitOfWork.Job.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
 
             if (jobs == null || !jobs.Any())
             {
@@ -170,7 +166,19 @@ namespace University_Web.Controllers
                     , createEmployee.CityName, createEmployee.Address, createEmployee.LastEducationalCertificate, createEmployee.GPAOfThelastDegree, createEmployee.Gender, createEmployee.MaritalStatus
                     , createEmployee.DateOfBirth, createEmployee.EmergencyContactNumber, createEmployee.SpouseNationalID, createEmployee.BloodType, createEmployee.MedicalHistory, createEmployee.EmployeeNumber
                     , createEmployee.HireDate, createEmployee.Salary, createEmployee.IsActive, createEmployee.WeeklyWorkingHours, createEmployee.RemainingLeaveDays
-                    , createEmployee.Supervisor,/* createEmployee.Skills, createEmployee.Certifications,*/ createEmployee.PerformanceReview, /*createEmployee.RecentProjects,*/ createEmployee.Password,createEmployee.ImageName);
+                    , createEmployee.Supervisor,/* createEmployee.Skills, createEmployee.Certifications,*/ createEmployee.PerformanceReview, /*createEmployee.RecentProjects,*/ createEmployee.Password,createEmployee.ImageName,createEmployee.DepartmentId);
+
+                var departments = _unitOfWork.Department.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
+                ViewBag.Departments = new SelectList(departments, "Id", "Name");
+
+                var jobs = _unitOfWork.Job.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
+                ViewBag.Position = new SelectList(jobs, "Id", "Title");
+
+                var certification = _unitOfWork.Certifications.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
+                ViewBag.Certifications = new SelectList(certification, "Id", "Name");
+
+                var recentProjects = _unitOfWork.RecentProjects.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
+                ViewBag.RecentProjects = new SelectList(recentProjects, "Id", "Name");
 
                 bool create = _unitOfWork.Employee.Value.Create(employee);
                 if (create)

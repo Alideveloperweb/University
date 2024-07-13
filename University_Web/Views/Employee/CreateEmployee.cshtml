@@ -21,6 +21,13 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
+                        <label asp-for="Username"></label>
+                        <input asp-for="Username" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
                         <label asp-for="FirstName"></label>
                         <input asp-for="FirstName" type="text" class="form-control" required="required">
                     </div>
@@ -40,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-">
                     <div class="form-group">
                         <label asp-for="Gender"></label>
                         <div class="form-check">
@@ -51,6 +58,25 @@
                                     <div class="custom-control custom-radio custom-control-inline" style="float: right;">
                                         <input type="radio" asp-for="Gender" value="@gender" class="custom-control-input" id="@gender" />
                                         <label class="custom-control-label" for="@gender">@gender</label>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-">
+                    <div class="form-group">
+                        <label asp-for="MaritalStatus"></label>
+                        <div class="form-check">
+                            @{
+                                var maritalStatusValue = Enum.GetValues(typeof(MaritalStatus)).Cast<MaritalStatus>();
+                                foreach (var maritalStatus in maritalStatusValue)
+                                {
+                                    <div class="custom-control custom-radio custom-control-inline" style="float: right;">
+                                        <input type="radio" asp-for="MaritalStatus" value="@maritalStatus" class="custom-control-input" id="@maritalStatus" />
+                                        <label class="custom-control-label" for="@maritalStatus">@maritalStatus</label>
                                     </div>
                                 }
                             }
@@ -69,13 +95,6 @@
                     <div class="form-group">
                         <label asp-for="SpouseNationalID "></label>
                         <input asp-for="SpouseNationalID " type="text" class="form-control">
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="MedicalHistory "></label>
-                        <input asp-for="MedicalHistory " type="text" class="form-control">
                     </div>
                 </div>
 
@@ -187,13 +206,6 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="MedicalHistory"></label>
-                        <input asp-for="MedicalHistory" type="text" class="form-control" required="required">
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="form-group">
                         <label asp-for="EmployeeNumber"></label>
                         <input asp-for="EmployeeNumber" type="text" class="form-control" required="required">
                     </div>
@@ -222,8 +234,8 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>دپارتمان</label>
-                        <select class="form-control" name="DepartmentId">
+                        <label asp-for="DepartmentId">دپارتمان</label>
+                        <select asp-for="DepartmentId" class="form-control">
                             <option value="">انتخاب کنید</option>
                             @foreach (var department in ViewBag.Departments)
                             {
@@ -235,14 +247,14 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                          <label >مهارت ها</label>
+                        <label>مهارت ها</label>
                         <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
                             <option value="">حد اقل یک مهارت را انتخاب کنید</option>
                             @foreach (var skills in ViewBag.Skills)
                             {
                                 <option value="@skills.Value">@skills.Text</option>
                             }
-                       
+
                         </select>
                     </div>
                 </div>
@@ -283,39 +295,10 @@
                     </div>
                 </div>
 
-
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="WeeklyWorkingHours"></label>
-                        <input asp-for="WeeklyWorkingHours" type="text" class="form-control" required="required">
-                    </div>
-                </div>
-
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="RemainingLeaveDays"></label>
                         <input asp-for="RemainingLeaveDays" type="text" class="form-control" required="required">
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="Supervisor"></label>
-                        <input asp-for="Supervisor" type="text" class="form-control" required="required">
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="PerformanceReview"></label>
-                        <input asp-for="PerformanceReview" type="text" class="form-control" required="required">
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="EmployeeNumber"></label>
-                        <input asp-for="EmployeeNumber" type="text" class="form-control" required="required">
                     </div>
                 </div>
 
@@ -328,38 +311,8 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="HireDate"></label>
-                        <input asp-for="HireDate" type="date" class="form-control" required="required">
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="Salary"></label>
-                        <input asp-for="Salary" type="text" class="form-control" required="required">
-                    </div>
-                </div>
-
-
-                <div class="col-md-12">
-                    <div class="form-check">
-                        <label asp-for="IsActive"></label>
-                        <input asp-for="IsActive" type="checkbox" class="form-control" required="required">
-                    </div>
-                </div>
-
-
-                <div class="col-md-12">
-                    <div class="form-group">
                         <label asp-for="WeeklyWorkingHours"></label>
                         <input asp-for="WeeklyWorkingHours" type="text" class="form-control" required="required">
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="RemainingLeaveDays"></label>
-                        <input asp-for="RemainingLeaveDays" type="text" class="form-control" required="required">
                     </div>
                 </div>
 
@@ -394,41 +347,34 @@
                     </div>
                 </div>
 
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label asp-for="Salary"></label>
-                        <input asp-for="Salary" type="text" class="form-control" required="required">
-                    </div>
+                @*                 <div class="col-md-12">
+                <div class="form-group">
+                <label for="panno">Pan No: *</label>
+                <input type="text" class="form-control" id="panno" name="panno"
+                placeholder="Pan No.">
                 </div>
-
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="panno">Pan No: *</label>
-                        <input type="text" class="form-control" id="panno" name="panno"
-                               placeholder="Pan No.">
-                    </div>
                 </div>
                 <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="accno">Account No: *</label>
-                        <input type="text" class="form-control" id="accno" name="accno"
-                               placeholder="Account No.">
-                    </div>
+                <div class="form-group">
+                <label for="accno">Account No: *</label>
+                <input type="text" class="form-control" id="accno" name="accno"
+                placeholder="Account No.">
+                </div>
                 </div>
                 <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="holname">Account Holder Name: *</label>
-                        <input type="text" class="form-control" id="holname" name="accname"
-                               placeholder="Account Holder Name.">
-                    </div>
+                <div class="form-group">
+                <label for="holname">Account Holder Name: *</label>
+                <input type="text" class="form-control" id="holname" name="accname"
+                placeholder="Account Holder Name.">
+                </div>
                 </div>
                 <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="ifsc">IFSC Code: *</label>
-                        <input type="text" class="form-control" id="ifsc" name="ifsc"
-                               placeholder="IFSC Code.">
-                    </div>
+                <div class="form-group">
+                <label for="ifsc">IFSC Code: *</label>
+                <input type="text" class="form-control" id="ifsc" name="ifsc"
+                placeholder="IFSC Code.">
                 </div>
+                </div> *@
 
 
                 <div class="col-md-12">

@@ -80,7 +80,7 @@ namespace University_Domain.EmployeeEntities
                         string LastEducationalCertificate, double GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
                         string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber,
                         DateTime HireDate, decimal Salary, bool IsActive, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor/*, List<string> Skills,*/
-                        /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password ,string ImageName)
+                        /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password ,string ImageName, int DepartmentId)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;
@@ -99,6 +99,7 @@ namespace University_Domain.EmployeeEntities
             this.SpouseNationalID = SpouseNationalID;
             this.BloodType = BloodType;
             this.MedicalHistory = MedicalHistory;
+            this.DepartmentId = DepartmentId;
             this.EmployeeNumber = EmployeeNumber;
             this.HireDate = HireDate;
             this.Salary = Salary;
