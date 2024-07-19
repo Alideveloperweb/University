@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using University_Common.Application;
 using University_Domain.DepartmentsEntities;
 using University_Domain.DepartmentsEntities.Interface;
@@ -17,5 +18,7 @@ namespace University_EfCore.Repository.DepartmentRepository
         }
 
         #endregion
+
+
     }
 }

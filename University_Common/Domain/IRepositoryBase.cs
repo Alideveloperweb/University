@@ -7,7 +7,7 @@ namespace University_Common.Domain
     {
         TEntity Get(TKey Id);
         Task<TEntity> GetFirstOrDefaultAsync(string name);
-        IQueryable<TEntity> GetAll();
+       Task<IQueryable<TEntity>> GetAll();
         IQueryable<TEntity> GetAllRemove(bool isRemove);
         IQueryable<TEntity> GetAllActive(bool isActive);
         bool Create(TEntity entity);

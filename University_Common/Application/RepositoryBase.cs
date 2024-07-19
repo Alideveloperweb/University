@@ -59,9 +59,9 @@ namespace University_Common.Application
             return db.Find(Id);
         }
 
-        public IQueryable<TEntity> GetAll()
+        public async Task<IQueryable<TEntity>> GetAll()
         {
-            return db.AsQueryable();
+            return  db.AsQueryable();
         }
 
         public IQueryable<TEntity> GetAllRemove(bool isRemove)

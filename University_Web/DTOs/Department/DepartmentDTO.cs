@@ -1,4 +1,4 @@
-﻿namespace University_EfCore.DTOs.Department
+﻿namespace University_Web.DTOs.Department
 {
     public class DepartmentDTO
     {

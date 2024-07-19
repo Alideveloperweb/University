@@ -7,6 +7,7 @@ using University_Common.Application;
 using University_Common.Domain;
 using University_Domain.EmployeeEntities;
 using University_EfCore.DTOs.Department;
+using University_Web.DTOs.Department;
 using University_Web.ViewModel.EmployeeViewModel;
 
 namespace University_Web.Controllers
@@ -53,13 +54,16 @@ namespace University_Web.Controllers
             CreateEmployeeItem createEmployee = new CreateEmployeeItem();
 
             #region Select List departments
-            var departments = _unitOfWork.Department.Value.GetAll();
-            var departmentDtos = _mapper.Map<IEnumerable<DepartmentDto>>(departments);
 
-            createEmployee.Departments = departmentDtos.Select(d => new SelectListItem
+
+            // دریافت داده‌ها
+            var departments = await _unitOfWork.Department.Value.GetAll();
+
+            // تبدیل به SelectListItem
+            createEmployee.Departments = (SelectListItem?)departments.Select(d => new SelectListItem
             {
-                Value = d.DepartmentId.ToString(),
-                Text = d.DepartmentName
+                Value = d.Id.ToString(),
+                Text = d.Name
             });
 
             //// بررسی اگر دپارتمانی وجود نداشته باشد
