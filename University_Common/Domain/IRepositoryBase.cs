@@ -7,7 +7,9 @@ namespace University_Common.Domain
     {
         TEntity Get(TKey Id);
         Task<TEntity> GetFirstOrDefaultAsync(string name);
-        List<TEntity> GetAll();
+        IQueryable<TEntity> GetAll();
+        IQueryable<TEntity> GetAllRemove(bool isRemove);
+        IQueryable<TEntity> GetAllActive(bool isActive);
         bool Create(TEntity entity);
         bool CreateRenge(List<TEntity> entity);
         bool Update(TEntity entity);
@@ -16,6 +18,7 @@ namespace University_Common.Domain
         bool Exist(Expression<Func<TEntity,bool>> entity);
         bool SaveChanges();
        Task<int> SaveChangesAsync();
+
 
 
         //int SaveChanges();

@@ -10,7 +10,7 @@ namespace University_EfCore.Mapping.CertificationsEmployeeMapper
         {
             #region Properties
 
-            builder.HasKey(ce => new { ce.EmployeeId, ce.CertificationsId });
+            builder.HasKey(ce => ce.CertificationsEmployeeId );
 
             #endregion
 

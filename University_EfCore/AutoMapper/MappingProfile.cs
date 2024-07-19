@@ -1,14 +1,16 @@
 ﻿using AutoMapper;
+using University_Domain.DepartmentsEntities;
+using University_EfCore.DTOs.Department;
 
-using University_Domain.EmployeeEntities;
 
 namespace University_EfCore.AutoMapper
 {
-    public class MappingProfile: Profile
+    public class MappingProfile : Profile
     {
-        public MappingProfile() 
+        public MappingProfile()
         {
-           // CreateMap<Employee, GetAllEmployeeItem>();
+            CreateMap<Department, DepartmentDTO>();
+            CreateMap<DepartmentDTO, Department>();
         }
     }
 }

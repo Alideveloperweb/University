@@ -12,8 +12,8 @@ using University_EfCore.Context;
 namespace University_EfCore.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240705050608_Update2")]
-    partial class Update2
+    [Migration("20240713191257_create")]
+    partial class create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,105 @@ namespace University_EfCore.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("University_Domain.Associations.CertificationsEmployee", b =>
+                {
+                    b.Property<int>("CertificationsEmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CertificationsEmployeeId"));
+
+                    b.Property<int>("CertificationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CertificationsEmployeeId");
+
+                    b.HasIndex("CertificationsId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("CertificationsEmployee");
+                });
+
+            modelBuilder.Entity("University_Domain.Associations.RecentProjectsEmployee", b =>
+                {
+                    b.Property<int>("RecentProjectsEmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RecentProjectsEmployeeId"));
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecentProjectsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RecentProjectsEmployeeId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("RecentProjectsId");
+
+                    b.ToTable("RecentProjectsEmployee");
+                });
+
+            modelBuilder.Entity("University_Domain.Associations.SkilsEmployee", b =>
+                {
+                    b.Property<int>("SkilsEmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkilsEmployeeId"));
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SkilsEmployeeId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("SkillsId");
+
+                    b.ToTable("SkilsEmployee");
+                });
+
+            modelBuilder.Entity("University_Domain.CertificationsEntities.Certifications", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRemove")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Certifications");
+                });
 
             modelBuilder.Entity("University_Domain.DepartmentsEntities.Department", b =>
                 {
@@ -106,9 +205,6 @@ namespace University_EfCore.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-
-                    b.Property<bool>("EmploymentStatus")
-                        .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -197,6 +293,10 @@ namespace University_EfCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("WeeklyWorkingHours")
                         .HasColumnType("int");
 
@@ -238,6 +338,122 @@ namespace University_EfCore.Migrations
                     b.ToTable("Job");
                 });
 
+            modelBuilder.Entity("University_Domain.RecentProjectsEntities.RecentProjects", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRemove")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RecentProjects");
+                });
+
+            modelBuilder.Entity("University_Domain.SkillsEntities.Skills", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRemove")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Skills");
+                });
+
+            modelBuilder.Entity("University_Domain.Associations.CertificationsEmployee", b =>
+                {
+                    b.HasOne("University_Domain.CertificationsEntities.Certifications", "Certification")
+                        .WithMany("CertificationsEmployees")
+                        .HasForeignKey("CertificationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("University_Domain.EmployeeEntities.Employee", "Employee")
+                        .WithMany("CertificationsEmployees")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Certification");
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("University_Domain.Associations.RecentProjectsEmployee", b =>
+                {
+                    b.HasOne("University_Domain.EmployeeEntities.Employee", "Employee")
+                        .WithMany("RecentProjectsEmployee")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("University_Domain.RecentProjectsEntities.RecentProjects", "RecentProjects")
+                        .WithMany("RecentProjectsEmployee")
+                        .HasForeignKey("RecentProjectsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("RecentProjects");
+                });
+
+            modelBuilder.Entity("University_Domain.Associations.SkilsEmployee", b =>
+                {
+                    b.HasOne("University_Domain.EmployeeEntities.Employee", "Employee")
+                        .WithMany("SkilsEmployees")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("University_Domain.SkillsEntities.Skills", "Skill")
+                        .WithMany("SkilsEmployees")
+                        .HasForeignKey("SkillsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Skill");
+                });
+
             modelBuilder.Entity("University_Domain.EmployeeEntities.Employee", b =>
                 {
                     b.HasOne("University_Domain.DepartmentsEntities.Department", "Department")
@@ -257,14 +473,38 @@ namespace University_EfCore.Migrations
                     b.Navigation("Job");
                 });
 
+            modelBuilder.Entity("University_Domain.CertificationsEntities.Certifications", b =>
+                {
+                    b.Navigation("CertificationsEmployees");
+                });
+
             modelBuilder.Entity("University_Domain.DepartmentsEntities.Department", b =>
                 {
                     b.Navigation("Employees");
                 });
 
+            modelBuilder.Entity("University_Domain.EmployeeEntities.Employee", b =>
+                {
+                    b.Navigation("CertificationsEmployees");
+
+                    b.Navigation("RecentProjectsEmployee");
+
+                    b.Navigation("SkilsEmployees");
+                });
+
             modelBuilder.Entity("University_Domain.JobEntities.Job", b =>
                 {
                     b.Navigation("Employees");
+                });
+
+            modelBuilder.Entity("University_Domain.RecentProjectsEntities.RecentProjects", b =>
+                {
+                    b.Navigation("RecentProjectsEmployee");
+                });
+
+            modelBuilder.Entity("University_Domain.SkillsEntities.Skills", b =>
+                {
+                    b.Navigation("SkilsEmployees");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,7 +11,7 @@ namespace University_EfCore.Mapping.RecentProjectsEmployeeMapper
         {
             #region Properties
 
-            builder.HasKey(re => new { re.EmployeeId, re.RecentProjectsId });
+            builder.HasKey(re => re.RecentProjectsEmployeeId);
 
 
             #endregion

@@ -59,16 +59,45 @@ namespace University_Common.Application
             return db.Find(Id);
         }
 
-        public List<TEntity> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            return db.ToList();
+            return db.AsQueryable();
+        }
+
+        public IQueryable<TEntity> GetAllRemove(bool isRemove)
+        {
+            if (isRemove ==true)
+            {
+                return db.Where(e => EF.Property<bool>(e, "IsRemove") == true).AsQueryable();
+            }
+            else
+            {
+                return db.Where(e => EF.Property<bool>(e, "IsRemove") == false).AsQueryable(); ;
+            }
+          
+        }
+
+        public IQueryable<TEntity> GetAllActive(bool isActive)
+        {
+            if (isActive==true)
+            {
+                return db.Where(e => EF.Property<bool>(e, "IsActive") == true).AsQueryable();
+            }
+            else
+            {
+                return db.Where(e => EF.Property<bool>(e, "IsActive") == false).AsQueryable();
+            }
         }
 
 
         public async Task<TEntity> GetFirstOrDefaultAsync(string name)
         {
+            return await NewMethod(name);
 
-            return await db.FirstOrDefaultAsync(e => EF.Property<string>(e, "Name") == name);
+            async Task<TEntity> NewMethod(string name)
+            {
+                return await db.FirstOrDefaultAsync(e => EF.Property<string>(e, "Name") == name);
+            }
         }
 
         public bool Remove(TEntity entity)
@@ -143,17 +172,6 @@ namespace University_Common.Application
         {
            return  db.Where(predicate).AsQueryable();
         }
-
-
-
-
-
-
-
-
-
-
-
 
         #endregion
     }

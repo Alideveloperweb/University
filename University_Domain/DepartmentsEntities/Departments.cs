@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
 using University_Common.Domain;
 using University_Domain.EmployeeEntities;
 using University_Domain.JobEntities;
@@ -16,6 +17,29 @@ namespace University_Domain.DepartmentsEntities
         /// </summary>
         public string Name { get; set; }
 
+        //[Required]
+        //[StringLength(255)]
+        //public string DepartmentName { get; set; }
+
+        //[Required]
+        //[StringLength(10)]
+        //public string DepartmentCode { get; set; }
+
+        //public int? DepartmentHeadId { get; set; }
+
+        //[DataType(DataType.Date)]
+        //public DateTime? EstablishedDate { get; set; }
+
+        //[StringLength(255)]
+        //public string DepartmentLocation { get; set; }
+
+        //public int? FacultyCount { get; set; }
+
+        //[EmailAddress]
+        //public string ContactEmail { get; set; }
+
+        //[Phone]
+        //public string ContactPhone { get; set; }
 
         #endregion
 

@@ -6,22 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace University_EfCore.Migrations
 {
     /// <inheritdoc />
-    public partial class Add_Table : Migration
+    public partial class create : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "EmploymentStatus",
-                table: "Employee");
-
-            migrationBuilder.AddColumn<string>(
-                name: "Username",
-                table: "Employee",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "");
-
             migrationBuilder.CreateTable(
                 name: "Certifications",
                 columns: table => new
@@ -37,6 +26,40 @@ namespace University_EfCore.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Certifications", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Departments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsRemove = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Job",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsRemove = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Job", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,6 +94,64 @@ namespace University_EfCore.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Skills", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employee",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeNumber = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    WeeklyWorkingHours = table.Column<int>(type: "int", nullable: false),
+                    RemainingLeaveDays = table.Column<int>(type: "int", nullable: false),
+                    Supervisor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PerformanceReview = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    JobId = table.Column<int>(type: "int", nullable: false),
+                    DepartmentId = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsRemove = table.Column<bool>(type: "bit", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    NationalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Gender = table.Column<bool>(type: "bit", nullable: false),
+                    MaritalStatus = table.Column<bool>(type: "bit", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", maxLength: 80, nullable: false),
+                    SpouseNationalID = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    Mobile = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    Homephone = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    EmergencyContactNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    CountryName = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(600)", maxLength: 600, nullable: false),
+                    LastEducationalCertificate = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    GPAOfThelastDegree = table.Column<double>(type: "float", maxLength: 20, nullable: false),
+                    BloodType = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    MedicalHistory = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ImageName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employee", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Employee_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Departments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Employee_Job_JobId",
+                        column: x => x.JobId,
+                        principalTable: "Job",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -162,6 +243,16 @@ namespace University_EfCore.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Employee_DepartmentId",
+                table: "Employee",
+                column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employee_JobId",
+                table: "Employee",
+                column: "JobId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RecentProjectsEmployee_EmployeeId",
                 table: "RecentProjectsEmployee",
                 column: "EmployeeId");
@@ -201,18 +292,16 @@ namespace University_EfCore.Migrations
                 name: "RecentProjects");
 
             migrationBuilder.DropTable(
+                name: "Employee");
+
+            migrationBuilder.DropTable(
                 name: "Skills");
 
-            migrationBuilder.DropColumn(
-                name: "Username",
-                table: "Employee");
+            migrationBuilder.DropTable(
+                name: "Departments");
 
-            migrationBuilder.AddColumn<bool>(
-                name: "EmploymentStatus",
-                table: "Employee",
-                type: "bit",
-                nullable: false,
-                defaultValue: false);
+            migrationBuilder.DropTable(
+                name: "Job");
         }
     }
 }

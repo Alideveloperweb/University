@@ -16,7 +16,7 @@ namespace University_EfCore.Mapping.EmployeeSkillMapper
         {
             #region Properties
 
-            builder.HasKey(se => new { se.EmployeeId,se.SkillsId});
+            builder.HasKey(se => se.SkilsEmployeeId);
 
 
             #endregion

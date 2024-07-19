@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+using University_Common.ConstantsType;
 using University_Common.ResourceType;
 
 
@@ -8,17 +10,20 @@ namespace University_Web.ViewModel.EmployeeViewModel
     {
 
         public int DepartmentId { get; set; }
+        public string? DepartmentName { get; set; } = "";
 
         public int JobId { get; set; }
+        public string? JobName { get; set; } = "";
+
 
         /// <summary>
         /// نام کاربری 
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Username))]
-        [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        [MaxLength(20, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
-        [MinLength(3, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
-        public string Username { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Language_Fa), ErrorMessageResourceName = nameof(Constants.Validation_Required))]
+        [MaxLength(100, ErrorMessageResourceName = nameof(Constants.UsernameMaxLength), ErrorMessageResourceType = typeof(Language_Fa))]
+        [MinLength(3, ErrorMessageResourceName = nameof(Constants.UsernameMinLength), ErrorMessageResourceType = typeof(Language_Fa))]
+        public string? Username { get; set; } = "";
 
         /// <summary>
         /// نام 
@@ -27,7 +32,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [MaxLength(20, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
         [MinLength(3, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; } = "";
 
         /// <summary>
         /// نام خانوادگی
@@ -36,7 +41,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [MaxLength(50, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
         [MinLength(5, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; } = "";
 
         /// <summary>
         /// کدملی 
@@ -45,7 +50,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [MaxLength(10, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
         [MinLength(10, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
-        public string NationalCode { get; set; }
+        public string? NationalCode { get; set; } = "";
 
         /// <summary>
         /// تلفن همراه 
@@ -54,7 +59,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [MaxLength(11, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
         [MinLength(11, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
-        public string Mobile { get; set; }
+        public string? Mobile { get; set; } = "";
 
         /// <summary>
         /// تلفن خانه  
@@ -63,7 +68,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [MaxLength(11, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
         [MinLength(11, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
-        public string Homephone { get; set; }
+        public string? Homephone { get; set; } = "";
 
         /// <summary>
         /// ایمیل  
@@ -72,7 +77,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [MaxLength(80, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
         [MinLength(5, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
-        public string Email { get; set; }
+        public string? Email { get; set; } = "";
 
         /// <summary>
         /// نام کشور  
@@ -81,7 +86,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [MaxLength(30, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
         [MinLength(8, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
-        public string CountryName { get; set; }
+        public string? CountryName { get; set; } = "";
 
         /// <summary>
         /// نام شهر 
@@ -90,7 +95,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [MaxLength(90, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
         [MinLength(8, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
-        public string CityName { get; set; }
+        public string? CityName { get; set; } = "";
 
         /// <summary>
         /// آدرس
@@ -99,7 +104,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
         [MinLength(20, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
-        public string Address { get; set; }
+        public string? Address { get; set; } = "";
 
         /// <summary>
         /// آخرین مدرک تحصیلی
@@ -108,7 +113,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [MaxLength(20, ErrorMessage = "{0} نمیتواند بیشتر از {1} باشد")]
         [MinLength(10, ErrorMessage = "{0} نمیتواند کمتر از {1}  باشد")]
-        public string LastEducationalCertificate { get; set; }
+        public string? LastEducationalCertificate { get; set; } = "";
 
         /// <summary>
         /// معدل آخرین مدرک تحصیلی
@@ -145,7 +150,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.EmergencyContactNumber))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string EmergencyContactNumber { get; set; }
+        public string? EmergencyContactNumber { get; set; } = "";
 
 
         /// <summary>
@@ -153,7 +158,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.SpouseNationalID))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string SpouseNationalID { get; set; }
+        public string? SpouseNationalID { get; set; } = "";
 
 
         /// <summary>
@@ -161,7 +166,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.BloodType))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string BloodType { get; set; }
+        public string? BloodType { get; set; } = "";
 
 
         /// <summary>
@@ -169,21 +174,21 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.MedicalHistory))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string MedicalHistory { get; set; }
+        public string? MedicalHistory { get; set; } = "";
 
         /// <summary>
         ///  عکس
         /// </summary>
-        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Image))]
-        [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string ImageName { get; set; }
+        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Image))]
+        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
+        //public string? ImageName { get; set; } = "";
 
         /// <summary>
         /// شماره کارمندی
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.EmployeeNumber))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string EmployeeNumber { get; set; }
+        public string? EmployeeNumber { get; set; } = "";
 
         /// <summary>
         /// سمت شغلی
@@ -238,28 +243,28 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Supervisor))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string Supervisor { get; set; }
+        public string? Supervisor { get; set; } = "";
 
         /// <summary>
         /// مهارت‌ها
         /// </summary>
         //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Skills))]
         //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-      //  public string Skills { get; set; }
+        //  public string Skills { get; set; }
 
-        /// <summary>
+        /// <summary> 
         /// گواهینامه‌ها و مدارک حرفه‌ای
         /// </summary>
-        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Certifications))]
-        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-      //  public string Certifications { get; set; }
+        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Certifications))]
+        [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
+        public string? Certifications { get; set; } = "";
 
         /// <summary>
         /// ارزیابی عملکرد
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.PerformanceReview))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string PerformanceReview { get; set; }
+        public string? PerformanceReview { get; set; } = "";
 
         /// <summary>
         /// پروژه‌های اخیر
@@ -274,7 +279,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Password))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string Password { get; set; }
+        public string? Password { get; set; } = "";
 
 
         /// <summary>
@@ -283,9 +288,14 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.RePassword))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         [Compare(nameof(Password), ErrorMessage = "تکرار پسورد با خود پسورد متابقت ندارد .")]
-        public string RePassword { get; set; }
+        public string? RePassword { get; set; } = "";
 
         public bool IsRemove { get; set; }
 
+        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Image))]
+        [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
+        public IFormFile ImageName { get; set; }
+
+        public SelectListItem? Departments { set; get; }
     }
 }

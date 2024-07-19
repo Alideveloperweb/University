@@ -104,5 +104,32 @@ namespace University_Common.ConstantsType {
                 return ResourceManager.GetString("TelLength", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام کاربری بیشتر از حد مجاز میباشد.
+        /// </summary>
+        public static string UsernameMaxLength {
+            get {
+                return ResourceManager.GetString("UsernameMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام کاربری نمیتواند کمتر از 3 کاراکتر باشد.
+        /// </summary>
+        public static string UsernameMinLength {
+            get {
+                return ResourceManager.GetString("UsernameMinLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to این فیلد اجباری میباشد.
+        /// </summary>
+        public static string Validation_Required {
+            get {
+                return ResourceManager.GetString("Validation_Required", resourceCulture);
+            }
+        }
     }
 }

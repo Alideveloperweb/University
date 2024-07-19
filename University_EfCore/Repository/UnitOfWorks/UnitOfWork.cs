@@ -5,7 +5,6 @@ using University_Domain.CertificationsEntities.Interface;
 using University_Domain.DepartmentsEntities.Interface;
 using University_Domain.EmployeeEntities.Interface;
 using University_Domain.JobEntities;
-using University_Domain.RecentProjectsEntities;
 using University_Domain.RecentProjectsEntities.Interface;
 using University_Domain.SkillsEntities.Interface;
 using University_EfCore.Context;

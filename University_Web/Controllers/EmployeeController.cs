@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using University_Common.Application;
 using University_Common.Domain;
 using University_Domain.EmployeeEntities;
+using University_EfCore.DTOs.Department;
 using University_Web.ViewModel.EmployeeViewModel;
 
 namespace University_Web.Controllers
@@ -15,10 +17,12 @@ namespace University_Web.Controllers
         #region Cnstarctor
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public EmployeeController(IUnitOfWork unitOfWork)
+        public EmployeeController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         #endregion
@@ -29,7 +33,7 @@ namespace University_Web.Controllers
             {
                 return NotFound();
             }
-            var employees = _unitOfWork.Employee.Value.AsQueryable().Where(e => e.IsRemove == getAllEmployee.IsRemove);
+            var employees = _unitOfWork.Employee.Value.GetAllRemove(getAllEmployee.IsRemove);
 
             GetAllEmployeeItem getEmployee = new GetAllEmployeeItem
             {
@@ -49,24 +53,24 @@ namespace University_Web.Controllers
             CreateEmployeeItem createEmployee = new CreateEmployeeItem();
 
             #region Select List departments
+            var departments = _unitOfWork.Department.Value.GetAll();
+            var departmentDtos = _mapper.Map<IEnumerable<DepartmentDto>>(departments);
 
-            if (_unitOfWork == null || _unitOfWork.Department == null || _unitOfWork.Department.Value == null)
+            createEmployee.Departments = departmentDtos.Select(d => new SelectListItem
             {
-                ModelState.AddModelError(string.Empty, "مشکلی در دسترسی به اطلاعات دپارتمان‌ها وجود دارد");
-                return View(createEmployee);
-            }
+                Value = d.DepartmentId.ToString(),
+                Text = d.DepartmentName
+            });
 
-            var departments = _unitOfWork.Department.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
+            //// بررسی اگر دپارتمانی وجود نداشته باشد
+            //if (departments == null || !departments.Any())
+            //{
+            //    ModelState.AddModelError(string.Empty, "دپارتمانی یافت نشد");
+            //    return View(createEmployee);
+            //}
 
-            // بررسی اگر دپارتمانی وجود نداشته باشد
-            if (departments == null || !departments.Any())
-            {
-                ModelState.AddModelError(string.Empty, "دپارتمانی یافت نشد");
-                return View(createEmployee);
-            }
-
-            // اختصاص دپارتمان‌ها به ViewBag برای استفاده در View
-            ViewBag.Departments = new SelectList(departments, "Id", "Name");
+            //// اختصاص دپارتمان‌ها به ViewBag برای استفاده در View
+            //ViewBag.Departments = new SelectList(departments, "Id", "Name");
 
 
             #endregion

@@ -137,4 +137,16 @@
     <value>11</value>
     <comment>حداکثر مقدار شماره موبایل</comment>
   </data>
+  <data name="UsernameMaxLength" xml:space="preserve">
+    <value>نام کاربری بیشتر از حد مجاز میباشد</value>
+    <comment>حداکثر نام کاربری</comment>
+  </data>
+  <data name="UsernameMinLength" xml:space="preserve">
+    <value>نام کاربری نمیتواند کمتر از 3 کاراکتر باشد</value>
+    <comment>حداقل مقدار نام کاربری</comment>
+  </data>
+  <data name="Validation_Required" xml:space="preserve">
+    <value>این فیلد اجباری میباشد</value>
+    <comment>برای  Required </comment>
+  </data>
 </root>

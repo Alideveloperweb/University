@@ -53,6 +53,7 @@ namespace University_EfCore.Context
             modelBuilder.ApplyConfiguration(new SkillsMap());
             modelBuilder.ApplyConfiguration(new RecentProjectsMap());
             modelBuilder.ApplyConfiguration(new CertificationsMap());
+
             base.OnModelCreating(modelBuilder);
         }
 
