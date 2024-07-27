@@ -252,12 +252,12 @@ namespace University_Web.ViewModel.EmployeeViewModel
         //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         //  public string Skills { get; set; }
 
-        /// <summary> 
-        /// گواهینامه‌ها و مدارک حرفه‌ای
-        /// </summary>
-        [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Certifications))]
-        [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public string? Certifications { get; set; } = "";
+        ///// <summary> 
+        ///// گواهینامه‌ها و مدارک حرفه‌ای
+        ///// </summary>
+        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Certifications))]
+        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
+        //public string? Certifications { get; set; } = "";
 
         /// <summary>
         /// ارزیابی عملکرد
@@ -297,5 +297,9 @@ namespace University_Web.ViewModel.EmployeeViewModel
         public IFormFile ImageName { get; set; }
 
         public SelectListItem? Departments { set; get; }
+        public SelectListItem? Jobs { set; get; }
+        public SelectListItem? Skills { set; get; }
+        public SelectListItem? Certifications { set; get; }
+        public SelectListItem? RecentProjects { set; get; }
     }
 }

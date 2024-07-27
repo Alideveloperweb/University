@@ -1,4 +1,5 @@
 ﻿using University_Common.Application;
+using University_Domain.DTO;
 using University_Domain.EmployeeEntities;
 using University_Domain.EmployeeEntities.Interface;
 using University_EfCore.Context;
@@ -17,25 +18,58 @@ namespace University_EfCore.Repository.EmployeeRepository
 
         #endregion
 
-        #region Constracture
+        #region 
 
-        public List<Employee> GetAllEmployee(bool isRemove)
+        public List<SelectListDepartmentDto> SelectListDepartmentDtos()
         {
-            return null;
-            //return _ApplicationContext.Employee.Where(e => e.IsRemove==isRemove).Select(e=>new GetAllEmployeeItem
-            //{
-            //        EmployeeNumber = e.EmployeeNumber,
-            //        EmploymentStatus = e.EmploymentStatus,
-            //        FullName=e.FirstName+ " "+e.LastName,
-            //        ImageName=e.ImageName,
-            //        JobTitle=e.JobTitle,
-            //        LastEducationalCertificate=e.LastEducationalCertificate,
-            //        Mobile=e.Mobile,
-            //        NationalCode=e.NationalCode
-            //}).ToList();
+            return _ApplicationContext.Departments.Select(d => new SelectListDepartmentDto
+            {
+                Id=d.Id,
+                Name=d.Name,
+            }).ToList();
         }
 
+        public List<SelectListJobsDto> SelectListJobsDtos()
+        {
+            return _ApplicationContext.Job.Select(d => new SelectListJobsDto
+            {
+                Id = d.Id,
+                Title = d.Title,
+            }).ToList();
+        }
+
+        public List<SelectListRecentProjectsDto> SelectListRecentProjectsDtos()
+        {
+            return _ApplicationContext.Job.Select(d => new SelectListRecentProjectsDto
+            {
+                Id = d.Id,
+                Title = d.Title,
+            }).ToList();
+        }
+
+        public List<SelectListSkillsDto> SelectListSkillsDtos()
+        {
+            return _ApplicationContext.Job.Select(d => new SelectListSkillsDto
+            {
+                Id = d.Id,
+                Title = d.Title,
+            }).ToList();
+        }
+
+
+        public List<SelectListCertificationsDto> SelectListCertificationsDtos()
+        {
+            return _ApplicationContext.Job.Select(d => new SelectListCertificationsDto
+            {
+                Id = d.Id,
+                Title = d.Title,
+            }).ToList();
+        }
         #endregion
 
     }
 }
+
+
+
+

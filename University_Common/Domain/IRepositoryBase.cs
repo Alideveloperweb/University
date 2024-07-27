@@ -7,7 +7,7 @@ namespace University_Common.Domain
     {
         TEntity Get(TKey Id);
         Task<TEntity> GetFirstOrDefaultAsync(string name);
-       Task<IQueryable<TEntity>> GetAll();
+        Task<IQueryable<TEntity>> GetSelectList();
         IQueryable<TEntity> GetAllRemove(bool isRemove);
         IQueryable<TEntity> GetAllActive(bool isActive);
         bool Create(TEntity entity);
@@ -15,9 +15,9 @@ namespace University_Common.Domain
         bool Update(TEntity entity);
         bool Remove(TEntity entity);
         bool RemoveRenge(List<TEntity> entity);
-        bool Exist(Expression<Func<TEntity,bool>> entity);
+        bool Exist(Expression<Func<TEntity, bool>> entity);
         bool SaveChanges();
-       Task<int> SaveChangesAsync();
+        Task<int> SaveChangesAsync();
 
 
 

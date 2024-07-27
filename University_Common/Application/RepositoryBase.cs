@@ -59,34 +59,19 @@ namespace University_Common.Application
             return db.Find(Id);
         }
 
-        public async Task<IQueryable<TEntity>> GetAll()
+        public async Task<IQueryable<TEntity>> GetSelectList()
         {
-            return  db.AsQueryable();
+            return db.AsQueryable();
         }
 
         public IQueryable<TEntity> GetAllRemove(bool isRemove)
         {
-            if (isRemove ==true)
-            {
-                return db.Where(e => EF.Property<bool>(e, "IsRemove") == true).AsQueryable();
-            }
-            else
-            {
-                return db.Where(e => EF.Property<bool>(e, "IsRemove") == false).AsQueryable(); ;
-            }
-          
+            return db.Where(w => w.IsRemove == isRemove);
         }
 
         public IQueryable<TEntity> GetAllActive(bool isActive)
         {
-            if (isActive==true)
-            {
-                return db.Where(e => EF.Property<bool>(e, "IsActive") == true).AsQueryable();
-            }
-            else
-            {
-                return db.Where(e => EF.Property<bool>(e, "IsActive") == false).AsQueryable();
-            }
+            return db.Where(w => w.IsActive == isActive);
         }
 
 
@@ -165,12 +150,12 @@ namespace University_Common.Application
 
         public IQueryable<TEntity> AsQueryable()
         {
-          return db.AsQueryable();
+            return db.AsQueryable();
         }
 
         public IQueryable<TEntity> AsQueryable(Expression<Func<TEntity, bool>> predicate)
         {
-           return  db.Where(predicate).AsQueryable();
+            return db.Where(predicate).AsQueryable();
         }
 
         #endregion

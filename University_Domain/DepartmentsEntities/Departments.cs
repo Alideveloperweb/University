@@ -1,9 +1,5 @@
-﻿
-using System.Collections.Specialized;
-using System.ComponentModel.DataAnnotations;
-using University_Common.Domain;
+﻿using University_Common.Domain;
 using University_Domain.EmployeeEntities;
-using University_Domain.JobEntities;
 
 namespace University_Domain.DepartmentsEntities
 {

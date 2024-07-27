@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using System.Web.Mvc;
-using University_Domain.DepartmentsEntities;
-using University_EfCore.DTOs.Department;
+using University_Domain.DTO;
 
 
 namespace University_EfCore.AutoMapper
@@ -10,15 +9,9 @@ namespace University_EfCore.AutoMapper
     {
         public MappingProfile()
         {
-            CreateMap<DepartmentDTO, SelectListItem>()
-                           .ConvertUsing(d => new SelectListItem
-                           {
-                               Value = d.Id.ToString(),
-                               Text = d.Name
-                           });
-
-            CreateMap<Department, DepartmentDTO>();
-            CreateMap<DepartmentDTO, Department>();
+            CreateMap<SelectListDepartmentDto,SelectListItem>()
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Id.ToString()))
+                .ForMember(dest => dest.Text, opt => opt.MapFrom(src => src.Name));
         }
     }
 }
