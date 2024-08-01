@@ -4,7 +4,7 @@ using University_Common.Domain;
 
 namespace University_Common.Application
 {
-    public class RepositoryBase<TKey, TEntity> : IRepositoryBase<TKey, TEntity> where TEntity : class
+    public class RepositoryBase<TKey, TEntity> : IRepositoryBase<TKey, TEntity> where TEntity : EntityBase<TKey>
     {
         #region Constactore
 
@@ -18,7 +18,6 @@ namespace University_Common.Application
         }
 
         #endregion
-
 
         #region 
 
@@ -81,7 +80,7 @@ namespace University_Common.Application
 
             async Task<TEntity> NewMethod(string name)
             {
-                return await db.FirstOrDefaultAsync(e => EF.Property<string>(e, "Name") == name);
+                return await db.FirstOrDefaultAsync(predicate: e => EF.Property<string>(e, "Name") == name);
             }
         }
 
@@ -143,7 +142,6 @@ namespace University_Common.Application
             }
             catch (Exception)
             {
-
                 return false;
             }
         }

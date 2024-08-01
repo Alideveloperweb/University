@@ -55,22 +55,22 @@ namespace University_Web.Controllers
                 CreateEmployeeItem createEmployee = new CreateEmployeeItem();
 
                 createEmployee.Departments = await _unitOfWork.Department.Value.GetSelectList();
-                
+
                 createEmployee.Jobs = await _unitOfWork.Job.Value.GetSelectList().ToList();
-                
+
                 createEmployee.Skills = await _unitOfWork.Skills.Value.GetSelectList().ToList();
-                
+
                 createEmployee.RecentProjects = await _unitOfWork.RecentProjects.Value.GetSelectList().ToList();
-                
+
                 createEmployee.Certifications = await _unitOfWork.Certifications.Value.GetSelectList().ToList();
-              
+
                 if (createEmployee.Certifications.Text.Any())
                 {
                     ModelState.AddModelError(string.Empty, "مدرکی یافت نشد");
                     return View(createEmployee);
                 }
 
-   
+
 
                 return View(createEmployee);
             }
@@ -92,42 +92,47 @@ namespace University_Web.Controllers
                 OperationResult result = new();
                 ApplicationMessage message = new("کارمند");
 
-                Employee employee = new(createEmployee.Username, createEmployee.FirstName, createEmployee.LastName, createEmployee.NationalCode, createEmployee.Mobile, createEmployee.Homephone, createEmployee.CountryName
-                    , createEmployee.CityName, createEmployee.Address, createEmployee.LastEducationalCertificate, createEmployee.GPAOfThelastDegree, createEmployee.Gender, createEmployee.MaritalStatus
-                    , createEmployee.DateOfBirth, createEmployee.EmergencyContactNumber, createEmployee.SpouseNationalID, createEmployee.BloodType, createEmployee.MedicalHistory, createEmployee.EmployeeNumber
-                    , createEmployee.HireDate, createEmployee.Salary, createEmployee.IsActive, createEmployee.WeeklyWorkingHours, createEmployee.RemainingLeaveDays
-                    , createEmployee.Supervisor,/* createEmployee.Skills, createEmployee.Certifications,*/ createEmployee.PerformanceReview, /*createEmployee.RecentProjects,*/ createEmployee.Password, createEmployee.DepartmentId, createEmployee.Email, "ali.png", createEmployee.JobId);
+                Employee employee = new(
+                    Username: createEmployee.Username,
+                    FirstName: createEmployee.FirstName,
+                    LastName: createEmployee.LastName,
+                    NationalCode: createEmployee.NationalCode,
+                    Mobile: createEmployee.Mobile,
+                    Homephone: createEmployee.Homephone,
+                    CountryName: createEmployee.CountryName,
+                    CityName: createEmployee.CityName,
+                    Address: createEmployee.Address,
+                    LastEducationalCertificate: createEmployee.LastEducationalCertificate,
+                    GPAOfThelastDegree: createEmployee.GPAOfThelastDegree,
+                    Gender: createEmployee.Gender,
+                    MaritalStatus: createEmployee.MaritalStatus,
+                    DateOfBirth: createEmployee.DateOfBirth,
+                    EmergencyContactNumber: createEmployee.EmergencyContactNumber,
+                    SpouseNationalID: createEmployee.SpouseNationalID,
+                    BloodType: createEmployee.BloodType, 
+                    MedicalHistory: createEmployee.MedicalHistory, 
+                    EmployeeNumber: createEmployee.EmployeeNumber,
+                    HireDate: createEmployee.HireDate,
+                    Salary: createEmployee.Salary,
+                    IsActive: createEmployee.IsActive,
+                    WeeklyWorkingHours: createEmployee.WeeklyWorkingHours,
+                    RemainingLeaveDays: createEmployee.RemainingLeaveDays,
+                    Supervisor: createEmployee.Supervisor,
+                    /* createEmployee.Skills, createEmployee.Certifications,*/ 
+                    PerformanceReview: createEmployee.PerformanceReview, 
+                    /*createEmployee.RecentProjects,*/ 
+                    Password: createEmployee.Password, DepartmentId: createEmployee.DepartmentId,
+                    Email: createEmployee.Email,
+                    ImageName: "ali.png",
+                    JobId: createEmployee.JobId);
 
-
-                var departments = _unitOfWork.Department.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
-                ViewBag.Departments = new SelectList(departments, "Id", "Name");
-
-                var jobs = _unitOfWork.Job.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
-                ViewBag.Position = new SelectList(jobs, "Id", "Title");
-
-                var certification = _unitOfWork.Certifications.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
-                ViewBag.Certifications = new SelectList(certification, "Id", "Name");
-
-                var recentProjects = _unitOfWork.RecentProjects.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
-                ViewBag.RecentProjects = new SelectList(recentProjects, "Id", "Name");
-
-                var skills = _unitOfWork.Skills.Value.AsQueryable().Where(e => !e.IsRemove).ToList();
-                ViewBag.Skills = new SelectList(skills, "Id", "Name");
-
-                bool createCertification = _unitOfWork.Certifications.Value.CreateRenge(certification);
-
-                bool create = _unitOfWork.Employee.Value.Create(employee);
-                if (!create)
-                    return Ok(result.Success(Operation.Success, message.Create()));
-                else
-                    Ok(result.Failed(Operation.ErrorCreate, message.ErrorCreate()));
 
                 int save = await _unitOfWork.SaveAsync();
                 if (save == 0)
                     return Ok(result.Success(Operation.Success, message.Save()));
 
 
-                //}
+                
 
 
             }

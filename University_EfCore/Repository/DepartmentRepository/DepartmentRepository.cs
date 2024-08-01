@@ -1,8 +1,7 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-using University_Common.Application;
+﻿using University_Common.Application;
 using University_Domain.DepartmentsEntities;
 using University_Domain.DepartmentsEntities.Interface;
+using University_Domain.DTO;
 using University_EfCore.Context;
 
 namespace University_EfCore.Repository.DepartmentRepository
@@ -11,14 +10,17 @@ namespace University_EfCore.Repository.DepartmentRepository
     {
         #region Constractor
 
-        private readonly ApplicationContext Context;
-        public DepartmentRepository(ApplicationContext _Context):base(_Context)
+        private readonly ApplicationContext _ApplicationContext;
+        public DepartmentRepository(ApplicationContext ApplicationContext) : base(ApplicationContext)
         {
-            this._Context = _Context;
+            _ApplicationContext = ApplicationContext;
         }
 
         #endregion
 
-
+        public List<SelectListDepartmentDto> SelectListDepartmentDtos()
+        {
+            return _ApplicationContext.Departments
+        }
     }
 }
