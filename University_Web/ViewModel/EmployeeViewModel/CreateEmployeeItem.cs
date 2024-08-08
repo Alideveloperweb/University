@@ -296,10 +296,10 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         public IFormFile ImageName { get; set; }
 
-        public SelectListItem? Departments { set; get; }
-        public SelectListItem? Jobs { set; get; }
-        public SelectListItem? Skills { set; get; }
-        public SelectListItem? Certifications { set; get; }
-        public SelectListItem? RecentProjects { set; get; }
+        public List<SelectListItem>? Departments { set; get; }
+        public List<SelectListItem>? Jobs { set; get; }
+        public List<SelectListItem>? Skills { set; get; }
+        public List<SelectListItem>? Certifications { set; get; }
+        public List<SelectListItem>? RecentProjects { set; get; }
     }
 }

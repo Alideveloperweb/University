@@ -54,21 +54,31 @@ namespace University_Web.Controllers
                 // ایجاد یک نمونه از مدل CreateEmployeeItem
                 CreateEmployeeItem createEmployee = new CreateEmployeeItem();
 
-                createEmployee.Departments = await _unitOfWork.Department.Value.GetSelectList();
+                var  department = await _unitOfWork.Department.Value.GetSelectList();
 
-                createEmployee.Jobs = await _unitOfWork.Job.Value.GetSelectList().ToList();
+                var departments = _mapper.Map<List<SelectListItem>>(department);
 
-                createEmployee.Skills = await _unitOfWork.Skills.Value.GetSelectList().ToList();
+                var job = await _unitOfWork.Job.Value.GetSelectList();
 
-                createEmployee.RecentProjects = await _unitOfWork.RecentProjects.Value.GetSelectList().ToList();
+                var jobs = _mapper.Map<List<SelectListItem>>(job);
 
-                createEmployee.Certifications = await _unitOfWork.Certifications.Value.GetSelectList().ToList();
+                var skill = await _unitOfWork.Skills.Value.GetSelectList();
 
-                if (createEmployee.Certifications.Text.Any())
-                {
-                    ModelState.AddModelError(string.Empty, "مدرکی یافت نشد");
-                    return View(createEmployee);
-                }
+                var skills = _mapper.Map<List<SelectListItem>>(skill);
+
+                var recentProject = await _unitOfWork.RecentProjects.Value.GetSelectList();
+
+                var recentProjects = _mapper.Map<List<SelectListItem>>(recentProject);
+
+                var certification = await _unitOfWork.Certifications.Value.GetSelectList();
+
+                var certifications = _mapper.Map<List<SelectListItem>>(certification);
+
+                //if (createEmployee.Certifications.Text.Any())
+                //{
+                //    ModelState.AddModelError(string.Empty, "مدرکی یافت نشد");
+                //    return View(createEmployee);
+                //}
 
 
 

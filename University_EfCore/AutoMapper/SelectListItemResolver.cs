@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using System.Web.Mvc;
-using University_EfCore.DTOs.Department;
+using University_Domain.DTO;
+
 
 namespace University_EfCore.AutoMapper
 {
-    public class SelectListItemResolver : IValueResolver<DepartmentDTO, SelectListItem, SelectListItem>
+    public class SelectListItemResolver : IValueResolver<SelectListDepartmentDto, SelectListItem, SelectListItem>
     {
 
-        public SelectListItem Resolve(DepartmentDTO source, SelectListItem destination, SelectListItem destMember, ResolutionContext context)
+        public SelectListItem Resolve(SelectListDepartmentDto source, SelectListItem destination, SelectListItem destMember, ResolutionContext context)
         {
             return new SelectListItem
             {
