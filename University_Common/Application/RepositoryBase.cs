@@ -8,13 +8,13 @@ namespace University_Common.Application
     {
         #region Constactore
 
-        public DbContext _Context;
+        public DbContext dbSet;
         public DbSet<TEntity> db;
 
-        public RepositoryBase(DbContext _Context)
+        public RepositoryBase(DbContext dbSet)
         {
-            this._Context = _Context;
-            this.db = _Context.Set<TEntity>();
+            this.dbSet = dbSet;
+            this.db = dbSet.Set<TEntity>();
         }
 
         #endregion
@@ -116,7 +116,7 @@ namespace University_Common.Application
         {
             try
             {
-                _Context.SaveChanges();
+                dbSet.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -129,7 +129,7 @@ namespace University_Common.Application
         public async Task<int> SaveChangesAsync()
         {
 
-            return await _Context.SaveChangesAsync();
+            return await dbSet.SaveChangesAsync();
 
         }
 
@@ -137,7 +137,7 @@ namespace University_Common.Application
         {
             try
             {
-                _Context.Update(entity);
+                dbSet.Update(entity);
                 return true;
             }
             catch (Exception)

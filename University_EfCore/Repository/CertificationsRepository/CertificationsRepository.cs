@@ -1,8 +1,8 @@
-﻿
+﻿using Microsoft.EntityFrameworkCore;
 using University_Common.Application;
 using University_Domain.CertificationsEntities;
 using University_Domain.CertificationsEntities.Interface;
-using University_EfCore.Context;
+using University_Domain.DTO;
 
 namespace University_EfCore.Repository.CertificationsRepository
 {
@@ -10,12 +10,25 @@ namespace University_EfCore.Repository.CertificationsRepository
     {
         #region Constractor
 
-        private ApplicationContext _Context;
-        public CertificationsRepository(ApplicationContext context):base(context) 
+        public DbContext dbSet;
+        public DbSet<Certifications> db;
+
+        public CertificationsRepository(DbContext dbSet) : base(dbSet)
         {
-                this._Context = context;
+            this.dbSet = dbSet;
+            this.db = dbSet.Set<Certifications>();
         }
 
         #endregion
+
+        public List<SelectListCertificationsDto> SelectListDepartmentDtos()
+        {
+            return db.Select(c => new SelectListCertificationsDto
+            {
+               Id= c.Id,
+                Name = c.Name,
+            }).ToList();
+        }
+
     }
 }

@@ -1,17 +1,30 @@
-﻿using University_Common.Application;
+﻿using Microsoft.EntityFrameworkCore;
+using University_Common.Application;
+using University_Domain.DTO;
 using University_Domain.JobEntities;
-using University_EfCore.Context;
 
 namespace University_EfCore.Repository.JobRepository
 {
-    public class JobRepository:RepositoryBase<int ,Job>, IJobRepository
+    public class JobRepository : RepositoryBase<int, Job>, IJobRepository
     {
         #region Constractor
 
-        private readonly ApplicationContext  _Context;
-        public JobRepository(ApplicationContext _Context):base(_Context)
+        public DbContext dbSet;
+        public DbSet<Job> db;
+
+        public JobRepository(DbContext dbSet) : base(dbSet)
         {
-                this._Context = _Context;
+            this.dbSet = dbSet;
+            this.db = dbSet.Set<Job>();
+        }
+
+        public List<SelectListJobsDto> SelectListDepartmentDtos()
+        {
+            return db.Select(j => new SelectListJobsDto
+            {
+                Id = j.Id,
+                Title= j.Title,
+            }).ToList();
         }
         #endregion
     }
