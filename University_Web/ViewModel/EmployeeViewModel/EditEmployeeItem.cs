@@ -1,19 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
-using University_Common.ConstantsType;
-using University_Common.ResourceType;
-
+﻿using System.Web.Mvc;
 
 namespace University_Web.ViewModel.EmployeeViewModel
 {
-    public class CreateEmployeeItem
+    public class EditEmployeeItem
     {
-
         public int DepartmentId { get; set; }
         public string? DepartmentName { get; set; } = "";
 
         public int JobId { get; set; }
         public string? JobName { get; set; } = "";
+
+        public int Id { get; set; }
 
 
         /// <summary>
@@ -177,13 +174,6 @@ namespace University_Web.ViewModel.EmployeeViewModel
         public string? MedicalHistory { get; set; } = "";
 
         /// <summary>
-        ///  عکس
-        /// </summary>
-        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Image))]
-        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-     //   public string? ImageName { get; set; } = "";
-
-        /// <summary>
         /// شماره کارمندی
         /// </summary>
         //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.EmployeeNumber))]
@@ -197,12 +187,6 @@ namespace University_Web.ViewModel.EmployeeViewModel
         //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         public string JobTitle { get; set; }
 
-        /// <summary>
-        /// بخش
-        /// </summary>
-        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Department))]
-        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-      //  public string Department { get; set; }
 
         /// <summary>
         /// تاریخ شروع به کار
@@ -245,19 +229,6 @@ namespace University_Web.ViewModel.EmployeeViewModel
         //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         public string? Supervisor { get; set; } = "";
 
-        /// <summary>
-        /// مهارت‌ها
-        /// </summary>
-        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Skills))]
-        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        //  public string Skills { get; set; }
-
-        ///// <summary> 
-        ///// گواهینامه‌ها و مدارک حرفه‌ای
-        ///// </summary>
-        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Certifications))]
-        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        //public string? Certifications { get; set; } = "";
 
         /// <summary>
         /// ارزیابی عملکرد
@@ -266,14 +237,8 @@ namespace University_Web.ViewModel.EmployeeViewModel
         //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         public string? PerformanceReview { get; set; } = "";
 
-        /// <summary>
-        /// پروژه‌های اخیر
-        /// </summary>
-        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.RecentProjects))]
-        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        //public List<string> RecentProjects { get; set; }
-
-
+ 
+ 
         /// <summary>
         ///  کلمه عبور
         /// </summary>

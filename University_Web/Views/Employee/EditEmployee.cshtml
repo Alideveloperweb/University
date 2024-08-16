@@ -1,267 +1,411 @@
-﻿
+﻿@using University_Common.Enum
+@using University_Web.ViewModel.EmployeeViewModel
+@model EditEmployeeItem
 @{
-    ViewData["Title"] = "EditEmployee";
+    ViewData["Title"] = "ثبت کارمند جدید";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="col-lg-12">
-    <div class="iq-card">
-        <div class="iq-card-body p-0">
-            <div class="iq-edit-list">
-                <ul class="iq-edit-profile d-flex nav nav-pills">
-                    <li class="col-md-3 p-0">
-                        <a class="nav-link active" data-toggle="pill" href="#personal-information">
-                            Personal Information
-                        </a>
-                    </li>
-                    <li class="col-md-3 p-0">
-                        <a class="nav-link" data-toggle="pill" href="#chang-pwd">
-                            Change Password
-                        </a>
-                    </li>
-                    <li class="col-md-3 p-0">
-                        <a class="nav-link" data-toggle="pill" href="#emailandsms">
-                            Email and SMS
-                        </a>
-                    </li>
-                    <li class="col-md-3 p-0">
-                        <a class="nav-link" data-toggle="pill" href="#manage-contact">
-                            Manage Contact
-                        </a>
-                    </li>
-                </ul>
-            </div>
+
+
+<div class="iq-card">
+    <div class="iq-card-header d-flex justify-content-between">
+        <div class="iq-header-title">
+            <h4 class="card-title">ثبت اطلاعات کارمند جدید</h4>
         </div>
     </div>
-</div>
-<div class="col-lg-12">
-    <div class="iq-edit-list-data">
-        <div class="tab-content">
-            <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
-                <div class="iq-card">
-                    <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                            <h4 class="card-title">Personal Information</h4>
-                        </div>
-                    </div>
-                    <div class="iq-card-body">
-                        <form>
-                            <div class="form-group row align-items-center">
-                                <div class="col-md-12">
-                                    <div class="profile-img-edit">
-                                        <img class="profile-pic" src="images/user/11.png" alt="profile-pic">
-                                        <div class="p-image">
-                                            <i class="ri-pencil-line upload-button"></i>
-                                            <input class="file-upload" type="file" accept="image/*">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" row align-items-center">
-                                <div class="form-group col-sm-6">
-                                    <label for="fname">First Name:</label>
-                                    <input type="text" class="form-control" id="fname" value="Barry">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="lname">Last Name:</label>
-                                    <input type="text" class="form-control" id="lname" value="Tech">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="uname">User Name:</label>
-                                    <input type="text" class="form-control" id="uname" value="Barry@01">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="cname">City:</label>
-                                    <input type="text" class="form-control" id="cname" value="Atlanta">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label class="d-block">Gender:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadio6" name="customRadio1" class="custom-control-input" checked="">
-                                        <label class="custom-control-label" for="customRadio6"> Male </label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="customRadio7" name="customRadio1" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio7"> Female </label>
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="dob">Date Of Birth:</label>
-                                    <input class="form-control" id="dob" value="1984-01-24">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Marital Status:</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option selected="">Single</option>
-                                        <option>Married</option>
-                                        <option>Widowed</option>
-                                        <option>Divorced</option>
-                                        <option>Separated </option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Age:</label>
-                                    <select class="form-control" id="exampleFormControlSelect2">
-                                        <option>12-18</option>
-                                        <option>19-32</option>
-                                        <option selected="">33-45</option>
-                                        <option>46-62</option>
-                                        <option>63 &gt; </option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>Country:</label>
-                                    <select class="form-control" id="exampleFormControlSelect3">
-                                        <option>Caneda</option>
-                                        <option>Noida</option>
-                                        <option selected="">USA</option>
-                                        <option>India</option>
-                                        <option>Africa</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label>State:</label>
-                                    <select class="form-control" id="exampleFormControlSelect4">
-                                        <option>California</option>
-                                        <option>Florida</option>
-                                        <option selected="">Georgia</option>
-                                        <option>Connecticut</option>
-                                        <option>Louisiana</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-12">
-                                    <label>Address:</label>
-                                    <textarea class="form-control" name="address" rows="5" style="line-height: 22px;">                                             
-                                             37 Cardinal Lane
-                                             Petersburg, VA 23803
-                                             United States of America
-                                             Zip Code: 85001
-                                             </textarea>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <button type="reset" class="btn iq-bg-danger">Cancel</button>
-                        </form>
+    <div class="iq-card-body">
+        <p>دیر این فرم تمام اطلاعات یک کارمند ثبت میشود</p>
+
+        <form asp-controller="Employee" asp-action="EditEmployee" method="post" enctype="multipart/form-data">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Username"></label>
+                        <input asp-for="Username" type="text" class="form-control" required="required">
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
-                <div class="iq-card">
-                    <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                            <h4 class="card-title">Change Password</h4>
-                        </div>
-                    </div>
-                    <div class="iq-card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="cpass">Current Password:</label>
-                                <a href="javascripe:void();" class="float-right">Forgot Password</a>
-                                <input type="Password" class="form-control" id="cpass" value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="npass">New Password:</label>
-                                <input type="Password" class="form-control" id="npass" value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="vpass">Verify Password:</label>
-                                <input type="Password" class="form-control" id="vpass" value="">
-                            </div>
-                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <button type="reset" class="btn iq-bg-danger">Cancel</button>
-                        </form>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" type="text" class="form-control" required="required">
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="emailandsms" role="tabpanel">
-                <div class="iq-card">
-                    <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                            <h4 class="card-title">Email and SMS</h4>
-                        </div>
-                    </div>
-                    <div class="iq-card-body">
-                        <form>
-                            <div class="form-group row align-items-center">
-                                <label class="col-md-3" for="emailnotification">Email Notification:</label>
-                                <div class="col-md-9 custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="emailnotification" checked="">
-                                    <label class="custom-control-label" for="emailnotification"></label>
-                                </div>
-                            </div>
-                            <div class="form-group row align-items-center">
-                                <label class="col-md-3" for="smsnotification">SMS Notification:</label>
-                                <div class="col-md-9 custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="smsnotification" checked="">
-                                    <label class="custom-control-label" for="smsnotification"></label>
-                                </div>
-                            </div>
-                            <div class="form-group row align-items-center">
-                                <label class="col-md-3" for="npass">When To Email</label>
-                                <div class="col-md-9">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="email01">
-                                        <label class="custom-control-label" for="email01">You have new notifications.</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="email02">
-                                        <label class="custom-control-label" for="email02">You're sent a direct message</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="email03" checked="">
-                                        <label class="custom-control-label" for="email03">Someone adds you as a connection</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row align-items-center">
-                                <label class="col-md-3" for="npass">When To Escalate Emails</label>
-                                <div class="col-md-9">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="email04">
-                                        <label class="custom-control-label" for="email04"> Upon new order.</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="email05">
-                                        <label class="custom-control-label" for="email05"> New membership approval</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="email06" checked="">
-                                        <label class="custom-control-label" for="email06"> Member registration</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <button type="reset" class="btn iq-bg-danger">Cancel</button>
-                        </form>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="LastName"></label>
+                        <input asp-for="LastName" type="text" class="form-control">
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="manage-contact" role="tabpanel">
-                <div class="iq-card">
-                    <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                            <h4 class="card-title">Manage Contact</h4>
-                        </div>
-                    </div>
-                    <div class="iq-card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="cno">Contact Number:</label>
-                                <input type="text" class="form-control" id="cno" value="001 2536 123 458">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="text" class="form-control" id="email" value="Barryjone@demo.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="url">Url:</label>
-                                <input type="text" class="form-control" id="url" value="https://getbootstrap.com">
-                            </div>
-                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <button type="reset" class="btn iq-bg-danger">Cancel</button>
-                        </form>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="NationalCode"></label>
+                        <input asp-for="NationalCode" type="text" class="form-control">
                     </div>
                 </div>
+
+                <div class="col-md-">
+                    <div class="form-group">
+                        <label asp-for="Gender"></label>
+                        <div class="form-check">
+                            @{
+                                var genderEnumValues = Enum.GetValues(typeof(Gender)).Cast<Gender>();
+                                foreach (var gender in genderEnumValues)
+                                {
+                                    <div class="custom-control custom-radio custom-control-inline" style="float: right;">
+                                        <input type="radio" asp-for="Gender" value="@gender" class="custom-control-input" id="@gender" />
+                                        <label class="custom-control-label" for="@gender">@gender</label>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-">
+                    <div class="form-group">
+                        <label asp-for="MaritalStatus"></label>
+                        <div class="form-check">
+                            @{
+                                var maritalStatusValue = Enum.GetValues(typeof(MaritalStatus)).Cast<MaritalStatus>();
+                                foreach (var maritalStatus in maritalStatusValue)
+                                {
+                                    <div class="custom-control custom-radio custom-control-inline" style="float: right;">
+                                        <input type="radio" asp-for="MaritalStatus" value="@maritalStatus" class="custom-control-input" id="@maritalStatus" />
+                                        <label class="custom-control-label" for="@maritalStatus">@maritalStatus</label>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="DateOfBirth"></label>
+                        <input asp-for="DateOfBirth" type="date" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="SpouseNationalID "></label>
+                        <input asp-for="SpouseNationalID " type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="MedicalHistory "></label>
+                        <input asp-for="MedicalHistory " type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        <div class="add-img-user profile-img-edit1">
+                            <img class="profile-pic img-fluid" src="data:image/jpeg;base64,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" alt="profile-pic">
+                            <div class="p-image" style="float: left;margin-left: 20px;">
+                                <a href="javascript:void();" class="upload-button btn iq-bg-primary">آپلود عکس </a>
+                                <input class="file-upload" asp-for="ImageName" type="file" name="ImageName" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="img-extension mt-3" style="float: right;">
+                            <div class="d-inline-block align-items-center">
+                                <span>Only</span>
+                                <a href="javascript:void();">.jpg</a>
+                                <a href="javascript:void();">.png</a>
+                                <a href="javascript:void();">.jpeg</a>
+                                <span>allowed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Mobile"></label>
+                        <input asp-for="Mobile" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Homephone"></label>
+                        <input asp-for="Homephone" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="EmergencyContactNumber"></label>
+                        <input asp-for="EmergencyContactNumber" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="CountryName"></label>
+                        <input asp-for="CountryName" type="text" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="CityName "></label>
+                        <input asp-for="CityName " type="text" class="form-control"></input>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Address"></label>
+                        <textarea asp-for="Address" rows="3" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="LastEducationalCertificate"></label>
+                        <input asp-for="LastEducationalCertificate" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="GPAOfThelastDegree"></label>
+                        <input asp-for="GPAOfThelastDegree" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <label asp-for="BloodType"></label>
+                            <div class="custom-control custom-radio custom-control-inline w-100">
+                                <select asp-items="Html.GetEnumSelectList<BloodType>()"
+                                        asp-for="BloodType" class="form-control w-100">
+                                    <option>انتخاب کنید</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="EmployeeNumber"></label>
+                        <input asp-for="EmployeeNumber" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+
+                @* <div class="col-md-12">
+                <div class="form-group">
+                <label asp-for="JobTitle"></label>
+                <input asp-for="JobTitle" type="text" class="form-control" required="required">
+                </div>
+                </div> *@
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="HireDate"></label>
+                        <input asp-for="HireDate" type="date" class="form-control" required="required">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Salary"></label>
+                        <input asp-for="Salary" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="DepartmentId"></label>
+                        <select asp-for="DepartmentId" class="form-control">
+                            <option value="">انتخاب کنید</option>
+                            @foreach (var department in ViewBag.Departments)
+                            {
+                                <option value="@department.Value">@department.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="JobId"></label>
+                        <select asp-for="JobId" class="form-control">
+                            <option value="">انتخاب کنید</option>
+                            @foreach (var position in ViewBag.Job)
+                            {
+                                <option value="@position.Value">@position.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>مهارت ها</label>
+                        <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                            <option value="">حد اقل یک مهارت را انتخاب کنید</option>
+                            @foreach (var skills in ViewBag.Skills)
+                            {
+                                <option value="@skills.Value">@skills.Text</option>
+                            }
+
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>پروژه ها</label>
+                        <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                            <option value="">حد اقل یک پروژه را انتخاب کنید</option>
+                            @foreach (var recentProjects in ViewBag.RecentProjects)
+                            {
+                                <option value="@recentProjects.Value">@recentProjects.Text</option>
+                            }
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>مدارک </label>
+                        <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                            <option value="">حد اقل یک مدرک را انتخاب کنید</option>
+                            @foreach (var certifications in ViewBag.Certifications)
+                            {
+                                <option value="@certifications.Value">@certifications.Text</option>
+                            }
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="IsActive"></label>
+                        <input asp-for="IsActive" type="checkbox" class="form-control" required="required">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="RemainingLeaveDays"></label>
+                        <input asp-for="RemainingLeaveDays" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+
+                @* <div class="col-md-12">
+                <div class="form-group">
+                <label asp-for="JobTitle"></label>
+                <input asp-for="JobTitle" type="text" class="form-control" required="required">
+                </div>
+                </div> *@
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="WeeklyWorkingHours"></label>
+                        <input asp-for="WeeklyWorkingHours" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Supervisor"></label>
+                        <input asp-for="Supervisor" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="PerformanceReview"></label>
+                        <input asp-for="PerformanceReview" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="RePassword"></label>
+                        <input asp-for="RePassword" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+
+                @*                 <div class="col-md-12">
+                <div class="form-group">
+                <label for="panno">Pan No: *</label>
+                <input type="text" class="form-control" id="panno" name="panno"
+                placeholder="Pan No.">
+                </div>
+                </div>
+                <div class="col-md-12">
+                <div class="form-group">
+                <label for="accno">Account No: *</label>
+                <input type="text" class="form-control" id="accno" name="accno"
+                placeholder="Account No.">
+                </div>
+                </div>
+                <div class="col-md-12">
+                <div class="form-group">
+                <label for="holname">Account Holder Name: *</label>
+                <input type="text" class="form-control" id="holname" name="accname"
+                placeholder="Account Holder Name.">
+                </div>
+                </div>
+                <div class="col-md-12">
+                <div class="form-group">
+                <label for="ifsc">IFSC Code: *</label>
+                <input type="text" class="form-control" id="ifsc" name="ifsc"
+                placeholder="IFSC Code.">
+                </div>
+                </div> *@
+
+
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">ثبت</button>
+                    <a href="/Employee/Indx" class="btn iq-bg-danger">لغو</a>
+                </div>
+
             </div>
-        </div>
+        </form>
     </div>
 </div>
+
+@section script
+{
+
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+}

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using University_Common.Application;
 using University_Common.Domain;
 using University_Domain.EmployeeEntities;
 using University_Web.ViewModel.EmployeeViewModel;
@@ -26,6 +25,7 @@ namespace University_Web.Controllers
 
         #endregion
 
+        #region Index
         public IActionResult Index(GetAllEmployeeItem getAllEmployee)
         {
             if (!ModelState.IsValid)
@@ -42,66 +42,105 @@ namespace University_Web.Controllers
 
             return View(getEmployee);
         }
+        #endregion
 
         #region Create
 
         [HttpGet]
         public async Task<IActionResult> CreateEmployee()
         {
-
             try
             {
-                // ایجاد یک نمونه از مدل CreateEmployeeItem
+
                 CreateEmployeeItem createEmployee = new CreateEmployeeItem();
 
-                var  department = await _unitOfWork.Department.Value.GetSelectList();
+                var departments = await _unitOfWork.Department?.Value?.GetSelectList();
+                if (departments == null)
+                {
+                    throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+                }
 
-                var departments = _mapper.Map<List<SelectListItem>>(department);
+                // تنظیم ViewBag برای دپارتمان‌ها
+                ViewBag.Departments = departments.Select(d => new SelectListItem
+                {
+                    Value = d.Id.ToString(),
+                    Text = d.Name
+                }).ToList();
 
-                var job = await _unitOfWork.Job.Value.GetSelectList();
+                var job = await _unitOfWork.Job?.Value?.GetSelectList();
+                if (job == null)
+                {
+                    throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+                }
 
-                var jobs = _mapper.Map<List<SelectListItem>>(job);
+                ViewBag.Job = job.Select(d => new SelectListItem
+                {
+                    Value = d.Id.ToString(),
+                    Text = d.Title
+                }).ToList();
 
-                var skill = await _unitOfWork.Skills.Value.GetSelectList();
+                var skills = await _unitOfWork.Skills?.Value?.GetSelectList();
+                if (skills == null)
+                {
+                    throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+                }
 
-                var skills = _mapper.Map<List<SelectListItem>>(skill);
+                ViewBag.Skills = skills.Select(d => new SelectListItem
+                {
+                    Value = d.Id.ToString(),
+                    Text = d.Name
+                }).ToList();
 
-                var recentProject = await _unitOfWork.RecentProjects.Value.GetSelectList();
+                var recentProjects = await _unitOfWork.RecentProjects?.Value?.GetSelectList();
+                if (recentProjects == null)
+                {
+                    throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+                }
 
-                var recentProjects = _mapper.Map<List<SelectListItem>>(recentProject);
+                ViewBag.RecentProjects = recentProjects.Select(d => new SelectListItem
+                {
+                    Value = d.Id.ToString(),
+                    Text = d.Name
+                }).ToList();
 
-                var certification = await _unitOfWork.Certifications.Value.GetSelectList();
+                var certifications = await _unitOfWork.Certifications?.Value?.GetSelectList();
+                if (certifications == null)
+                {
+                    throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+                }
 
-                var certifications = _mapper.Map<List<SelectListItem>>(certification);
+                ViewBag.Certifications = certifications.Select(d => new SelectListItem
+                {
+                    Value = d.Id.ToString(),
+                    Text = d.Name
+                }).ToList();
 
-                //if (createEmployee.Certifications.Text.Any())
-                //{
-                //    ModelState.AddModelError(string.Empty, "مدرکی یافت نشد");
-                //    return View(createEmployee);
-                //}
 
 
 
                 return View(createEmployee);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(500);
+                // ثبت خطا در لاگ (در صورت نیاز) و نمایش پیام خطا
+                // Log.Error(ex, "خطا در ایجاد کارمند");
+                return StatusCode(500, $"خطا: {ex.Message}");
             }
         }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(CreateEmployeeItem createEmployee)
         {
             try
             {
-
-
-                //if (ModelState.IsValid)
+                // بررسی اعتبار مدل
+                //if (!ModelState.IsValid)
                 //{
-                OperationResult result = new();
-                ApplicationMessage message = new("کارمند");
+                //    return View(createEmployee);
+                //}
 
+                // ایجاد نمونه کارمند
                 Employee employee = new(
                     Username: createEmployee.Username,
                     FirstName: createEmployee.FirstName,
@@ -119,8 +158,8 @@ namespace University_Web.Controllers
                     DateOfBirth: createEmployee.DateOfBirth,
                     EmergencyContactNumber: createEmployee.EmergencyContactNumber,
                     SpouseNationalID: createEmployee.SpouseNationalID,
-                    BloodType: createEmployee.BloodType, 
-                    MedicalHistory: createEmployee.MedicalHistory, 
+                    BloodType: createEmployee.BloodType,
+                    MedicalHistory: createEmployee.MedicalHistory,
                     EmployeeNumber: createEmployee.EmployeeNumber,
                     HireDate: createEmployee.HireDate,
                     Salary: createEmployee.Salary,
@@ -128,27 +167,31 @@ namespace University_Web.Controllers
                     WeeklyWorkingHours: createEmployee.WeeklyWorkingHours,
                     RemainingLeaveDays: createEmployee.RemainingLeaveDays,
                     Supervisor: createEmployee.Supervisor,
-                    /* createEmployee.Skills, createEmployee.Certifications,*/ 
-                    PerformanceReview: createEmployee.PerformanceReview, 
-                    /*createEmployee.RecentProjects,*/ 
-                    Password: createEmployee.Password, DepartmentId: createEmployee.DepartmentId,
+                    PerformanceReview: createEmployee.PerformanceReview,
+                    Password: createEmployee.Password,
+                    DepartmentId: 1,
                     Email: createEmployee.Email,
                     ImageName: "ali.png",
-                    JobId: createEmployee.JobId);
+                    JobId: createEmployee.JobId
+                );
 
+                // اضافه کردن کارمند به واحد کار
+                _unitOfWork.Employee.Value.Create(employee);
 
+                // ذخیره تغییرات
                 int save = await _unitOfWork.SaveAsync();
-                if (save == 0)
-                    return Ok(result.Success(Operation.Success, message.Save()));
-
-
-                
-
-
+                if (save != 0)
+                {
+                    return Ok(new { Success = true, Message = "کارمند با موفقیت ذخیره شد." });
+                }
+                else
+                {
+                    return StatusCode(500, "عملیات ذخیره‌سازی با شکست مواجه شد.");
+                }
             }
             catch (DbUpdateException dbEx)
             {
-                // Log and handle DbUpdateException
+                // ثبت و مدیریت استثناهای DbUpdateException
                 var sqlEx = dbEx.GetBaseException() as SqlException;
                 if (sqlEx != null)
                 {
@@ -161,24 +204,220 @@ namespace University_Web.Controllers
             }
             catch (Exception ex)
             {
-                // Log and handle other exceptions
+                // ثبت و مدیریت سایر استثناها
                 return StatusCode(500, ex.Message);
             }
-
-            return View(createEmployee);
         }
+
 
         #endregion
 
         #region Edit
 
         [HttpGet]
-        public IActionResult EditEmployee()
+        public async Task<IActionResult> EditEmployee(int Id)
         {
-            return View();
+            var employee =  _unitOfWork.Employee.Value.Get(Id);
+
+            if (employee == null)
+            {
+                return NotFound(); // یا می‌توانید به صفحه خطا هدایت کنید
+            }
+
+            var viewModel = new EditEmployeeItem
+            {
+                Id = employee.Id,
+                Username = employee.Username,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                NationalCode = employee.NationalCode,
+                Mobile = employee.Mobile,
+                Homephone = employee.Homephone,
+                CountryName = employee.CountryName,
+                CityName = employee.CityName,
+                Address = employee.Address,
+                LastEducationalCertificate = employee.LastEducationalCertificate,
+                GPAOfThelastDegree = employee.GPAOfThelastDegree,
+                Gender = employee.Gender,
+                MaritalStatus = employee.MaritalStatus,
+                DateOfBirth = employee.DateOfBirth,
+                EmergencyContactNumber = employee.EmergencyContactNumber,
+                SpouseNationalID = employee.SpouseNationalID,
+                BloodType = employee.BloodType,
+                MedicalHistory = employee.MedicalHistory,
+                EmployeeNumber = employee.EmployeeNumber,
+                HireDate = employee.HireDate,
+                Salary = employee.Salary,
+                IsActive = employee.IsActive,
+                WeeklyWorkingHours = employee.WeeklyWorkingHours,
+                RemainingLeaveDays = employee.RemainingLeaveDays,
+                Supervisor = employee.Supervisor,
+                PerformanceReview = employee.PerformanceReview,
+                Email = employee.Email,
+                JobId = employee.JobId
+            };
+
+            var departments = await _unitOfWork.Department?.Value?.GetSelectList();
+            if (departments == null)
+            {
+                throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+            }
+
+            // تنظیم ViewBag برای دپارتمان‌ها
+            ViewBag.Departments = departments.Select(d => new SelectListItem
+            {
+                Value = d.Id.ToString(),
+                Text = d.Name
+            }).ToList();
+
+            var job = await _unitOfWork.Job?.Value?.GetSelectList();
+            if (job == null)
+            {
+                throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+            }
+
+            ViewBag.Job = job.Select(d => new SelectListItem
+            {
+                Value = d.Id.ToString(),
+                Text = d.Title
+            }).ToList();
+
+            var skills = await _unitOfWork.Skills?.Value?.GetSelectList();
+            if (skills == null)
+            {
+                throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+            }
+
+            ViewBag.Skills = skills.Select(d => new SelectListItem
+            {
+                Value = d.Id.ToString(),
+                Text = d.Name
+            }).ToList();
+
+            var recentProjects = await _unitOfWork.RecentProjects?.Value?.GetSelectList();
+            if (recentProjects == null)
+            {
+                throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+            }
+
+            ViewBag.RecentProjects = recentProjects.Select(d => new SelectListItem
+            {
+                Value = d.Id.ToString(),
+                Text = d.Name
+            }).ToList();
+
+            var certifications = await _unitOfWork.Certifications?.Value?.GetSelectList();
+            if (certifications == null)
+            {
+                throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+            }
+
+            ViewBag.Certifications = certifications.Select(d => new SelectListItem
+            {
+                Value = d.Id.ToString(),
+                Text = d.Name
+            }).ToList();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditEmployee(EditEmployeeItem editEmployeeItem)
+        {
+            try
+            {
+                // بررسی اعتبار مدل
+                //if (!ModelState.IsValid)
+                //{
+                //    return View(createEmployee);
+                //}
+
+                // ایجاد نمونه کارمند
+
+                Employee employee = _unitOfWork.Employee.Value.Get(editEmployeeItem.Id);
+
+                employee.Edit(
+                    Username: editEmployeeItem.Username,
+                    FirstName: editEmployeeItem.FirstName,
+                    LastName: editEmployeeItem.LastName,
+                    NationalCode: editEmployeeItem.NationalCode,
+                    Mobile: editEmployeeItem.Mobile,
+                    Homephone: editEmployeeItem.Homephone,
+                    CountryName: editEmployeeItem.CountryName,
+                    CityName: editEmployeeItem.CityName,
+                    Address: editEmployeeItem.Address,
+                    LastEducationalCertificate: editEmployeeItem.LastEducationalCertificate,
+                    GPAOfThelastDegree: editEmployeeItem.GPAOfThelastDegree,
+                    Gender: editEmployeeItem.Gender,
+                    MaritalStatus: editEmployeeItem.MaritalStatus,
+                    DateOfBirth: editEmployeeItem.DateOfBirth,
+                    EmergencyContactNumber: editEmployeeItem.EmergencyContactNumber,
+                    SpouseNationalID: editEmployeeItem.SpouseNationalID,
+                    BloodType: editEmployeeItem.BloodType,
+                    MedicalHistory: editEmployeeItem.MedicalHistory,
+                    EmployeeNumber: editEmployeeItem.EmployeeNumber,
+                    HireDate: editEmployeeItem.HireDate,
+                    Salary: editEmployeeItem.Salary,
+                    IsActive: editEmployeeItem.IsActive,
+                    WeeklyWorkingHours: editEmployeeItem.WeeklyWorkingHours,
+                    RemainingLeaveDays: editEmployeeItem.RemainingLeaveDays,
+                    Supervisor: editEmployeeItem.Supervisor,
+                    PerformanceReview: editEmployeeItem.PerformanceReview,
+                    Password: editEmployeeItem.Password,
+                    DepartmentId: 1,
+                    Email: editEmployeeItem.Email,
+                    ImageName: "ali.png",
+                    JobId: editEmployeeItem.JobId
+                );
+
+                // اضافه کردن کارمند به واحد کار
+                _unitOfWork.Employee.Value.Update(employee);
+
+                // ذخیره تغییرات
+                int save = await _unitOfWork.SaveAsync();
+                if (save != 0)
+                {
+                    return Ok(new { Success = true, Message = "کارمند با موفقیت ذخیره شد." });
+                }
+                else
+                {
+                    return StatusCode(500, "عملیات ذخیره‌سازی با شکست مواجه شد.");
+                }
+            }
+            catch (DbUpdateException dbEx)
+            {
+                // ثبت و مدیریت استثناهای DbUpdateException
+                var sqlEx = dbEx.GetBaseException() as SqlException;
+                if (sqlEx != null)
+                {
+                    if (sqlEx.Number == 544) // Error number for IDENTITY_INSERT issue
+                    {
+                        return StatusCode(500, "Cannot insert explicit value for identity column when IDENTITY_INSERT is set to OFF.");
+                    }
+                }
+                return StatusCode(500, dbEx.Message);
+            }
+            catch (Exception ex)
+            {
+                // ثبت و مدیریت سایر استثناها
+                return StatusCode(500, ex.Message);
+            }
         }
 
         #endregion
 
+        #region Delete
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteEmployee(int Id)
+        {
+            Employee employee = _unitOfWork.Employee.Value.Get(Id);
+
+               employee.Remove();
+            await _unitOfWork.SaveAsync();
+            return View();
+        }
+
+        #endregion
     }
 }

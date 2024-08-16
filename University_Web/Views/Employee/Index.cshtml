@@ -79,8 +79,8 @@
                                     <td>
                                         <div class="flex align-items-center list-user-action">
                                             <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add" href="#"><i class="ri-user-add-line"></i></a>
-                                            <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line"></i></a>
-                                            <a class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line"></i></a>
+                                            <a asp-controller="Employee" asp-action="EditEmployee" asp-route-Id="@item.Id" class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="ri-pencil-line"></i></a>
+                                            <a asp-controller="Employee" asp-action="DeleteEmployee" asp-route-Id="@item.Id" class="iq-bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="ri-delete-bin-line"></i></a>
                                         </div>
                                     </td>
                                 </tr>

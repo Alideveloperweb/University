@@ -250,7 +250,7 @@
                         <label asp-for="JobId"></label>
                         <select asp-for="JobId" class="form-control">
                             <option value="">انتخاب کنید</option>
-                            @foreach (var position in ViewBag.Position)
+                            @foreach (var position in ViewBag.Job)
                             {
                                 <option value="@position.Value">@position.Text</option>
                             }
@@ -271,7 +271,7 @@
                         </select>
                     </div>
                 </div>
-
+ 
 
                 <div class="col-md-12">
                     <div class="form-group">

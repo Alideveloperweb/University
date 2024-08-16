@@ -122,9 +122,46 @@ namespace University_Domain.EmployeeEntities
 
         #region Edit
 
-        public void Edit()
+        public void Edit(string Username, string FirstName, string LastName, string NationalCode, string Mobile, string Homephone, string CountryName, string CityName, string Address,
+                        string LastEducationalCertificate, double GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
+                        string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber,
+                        DateTime HireDate, decimal Salary, bool IsActive, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor/*, List<string> Skills,*/
+                        /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password, int DepartmentId, string Email, string ImageName, int JobId)
         {
-
+            this.Username = Username;
+            this.FirstName = FirstName;
+            this.LastName = LastName;
+            this.NationalCode = NationalCode;
+            this.Mobile = Mobile;
+            this.Homephone = Homephone;
+            this.CountryName = CountryName;
+            this.CityName = CityName;
+            this.Address = Address;
+            this.LastEducationalCertificate = LastEducationalCertificate;
+            this.GPAOfThelastDegree = GPAOfThelastDegree;
+            this.Gender = Gender;
+            this.MaritalStatus = MaritalStatus;
+            this.DateOfBirth = DateOfBirth;
+            this.EmergencyContactNumber = EmergencyContactNumber;
+            this.SpouseNationalID = SpouseNationalID;
+            this.BloodType = BloodType;
+            this.MedicalHistory = MedicalHistory;
+            this.DepartmentId = DepartmentId;
+            this.EmployeeNumber = EmployeeNumber;
+            this.HireDate = HireDate;
+            this.Salary = Salary;
+            this.IsActive = IsActive;
+            this.WeeklyWorkingHours = WeeklyWorkingHours;
+            this.RemainingLeaveDays = RemainingLeaveDays;
+            this.Supervisor = Supervisor;
+            this.Email = Email;
+            // this.Certifications = Certifications;
+            this.PerformanceReview = PerformanceReview;
+            // this.RecentProjects = RecentProjects;
+            this.Password = Password;
+            this.DepartmentId = DepartmentId;
+            this.ImageName = ImageName;
+            this.JobId = JobId;
         }
 
         #endregion
