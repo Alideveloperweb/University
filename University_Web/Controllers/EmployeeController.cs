@@ -415,7 +415,7 @@ namespace University_Web.Controllers
 
                employee.Remove();
             await _unitOfWork.SaveAsync();
-            return View();
+            return RedirectToAction("index");
         }
 
         #endregion
