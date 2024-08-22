@@ -1,6 +1,7 @@
 ﻿@using University_Common.Enum
 @using University_Web.ViewModel.EmployeeViewModel
 @model CreateEmployeeItem
+
 @{
     ViewData["Title"] = "ثبت کارمند جدید";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -72,6 +73,8 @@
                         <div class="form-check">
                             @{
                                 var maritalStatusValue = Enum.GetValues(typeof(MaritalStatus)).Cast<MaritalStatus>();
+                                // !todo convert to this way with extension method
+                                // var maritalStatusValue = MaritalStatus.ToSelectlistItems();
                                 foreach (var maritalStatus in maritalStatusValue)
                                 {
                                     <div class="custom-control custom-radio custom-control-inline" style="float: right;">
@@ -86,6 +89,7 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
+                        @* !todo add persian date picker *@
                         <label asp-for="DateOfBirth"></label>
                         <input asp-for="DateOfBirth" type="date" class="form-control">
                     </div>
@@ -228,13 +232,18 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="DepartmentId"></label>
-                        <select asp-for="DepartmentId" class="form-control">
-                            <option value="">انتخاب کنید</option>
-                            @foreach (var department in ViewBag.Departments)
-                            {
-                                <option value="@department.Value">@department.Text</option>
-                            }
+                        @* !todo change all select  *@
+                        <select asp-for="DepartmentId" class="form-control" asp-items="Model.Departments">
+                            @* <option value="">انتخاب کنید</option> *@
+                            @* @foreach (var department in Model.Departments) *@
+                            @* { *@
+                            @*     <option value="@department.Value">@department.Text</option> *@
+                            @* } *@
                         </select>
+                        
+                        
+                        @Html.LabelFor(m=>m.DepartmentId)
+                        @Html.DropDownListFor(model=>model.DepartmentId,Model.Departments,new {@class="form-control"})
                     </div>
                 </div>
 

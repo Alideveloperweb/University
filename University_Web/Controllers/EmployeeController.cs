@@ -11,7 +11,6 @@ namespace University_Web.Controllers
 {
     public class EmployeeController : Controller
     {
-
         #region Cnstarctor
 
         private readonly IUnitOfWork _unitOfWork;
@@ -51,8 +50,26 @@ namespace University_Web.Controllers
         {
             try
             {
-
+                //create model
+                //add model to database
+                    //create connection
+                        //create socket network
+                        //send hello handshake
+                        //send data to port xxx
+                    //create sqlcommand
+                    //create queury string
+                    //create parameters
+                    //run query
+                    
+                
+                    
+                
+                
+                
                 CreateEmployeeItem createEmployee = new CreateEmployeeItem();
+                
+                
+                
 
                 var departments = await _unitOfWork.Department?.Value?.GetSelectList();
                 if (departments == null)
@@ -61,11 +78,19 @@ namespace University_Web.Controllers
                 }
 
                 // تنظیم ViewBag برای دپارتمان‌ها
-                ViewBag.Departments = departments.Select(d => new SelectListItem
+                // !Todo use mapper or extenision method for convert dto to SelectListItem
+                createEmployee.Departments = departments.Select(d => new SelectListItem
                 {
                     Value = d.Id.ToString(),
                     Text = d.Name
                 }).ToList();
+                
+                // !Todo Convert it to extension method
+                createEmployee.Departments.Insert(0,new SelectListItem()
+                {
+                    Text = "انتخاب کنید",
+                    Value = ""
+                });
 
                 var job = await _unitOfWork.Job?.Value?.GetSelectList();
                 if (job == null)
@@ -192,6 +217,8 @@ namespace University_Web.Controllers
             catch (DbUpdateException dbEx)
             {
                 // ثبت و مدیریت استثناهای DbUpdateException
+                //!todo check exception message and return correct status code depend to message
+                // username in employee is index unique
                 var sqlEx = dbEx.GetBaseException() as SqlException;
                 if (sqlEx != null)
                 {
@@ -217,7 +244,7 @@ namespace University_Web.Controllers
         [HttpGet]
         public async Task<IActionResult> EditEmployee(int Id)
         {
-            var employee =  _unitOfWork.Employee.Value.Get(Id);
+            var employee = _unitOfWork.Employee.Value.Get(Id);
 
             if (employee == null)
             {
@@ -409,11 +436,12 @@ namespace University_Web.Controllers
         #region Delete
 
         [HttpGet]
+        // !todo convert to ajax after implement list
         public async Task<IActionResult> DeleteEmployee(int Id)
         {
             Employee employee = _unitOfWork.Employee.Value.Get(Id);
 
-               employee.Remove();
+            employee.Remove();
             await _unitOfWork.SaveAsync();
             return RedirectToAction("index");
         }

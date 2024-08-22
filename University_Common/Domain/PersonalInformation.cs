@@ -5,7 +5,7 @@ namespace University_Common.Domain
     {
         #region Properties
 
-        #region     Identity Information
+        #region Identity Information
 
         /// <summary>
         /// نام کاربری

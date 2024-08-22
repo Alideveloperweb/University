@@ -13,6 +13,9 @@ namespace University_EfCore.Mapping.EmployeeMapper
             #region Properties
 
             builder.HasKey(p => p.Id);
+            
+            builder.HasIndex(p => p.Username).IsUnique(true);
+            
             builder.Property(p => p.FirstName).HasMaxLength(20);
             builder.Property(p => p.LastName).HasMaxLength(50);
             builder.Property(p => p.NationalCode).HasMaxLength(10);

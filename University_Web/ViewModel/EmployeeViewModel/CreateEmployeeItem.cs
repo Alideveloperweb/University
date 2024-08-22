@@ -296,6 +296,8 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         public IFormFile ImageName { get; set; }
 
+
+
         public List<SelectListItem>? Departments { set; get; }
         public List<SelectListItem>? Jobs { set; get; }
         public List<SelectListItem>? Skills { set; get; }
