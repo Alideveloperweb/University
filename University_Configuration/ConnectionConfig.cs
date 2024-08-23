@@ -9,9 +9,14 @@ namespace University_Configuration
     {
         public static void Configure(this IServiceCollection services, string Connection)
         {
+            //services.AddDbContext<ApplicationContext>(options =>
+            //{
+            //    options.UseSqlServer(Connection);
+            //});
+
             services.AddDbContext<ApplicationContext>(options =>
             {
-                options.UseSqlServer(Connection);
+                options.UseSqlite(Connection);
             });
         }
     }

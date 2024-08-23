@@ -61,7 +61,7 @@ namespace University_Web.Controllers
                 }
 
                 // تنظیم ViewBag برای دپارتمان‌ها
-                ViewBag.Departments = departments.Select(d => new SelectListItem
+                createEmployee.Departments = departments.Select(d => new SelectListItem
                 {
                     Value = d.Id.ToString(),
                     Text = d.Name
@@ -73,7 +73,7 @@ namespace University_Web.Controllers
                     throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
                 }
 
-                ViewBag.Job = job.Select(d => new SelectListItem
+                createEmployee.Jobs = job.Select(d => new SelectListItem
                 {
                     Value = d.Id.ToString(),
                     Text = d.Title
@@ -169,7 +169,7 @@ namespace University_Web.Controllers
                     Supervisor: createEmployee.Supervisor,
                     PerformanceReview: createEmployee.PerformanceReview,
                     Password: createEmployee.Password,
-                    DepartmentId: 1,
+                    DepartmentId: createEmployee.DepartmentId,
                     Email: createEmployee.Email,
                     ImageName: "ali.png",
                     JobId: createEmployee.JobId
@@ -364,7 +364,7 @@ namespace University_Web.Controllers
                     Supervisor: editEmployeeItem.Supervisor,
                     PerformanceReview: editEmployeeItem.PerformanceReview,
                     Password: editEmployeeItem.Password,
-                    DepartmentId: 1,
+                    DepartmentId: editEmployeeItem.DepartmentId,
                     Email: editEmployeeItem.Email,
                     ImageName: "ali.png",
                     JobId: editEmployeeItem.JobId

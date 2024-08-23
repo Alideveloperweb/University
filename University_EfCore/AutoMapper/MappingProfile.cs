@@ -1,11 +1,6 @@
-﻿
-
-
-using AutoMapper;
-using System.Web.Mvc;
+﻿using AutoMapper;
 using University_Domain.DepartmentsEntities;
 using University_Domain.JobEntities;
-
 using University_Domain.DTO;
 using University_Domain.SkillsEntities;
 using University_Domain.RecentProjectsEntities;
