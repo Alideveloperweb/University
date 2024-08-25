@@ -15,7 +15,7 @@ namespace University_EfCore.Repository.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly ApplicationContext _context;
+        private readonly SqlServerDbContext _context;
         private readonly ILogger _logger;
         private UnitOfWorkTransaction? _transaction = null;
 
@@ -31,7 +31,7 @@ namespace University_EfCore.Repository.UnitOfWork
 
         public Lazy<ICertificationsRepository> Certifications { get;private set; }
 
-        public UnitOfWork(ApplicationContext context, ILoggerFactory loggerFactory)
+        public UnitOfWork(SqlServerDbContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
             _logger = loggerFactory.CreateLogger("logs");
@@ -106,6 +106,11 @@ namespace University_EfCore.Repository.UnitOfWork
         public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync();
+        }
+
+        public Task GetListWithDefaultAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 

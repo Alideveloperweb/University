@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using University_Common.Domain;
 using University_Domain.EmployeeEntities;
 using University_Web.ViewModel.EmployeeViewModel;
+using University_Web.Extensions;
 
 namespace University_Web.Controllers
 {
@@ -50,98 +51,53 @@ namespace University_Web.Controllers
         {
             try
             {
-                //create model
-                //add model to database
-                    //create connection
-                        //create socket network
-                        //send hello handshake
-                        //send data to port xxx
-                    //create sqlcommand
-                    //create queury string
-                    //create parameters
-                    //run query
-                    
-                
-                    
-                
-                
-                
                 CreateEmployeeItem createEmployee = new CreateEmployeeItem();
-                
-                
-                
 
+                // دریافت داده‌ها
                 var departments = await _unitOfWork.Department?.Value?.GetSelectList();
                 if (departments == null)
                 {
                     throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
                 }
 
-                // تنظیم ViewBag برای دپارتمان‌ها
-                // !Todo use mapper or extenision method for convert dto to SelectListItem
-                createEmployee.Departments = departments.Select(d => new SelectListItem
-                {
-                    Value = d.Id.ToString(),
-                    Text = d.Name
-                }).ToList();
-                
-                // !Todo Convert it to extension method
-                createEmployee.Departments.Insert(0,new SelectListItem()
-                {
-                    Text = "انتخاب کنید",
-                    Value = ""
-                });
-
                 var job = await _unitOfWork.Job?.Value?.GetSelectList();
                 if (job == null)
                 {
-                    throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+                    throw new Exception("داده‌های شغل‌ها یافت نشد.");
                 }
-
-                ViewBag.Job = job.Select(d => new SelectListItem
-                {
-                    Value = d.Id.ToString(),
-                    Text = d.Title
-                }).ToList();
 
                 var skills = await _unitOfWork.Skills?.Value?.GetSelectList();
                 if (skills == null)
                 {
-                    throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+                    throw new Exception("داده‌های مهارت‌ها یافت نشد.");
                 }
-
-                ViewBag.Skills = skills.Select(d => new SelectListItem
-                {
-                    Value = d.Id.ToString(),
-                    Text = d.Name
-                }).ToList();
 
                 var recentProjects = await _unitOfWork.RecentProjects?.Value?.GetSelectList();
                 if (recentProjects == null)
                 {
-                    throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+                    throw new Exception("داده‌های پروژه‌های اخیر یافت نشد.");
                 }
-
-                ViewBag.RecentProjects = recentProjects.Select(d => new SelectListItem
-                {
-                    Value = d.Id.ToString(),
-                    Text = d.Name
-                }).ToList();
 
                 var certifications = await _unitOfWork.Certifications?.Value?.GetSelectList();
                 if (certifications == null)
                 {
-                    throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
+                    throw new Exception("داده‌های گواهینامه‌ها یافت نشد.");
                 }
 
-                ViewBag.Certifications = certifications.Select(d => new SelectListItem
-                {
-                    Value = d.Id.ToString(),
-                    Text = d.Name
-                }).ToList();
+                // استفاده از متد اکستنشن برای تبدیل به SelectListItem
+                createEmployee.Departments = departments.ToSelectListItems(d => d.Id.ToString(), d => d.Name);
+                createEmployee.Jobs = job.ToSelectListItems(j => j.Id.ToString(), j => j.Title);
+                createEmployee.Skills = skills.ToSelectListItems(s => s.Id.ToString(), s => s.Name);
+                createEmployee.RecentProjects = recentProjects.ToSelectListItems(r => r.Id.ToString(), r => r.Name);
+                createEmployee.Certifications = certifications.ToSelectListItems(c => c.Id.ToString(), c => c.Name);
 
 
-
+                // افزودن آیتم پیش‌فرض به ابتدای هر لیست
+                createEmployee.Departments.AddDefaultItem();
+                createEmployee.Jobs.AddDefaultItem();
+                createEmployee.Skills.AddDefaultItem();
+                createEmployee.RecentProjects.AddDefaultItem();
+                createEmployee.Certifications.AddDefaultItem();
 
                 return View(createEmployee);
             }
@@ -154,16 +110,18 @@ namespace University_Web.Controllers
         }
 
 
+
+
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(CreateEmployeeItem createEmployee)
         {
             try
             {
                 // بررسی اعتبار مدل
-                //if (!ModelState.IsValid)
-                //{
-                //    return View(createEmployee);
-                //}
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(new { Success = false, Message = "داده‌های ورودی نادرست است." });
+                }
 
                 // ایجاد نمونه کارمند
                 Employee employee = new(
@@ -205,7 +163,7 @@ namespace University_Web.Controllers
 
                 // ذخیره تغییرات
                 int save = await _unitOfWork.SaveAsync();
-                if (save != 0)
+                if (save > 0)
                 {
                     return Ok(new { Success = true, Message = "کارمند با موفقیت ذخیره شد." });
                 }
@@ -217,24 +175,26 @@ namespace University_Web.Controllers
             catch (DbUpdateException dbEx)
             {
                 // ثبت و مدیریت استثناهای DbUpdateException
-                //!todo check exception message and return correct status code depend to message
-                // username in employee is index unique
                 var sqlEx = dbEx.GetBaseException() as SqlException;
                 if (sqlEx != null)
                 {
-                    if (sqlEx.Number == 544) // Error number for IDENTITY_INSERT issue
+                    // بررسی خطاهای خاص SQL
+                    if (sqlEx.Number == 2627) // مثال: خطای یکتایی کلید
                     {
-                        return StatusCode(500, "Cannot insert explicit value for identity column when IDENTITY_INSERT is set to OFF.");
+                        return StatusCode(409, "تکراری بودن داده‌ها: " + sqlEx.Message);
                     }
+                    // خطای شناخته شده دیگر
+                    return StatusCode(500, "خطا در پایگاه داده: " + sqlEx.Message);
                 }
-                return StatusCode(500, dbEx.Message);
+                return StatusCode(500, "خطا در پایگاه داده: " + dbEx.Message);
             }
             catch (Exception ex)
             {
                 // ثبت و مدیریت سایر استثناها
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, "خطای عمومی: " + ex.Message);
             }
         }
+
 
 
         #endregion

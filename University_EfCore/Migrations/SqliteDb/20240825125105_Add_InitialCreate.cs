@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace University_EfCore.Migrations
+namespace University_EfCore.Migrations.SqliteDb
 {
     /// <inheritdoc />
-    public partial class create : Migration
+    public partial class Add_InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,13 +15,13 @@ namespace University_EfCore.Migrations
                 name: "Certifications",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsRemove = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    IsRemove = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,13 +32,13 @@ namespace University_EfCore.Migrations
                 name: "Departments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsRemove = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    IsRemove = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,13 +49,13 @@ namespace University_EfCore.Migrations
                 name: "Job",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsRemove = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(type: "TEXT", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    IsRemove = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,13 +66,13 @@ namespace University_EfCore.Migrations
                 name: "RecentProjects",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsRemove = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    IsRemove = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,13 +83,13 @@ namespace University_EfCore.Migrations
                 name: "Skills",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsRemove = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    IsRemove = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -100,42 +100,42 @@ namespace University_EfCore.Migrations
                 name: "Employee",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeNumber = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    WeeklyWorkingHours = table.Column<int>(type: "int", nullable: false),
-                    RemainingLeaveDays = table.Column<int>(type: "int", nullable: false),
-                    Supervisor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PerformanceReview = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    JobId = table.Column<int>(type: "int", nullable: false),
-                    DepartmentId = table.Column<int>(type: "int", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsRemove = table.Column<bool>(type: "bit", nullable: false),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    NationalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Gender = table.Column<bool>(type: "bit", nullable: false),
-                    MaritalStatus = table.Column<bool>(type: "bit", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", maxLength: 80, nullable: false),
-                    SpouseNationalID = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
-                    Mobile = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
-                    Homephone = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    EmergencyContactNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
-                    CountryName = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(600)", maxLength: 600, nullable: false),
-                    LastEducationalCertificate = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    GPAOfThelastDegree = table.Column<double>(type: "float", maxLength: 20, nullable: false),
-                    BloodType = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    MedicalHistory = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    ImageName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    EmployeeNumber = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
+                    HireDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Salary = table.Column<decimal>(type: "TEXT", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    WeeklyWorkingHours = table.Column<int>(type: "INTEGER", nullable: false),
+                    RemainingLeaveDays = table.Column<int>(type: "INTEGER", nullable: false),
+                    Supervisor = table.Column<string>(type: "TEXT", nullable: false),
+                    PerformanceReview = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
+                    JobId = table.Column<int>(type: "INTEGER", nullable: false),
+                    DepartmentId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    IsRemove = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Username = table.Column<string>(type: "TEXT", nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    NationalCode = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
+                    Gender = table.Column<bool>(type: "INTEGER", nullable: false),
+                    MaritalStatus = table.Column<bool>(type: "INTEGER", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "TEXT", maxLength: 80, nullable: false),
+                    SpouseNationalID = table.Column<string>(type: "TEXT", maxLength: 11, nullable: false),
+                    Mobile = table.Column<string>(type: "TEXT", maxLength: 11, nullable: false),
+                    Homephone = table.Column<string>(type: "TEXT", maxLength: 11, nullable: false),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 300, nullable: false),
+                    EmergencyContactNumber = table.Column<string>(type: "TEXT", maxLength: 11, nullable: false),
+                    CountryName = table.Column<string>(type: "TEXT", maxLength: 60, nullable: false),
+                    CityName = table.Column<string>(type: "TEXT", nullable: false),
+                    Address = table.Column<string>(type: "TEXT", maxLength: 600, nullable: false),
+                    LastEducationalCertificate = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
+                    GPAOfThelastDegree = table.Column<double>(type: "REAL", maxLength: 20, nullable: false),
+                    BloodType = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
+                    MedicalHistory = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
+                    ImageName = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -158,10 +158,10 @@ namespace University_EfCore.Migrations
                 name: "CertificationsEmployee",
                 columns: table => new
                 {
-                    CertificationsEmployeeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CertificationsId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                    CertificationsEmployeeId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CertificationsId = table.Column<int>(type: "INTEGER", nullable: false),
+                    EmployeeId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -184,10 +184,10 @@ namespace University_EfCore.Migrations
                 name: "RecentProjectsEmployee",
                 columns: table => new
                 {
-                    RecentProjectsEmployeeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RecentProjectsId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                    RecentProjectsEmployeeId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    RecentProjectsId = table.Column<int>(type: "INTEGER", nullable: false),
+                    EmployeeId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -210,10 +210,10 @@ namespace University_EfCore.Migrations
                 name: "SkilsEmployee",
                 columns: table => new
                 {
-                    SkilsEmployeeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SkillsId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                    SkilsEmployeeId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    SkillsId = table.Column<int>(type: "INTEGER", nullable: false),
+                    EmployeeId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -251,6 +251,12 @@ namespace University_EfCore.Migrations
                 name: "IX_Employee_JobId",
                 table: "Employee",
                 column: "JobId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employee_Username",
+                table: "Employee",
+                column: "Username",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_RecentProjectsEmployee_EmployeeId",

@@ -231,15 +231,15 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="DepartmentId"></label>
-                        @* !todo change all select  *@
-                        <select asp-for="DepartmentId" class="form-control" asp-items="Model.Departments">
-                            @* <option value="">انتخاب کنید</option> *@
-                            @* @foreach (var department in Model.Departments) *@
-                            @* { *@
-                            @*     <option value="@department.Value">@department.Text</option> *@
-                            @* } *@
-                        </select>
+                      @*  <label asp-for="DepartmentId"></label>
+                       @* !todo change all select 
+                       <select asp-for="DepartmentId" class="form-control" asp-items="Model.Departments">
+                           <option value="">انتخاب کنید</option> 
+                           @foreach (var department in Model.Departments) 
+                           { 
+                               <option value="@department.Value">@department.Text</option> 
+                           }
+                       </select>*@
                         
                         
                         @Html.LabelFor(m=>m.DepartmentId)
@@ -250,12 +250,12 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="JobId"></label>
-                        <select asp-for="JobId" class="form-control">
-                            <option value="">انتخاب کنید</option>
+                        <select asp-for="JobId" class="form-control"  asp-items="Model.Jobs">
+              @*               <option value="">انتخاب کنید</option>
                             @foreach (var position in ViewBag.Job)
                             {
                                 <option value="@position.Value">@position.Text</option>
-                            }
+                            } *@
                         </select>
                     </div>
                 </div>
@@ -264,8 +264,8 @@
                     <div class="form-group">
                         <label>مهارت ها</label>
                         <select  class="js-example-basic-multiple" name="states[]" multiple="multiple">
-                            <option value="">حد اقل یک مهارت را انتخاب کنید</option>
-                            @foreach (var skills in ViewBag.Skills)
+                           @*  <option value="">حد اقل یک مهارت را انتخاب کنید</option> *@
+                            @foreach (var skills in Model.Skills)
                             {
                                 <option value="@skills.Value">@skills.Text</option>
                             }
@@ -279,8 +279,8 @@
                     <div class="form-group">
                         <label>پروژه ها</label>
                         <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
-                            <option value="">حد اقل یک پروژه را انتخاب کنید</option>
-                            @foreach (var recentProjects in ViewBag.RecentProjects)
+                         @*    <option value="">حد اقل یک پروژه را انتخاب کنید</option> *@
+                            @foreach (var recentProjects in Model.RecentProjects)
                             {
                                 <option value="@recentProjects.Value">@recentProjects.Text</option>
                             }
@@ -293,8 +293,8 @@
                     <div class="form-group">
                         <label>مدارک </label>
                         <select  class="js-example-basic-multiple" name="states[]" multiple="multiple">
-                            <option value="">حد اقل یک مدرک را انتخاب کنید</option>
-                            @foreach (var certifications in ViewBag.Certifications)
+                          @*   <option value="">حد اقل یک مدرک را انتخاب کنید</option> *@
+                            @foreach (var certifications in Model.Certifications)
                             {
                                 <option value="@certifications.Value">@certifications.Text</option>
                             }

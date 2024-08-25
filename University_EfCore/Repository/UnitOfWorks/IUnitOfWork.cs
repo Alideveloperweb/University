@@ -28,6 +28,6 @@ namespace University_Common.Domain
 
         DbSet<TEntity> Entity<TEntity>() where TEntity : class;
         void ChangeState<TEntity>(TEntity entity, EntityState state) where TEntity : class;
-
+        Task GetListWithDefaultAsync();
     }
 }

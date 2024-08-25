@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using University_EfCore.Context;
 
@@ -7,16 +6,19 @@ namespace University_Configuration
 {
     public static class ConnectionConfig
     {
-        public static void Configure(this IServiceCollection services, string Connection)
+        public static void ConfigureSqlServer(this IServiceCollection services, string Connection)
         {
-            services.AddDbContext<ApplicationContext>(options =>
+            services.AddDbContext<SqlServerDbContext>(options =>
             {
                 options.UseSqlServer(Connection);
             });
 
-            services.AddDbContext<ApplicationContext>(options =>
+        }
+        public static void ConfigureSqlite(this IServiceCollection services, string Connection)
+        {
+            services.AddDbContext<SqliteDbContext>(options =>
             {
-                options.UseSqlLite(Connection);
+                options.UseSqlite(Connection);
             });
         }
     }

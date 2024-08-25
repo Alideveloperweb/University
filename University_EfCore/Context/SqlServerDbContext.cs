@@ -15,30 +15,30 @@ using University_EfCore.Mapping.SkillsMapper;
 
 namespace University_EfCore.Context
 {
-    public class ApplicationContext : DbContext
+    public class SqlServerDbContext: DbContext
     {
         #region Constracture
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
+        public SqlServerDbContext(DbContextOptions<SqlServerDbContext> options) : base(options) { }
         #endregion
 
         #region Entity
 
         public DbSet<Employee> Employee { get; set; }
-        
+
         public DbSet<Department> Departments { get; set; }
-        
+
         public DbSet<Job> Job { get; set; }
-        
+
         public DbSet<Skills> Skills { get; set; }
-        
-        public DbSet<RecentProjects> RecentProjects  { get; set; }
-        
-        public DbSet<Certifications>  Certifications  { get; set; }
-        
+
+        public DbSet<RecentProjects> RecentProjects { get; set; }
+
+        public DbSet<Certifications> Certifications { get; set; }
+
         public DbSet<CertificationsEmployee> CertificationsEmployee { get; set; }
-        
+
         public DbSet<RecentProjectsEmployee> RecentProjectsEmployee { get; set; }
-       
+
         public DbSet<SkilsEmployee> SkilsEmployee { get; set; }
 
         #endregion
@@ -58,6 +58,5 @@ namespace University_EfCore.Context
         }
 
         #endregion
-
     }
 }

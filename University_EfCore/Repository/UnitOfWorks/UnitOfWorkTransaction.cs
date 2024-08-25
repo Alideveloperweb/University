@@ -6,9 +6,9 @@ namespace University_EfCore.Repository.UnitOfWorks
     public class UnitOfWorkTransaction: IDisposable
     {
         private IDbContextTransaction? _transaction = null;
-        private readonly ApplicationContext _context;
+        private readonly SqlServerDbContext _context;
 
-        public UnitOfWorkTransaction(ApplicationContext context)
+        public UnitOfWorkTransaction(SqlServerDbContext context)
         {
             _transaction = context.Database.BeginTransaction();
             _context = context;

@@ -11,7 +11,8 @@ builder.Services.AddControllersWithViews();
 
 #region Context
 
-string Connection = builder.Configuration.GetConnectionString("UniversityContext");
+string ConnectionSqlServer = builder.Configuration.GetConnectionString("SqlServerConnection");
+string ConnectionSqlLite = builder.Configuration.GetConnectionString("SqliteConnection");
 
 #endregion
 
@@ -23,7 +24,8 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 #region Configuration
 
-ConnectionConfig.Configure(builder.Services, Connection);
+ConnectionConfig.ConfigureSqlServer(builder.Services, ConnectionSqlServer);
+ConnectionConfig.ConfigureSqlite(builder.Services, ConnectionSqlLite);
 UnitOfWorkConfiguration.Configure(builder.Services);
 
 #endregion
