@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using University_Common.ResourceType;
 using CompareAttribute = System.ComponentModel.DataAnnotations.CompareAttribute;
 

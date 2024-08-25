@@ -7,6 +7,8 @@ namespace University_Common.Domain
     {
         TEntity Get(TKey Id);
         Task<TEntity> GetFirstOrDefaultAsync(string name);
+        
+        // !todo this must return a list of dto like selectlistitem (dont use IQueryable)
         Task<IQueryable<TEntity>> GetSelectList();
         IQueryable<TEntity> GetAllRemove(bool isRemove);
         IQueryable<TEntity> GetAllActive(bool isActive);

@@ -11,9 +11,7 @@ builder.Services.AddControllersWithViews();
 
 #region Context
 
-//string Connection = builder.Configuration.GetConnectionString("UniversityContext");
-string Connection = builder.Configuration.GetConnectionString("DefaultConnection");
-
+string Connection = builder.Configuration.GetConnectionString("UniversityContext");
 
 #endregion
 
