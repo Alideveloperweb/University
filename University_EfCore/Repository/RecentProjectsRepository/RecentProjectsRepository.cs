@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using University_Common.Application;
 using University_Domain.DTO;
 using University_Domain.RecentProjectsEntities;
 using University_Domain.RecentProjectsEntities.Interface;
-using University_EfCore.Context;
 
 namespace University_EfCore.Repository.RecentProjectsRepository
 {
@@ -30,5 +30,20 @@ namespace University_EfCore.Repository.RecentProjectsRepository
         }
 
         #endregion
+
+        public List<SelectListItem> ToRecentProjectsSelectListItems(IEnumerable<RecentProjects> recentProjects)
+        {
+            if (recentProjects == null || !recentProjects.Any())
+            {
+                return new List<SelectListItem>();
+            }
+
+            return recentProjects.Select(recentProjects => new SelectListItem
+            {
+                Value = recentProjects.Id.ToString(),
+                Text = recentProjects.Name
+            }).ToList();
+        }
     }
+
 }

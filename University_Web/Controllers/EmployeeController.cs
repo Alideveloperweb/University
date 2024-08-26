@@ -7,6 +7,7 @@ using University_Common.Domain;
 using University_Domain.EmployeeEntities;
 using University_Web.ViewModel.EmployeeViewModel;
 using University_Web.Extensions;
+using University_EfCore.Repository.DepartmentRepository;
 
 namespace University_Web.Controllers
 {
@@ -85,11 +86,13 @@ namespace University_Web.Controllers
                 }
 
                 // استفاده از متد اکستنشن برای تبدیل به SelectListItem
-                createEmployee.Departments = departments.ToSelectListItems(d => d.Id.ToString(), d => d.Name);
-                createEmployee.Jobs = job.ToSelectListItems(j => j.Id.ToString(), j => j.Title);
-                createEmployee.Skills = skills.ToSelectListItems(s => s.Id.ToString(), s => s.Name);
-                createEmployee.RecentProjects = recentProjects.ToSelectListItems(r => r.Id.ToString(), r => r.Name);
-                createEmployee.Certifications = certifications.ToSelectListItems(c => c.Id.ToString(), c => c.Name);
+                
+                createEmployee.Departments =_unitOfWork.Department.Value.ToDepartmentSelectListItems(departments);
+                createEmployee.Jobs = _unitOfWork.Job.Value.ToJobSelectListItems(job);
+                createEmployee.Skills = _unitOfWork.Skills.Value.ToSkilsSelectListItems(skills);
+                createEmployee.RecentProjects = _unitOfWork.RecentProjects.Value.ToRecentProjectsSelectListItems(recentProjects);
+                createEmployee.Certifications = _unitOfWork.Certifications.Value.ToCertificationsSelectListItems(certifications);
+
 
 
                 // افزودن آیتم پیش‌فرض به ابتدای هر لیست

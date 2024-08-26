@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using University_Common.Application;
+using University_Domain.DepartmentsEntities;
 using University_Domain.DTO;
 using University_Domain.SkillsEntities;
 using University_Domain.SkillsEntities.Interface;
@@ -33,6 +35,19 @@ namespace University_EfCore.Repository.SkilsRepository
             }).ToList();  
         }
 
+        public List<SelectListItem> ToSkilsSelectListItems(IEnumerable<Skills> skils)
+        {
+            if (skils == null || !skils.Any())
+            {
+                return new List<SelectListItem>();
+            }
+
+            return skils.Select(skils => new SelectListItem
+            {
+                Value = skils.Id.ToString(),
+                Text = skils.Name
+            }).ToList();
+        }
         #endregion
     }
 }

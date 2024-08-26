@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using University_Common.Application;
 using University_Domain.CertificationsEntities;
 using University_Domain.CertificationsEntities.Interface;
 using University_Domain.DTO;
+using University_Domain.RecentProjectsEntities;
 
 namespace University_EfCore.Repository.CertificationsRepository
 {
@@ -27,6 +29,20 @@ namespace University_EfCore.Repository.CertificationsRepository
             {
                Id= c.Id,
                 Name = c.Name,
+            }).ToList();
+        }
+
+        public List<SelectListItem> ToCertificationsSelectListItems(IEnumerable<Certifications> certifications)
+        {
+            if (certifications == null || !certifications.Any())
+            {
+                return new List<SelectListItem>();
+            }
+
+            return certifications.Select(certifications => new SelectListItem
+            {
+                Value = certifications.Id.ToString(),
+                Text = certifications.Name
             }).ToList();
         }
 

@@ -20,35 +20,35 @@
         <form asp-controller="Employee" asp-action="CreateEmployee" method="post" enctype="multipart/form-data">
             <div class="row">
 
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="Username"></label>
                         <input asp-for="Username" type="text" class="form-control">
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="FirstName"></label>
                         <input asp-for="FirstName" type="text" class="form-control">
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="LastName"></label>
                         <input asp-for="LastName" type="text" class="form-control">
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="NationalCode"></label>
                         <input asp-for="NationalCode" type="text" class="form-control">
                     </div>
                 </div>
 
-                <div class="col-md-">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="Gender"></label>
                         <div class="form-check">
@@ -67,7 +67,7 @@
                 </div>
 
 
-                <div class="col-md-">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="MaritalStatus"></label>
                         <div class="form-check">
@@ -90,8 +90,8 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         @* !todo add persian date picker *@
-                        <label asp-for="DateOfBirth"></label>
-                        <input asp-for="DateOfBirth" type="date" class="form-control">
+                        <label asp-for="DateOfBirth"></label>    
+                        <input type="text" placeholder="1403/6/13" class="usage pdp-el form-control" pdp-id="pdp-4762931" data-jdate="1403/6/13" data-gdate="2024/9/3">
                     </div>
                 </div>
 
@@ -218,7 +218,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="HireDate"></label>
-                        <input asp-for="HireDate" type="date" class="form-control">
+                        <input type="text" placeholder="1403/6/13" class="usage pdp-el form-control" pdp-id="pdp-4762931" data-jdate="1403/6/13" data-gdate="2024/9/3">
                     </div>
                 </div>
 
@@ -305,13 +305,6 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label asp-for="IsActive"></label>
-                        <input asp-for="IsActive" type="checkbox" class="form-control">
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="form-group">
                         <label asp-for="RemainingLeaveDays"></label>
                         <input asp-for="RemainingLeaveDays" type="text" class="form-control">
                     </div>
@@ -383,6 +376,14 @@
                 placeholder="IFSC Code.">
                 </div>
                 </div> *@
+
+               <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="IsActive"></label>
+                        <input asp-for="IsActive" type="checkbox" style="float: right;margin-top: 8px;margin-right: 9px;">
+
+                    </div>
+                </div>
 
 
                 <div class="col-md-12">

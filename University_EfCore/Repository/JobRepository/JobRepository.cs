@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using University_Common.Application;
+using University_Domain.DepartmentsEntities;
 using University_Domain.DTO;
 using University_Domain.JobEntities;
 
@@ -27,5 +29,19 @@ namespace University_EfCore.Repository.JobRepository
             }).ToList();
         }
         #endregion
+
+        public List<SelectListItem> ToJobSelectListItems(IEnumerable<Job> job)
+        {
+            if (job == null || !job.Any())
+            {
+                return new List<SelectListItem>();
+            }
+
+            return job.Select(job => new SelectListItem
+            {
+                Value = job.Id.ToString(),
+                Text = job.Title
+            }).ToList();
+        }
     }
 }
