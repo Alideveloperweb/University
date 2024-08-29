@@ -98,7 +98,7 @@ namespace University_Web.Controllers
                 }
 
                 // تبدیل DTO ها به SelectListItem ها
-                createEmployee.Departments = _unitOfWork.Department.Value.ToDepartmentSelectListItems(departmentDtos);
+                createEmployee.Departments = _unitOfWork.Department.Value.ToDepartmentSelectListItems(departments);
                 createEmployee.Jobs = _unitOfWork.Job.Value.ToJobSelectListItems(jobDtos);
                 createEmployee.Skills = _unitOfWork.Skills.Value.ToSkilsSelectListItems(skillDtos);
                 createEmployee.RecentProjects = _unitOfWork.RecentProjects.Value.ToRecentProjectsSelectListItems(recentProjectDtos);
@@ -133,7 +133,8 @@ namespace University_Web.Controllers
                 // بررسی اعتبار مدل
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest();
+                    var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                    return BadRequest(new { Errors = errors });
                 }
 
                 // ایجاد نمونه کارمند
@@ -163,12 +164,14 @@ namespace University_Web.Controllers
                         WeeklyWorkingHours: createEmployee.WeeklyWorkingHours,
                         RemainingLeaveDays: createEmployee.RemainingLeaveDays,
                         Supervisor: createEmployee.Supervisor,
+                        Skills: createEmployee.Skills.ToSkillList(),
                         PerformanceReview: createEmployee.PerformanceReview,
                         Password: createEmployee.Password,
                         DepartmentId: createEmployee.DepartmentId,
                         Email: createEmployee.Email,
                         ImageName: createEmployee.ImageName,
                         JobId: createEmployee.JobId
+
                     );
 
                 // اضافه کردن کارمند به واحد کار

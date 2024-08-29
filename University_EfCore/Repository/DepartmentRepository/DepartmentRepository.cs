@@ -45,5 +45,19 @@ namespace University_EfCore.Repository.DepartmentRepository
                 Text = department.Name
             }).ToList();
         }
+
+        public List<SelectListItem> ToDepartmentSelectListItems(IEnumerable<Department> departments)
+        {
+            if (departments == null || !departments.Any())
+            {
+                return new List<SelectListItem>();
+            }
+
+            return departments.Select(department => new SelectListItem
+            {
+                Value = department.Id.ToString(),
+                Text = department.Name
+            }).ToList();
+        }
     }
 }

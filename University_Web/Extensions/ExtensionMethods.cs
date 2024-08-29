@@ -1,20 +1,15 @@
-﻿using University_Common.Domain;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using University_Common.Domain;
 
 namespace University_Web.Extensions
 {
     public static class ExtensionMethods
     {
-        public static async Task<List<T>> GetWithDefaultAsync<T>(
-           this IUnitOfWork unitOfWork,
-           Func<Task<List<T>>> getListFunc,
-           string errorMessage)
-        {
-            var list = await getListFunc();
-            if (list == null || !list.Any())
+       
+            public static List<string> ToSkillList(this List<SelectListItem>? selectListItems)
             {
-                throw new Exception(errorMessage);
+                return selectListItems?.Select(item => item.Value).ToList() ?? new List<string>();
             }
-            return list;
-        }
+        
     }
 }

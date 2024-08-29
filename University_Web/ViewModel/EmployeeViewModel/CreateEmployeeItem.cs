@@ -8,8 +8,9 @@ namespace University_Web.ViewModel.EmployeeViewModel
 {
     public class CreateEmployeeItem
     {
-        [Display(Name ="دپاتمان")]
+        [Display(Name = "دپاتمان")]
         public int DepartmentId { get; set; }
+
         public string? DepartmentName { get; set; } = "";
 
         public int JobId { get; set; }
@@ -186,20 +187,6 @@ namespace University_Web.ViewModel.EmployeeViewModel
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.EmployeeNumber))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
         public string? EmployeeNumber { get; set; } = "c";
-
-        ///// <summary>
-        ///// سمت شغلی
-        ///// </summary>
-        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.JobTitle))]
-        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        //public string JobTitle { get; set; }
-
-        /// <summary>
-        /// بخش
-        /// </summary>
-        //[Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Department))]
-        //[Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        //  public string Department { get; set; }
 
         /// <summary>
         /// تاریخ شروع به کار

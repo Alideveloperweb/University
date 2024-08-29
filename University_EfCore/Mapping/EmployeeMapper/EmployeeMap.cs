@@ -41,6 +41,8 @@ namespace University_EfCore.Mapping.EmployeeMapper
             builder.Property(p => p.RemainingLeaveDays);
             builder.Property(p => p.Supervisor);
             builder.Property(p => p.PerformanceReview);
+            builder.Property(p => p.Skills);
+        
 
             #endregion
 
