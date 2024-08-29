@@ -1,4 +1,6 @@
 ﻿
+using University_Common.Enum;
+
 namespace University_Common.Domain
 {
     public class PersonalInformation : EntityBase<int>
@@ -30,12 +32,12 @@ namespace University_Common.Domain
         /// <summary>
         /// جنسیت 
         /// </summary>
-        public bool Gender { get; set; }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// وضعیت تاهل 
         /// </summary>
-        public bool MaritalStatus { get; set; }
+        public MaritalStatus MaritalStatus { get; set; }
 
         /// <summary>
         /// تاریخ تولد 
@@ -84,7 +86,7 @@ namespace University_Common.Domain
         /// <summary>
         /// آدرس
         /// </summary>
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
         #endregion
 

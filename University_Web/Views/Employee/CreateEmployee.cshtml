@@ -286,10 +286,10 @@
                         <label>مهارت ها</label>
                         <select asp-for="Skills" class="js-example-basic-multiple" name="states[]" multiple="multiple">
                             <option value="">حد اقل یک مهارت را انتخاب کنید</option>
-                       @*      @foreach (var skills in Model.Skills)
+                            @foreach (var skills in Model.Skills)
                             {
                                 <option value="@skills.Value">@skills.Text</option>
-                            } *@
+                            }
 
                         </select>
                     </div>
@@ -302,10 +302,10 @@
                         <label>پروژه ها</label>
                         <select asp-for="RecentProjects" class="js-example-basic-multiple" name="states[]" multiple="multiple">
                             <option value="">حد اقل یک پروژه را انتخاب کنید</option>
-                        @*     @foreach (var recentProjects in Model.RecentProjects)
+                            @foreach (var recentProjects in Model.RecentProjects)
                             {
                                 <option value="@recentProjects.Value">@recentProjects.Text</option>
-                            } *@
+                            }
 
                         </select>
                     </div>
@@ -317,10 +317,10 @@
                         <label>مدارک </label>
                         <select asp-for="Certifications" class="js-example-basic-multiple" name="states[]" multiple="multiple">
                             <option value="">حد اقل یک مدرک را انتخاب کنید</option>
-                         @*    @foreach (var certifications in Model.Certifications)
+                            @foreach (var certifications in Model.Certifications)
                             {
                                 <option value="@certifications.Value">@certifications.Text</option>
-                            } *@
+                            }
 
                         </select>
                     </div>

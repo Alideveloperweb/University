@@ -1,4 +1,5 @@
 ﻿using University_Common.Domain;
+using University_Common.Enum;
 using University_Domain.Associations;
 using University_Domain.DepartmentsEntities;
 using University_Domain.JobEntities;
@@ -16,11 +17,6 @@ namespace University_Domain.EmployeeEntities
         /// شماره کارمندی
         /// </summary>
         public string EmployeeNumber { get; set; }
-
-        ///// <summary>
-        ///// سمت شغلی
-        ///// </summary>
-       //public string JobTitle { get; set; }
 
         /// <summary>
         /// تاریخ شروع به کار
@@ -57,12 +53,6 @@ namespace University_Domain.EmployeeEntities
         /// </summary>
         public string PerformanceReview { get; set; }
 
-        /// <summary>
-        /// پروژه‌های اخیر
-        /// </summary>
-     // public List<string> RecentProjects { get; set; }
-
-
         #endregion Other Information
 
 
@@ -77,7 +67,7 @@ namespace University_Domain.EmployeeEntities
         #region Create
 
         public Employee(string Username, string FirstName, string LastName, string NationalCode, string Mobile, string Homephone, string CountryName, string CityName, string Address,
-                        string LastEducationalCertificate, float GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
+                        string LastEducationalCertificate, float GPAOfThelastDegree, Gender Gender, MaritalStatus MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
                         string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber,
                         DateTime HireDate, int Salary, bool IsActive, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor/*, List<string> Skills,*/
                         /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password ,int DepartmentId,string Email,string ImageName,int JobId)
@@ -123,7 +113,7 @@ namespace University_Domain.EmployeeEntities
         #region Edit
 
         public void Edit(string Username, string FirstName, string LastName, string NationalCode, string Mobile, string Homephone, string CountryName, string CityName, string Address,
-                        string LastEducationalCertificate, float GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
+                        string LastEducationalCertificate, float GPAOfThelastDegree, Gender Gender, MaritalStatus MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
                         string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber,
                         DateTime HireDate, int Salary, bool IsActive, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor/*, List<string> Skills,*/
                         /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password, int DepartmentId, string Email, string ImageName, int JobId)

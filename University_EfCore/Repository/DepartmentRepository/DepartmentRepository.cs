@@ -32,7 +32,7 @@ namespace University_EfCore.Repository.DepartmentRepository
             }).ToList();
         }
 
-        public List<SelectListItem> ToDepartmentSelectListItems(IEnumerable<Department> departments)
+        public List<SelectListItem> ToDepartmentSelectListItems(IEnumerable<SelectListDepartmentDto> departments)
         {
             if (departments == null || !departments.Any())
             {
@@ -41,7 +41,7 @@ namespace University_EfCore.Repository.DepartmentRepository
 
             return departments.Select(department => new SelectListItem
             {
-                Value = department.Id.ToString(),
+                Value = department.Id.ToString(), 
                 Text = department.Name
             }).ToList();
         }

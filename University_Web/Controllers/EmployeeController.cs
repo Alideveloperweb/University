@@ -7,6 +7,7 @@ using University_Common.Domain;
 using University_Domain.EmployeeEntities;
 using University_Web.ViewModel.EmployeeViewModel;
 using University_Web.Extensions;
+using University_Domain.DTO;
 
 namespace University_Web.Controllers
 {
@@ -60,6 +61,12 @@ namespace University_Web.Controllers
                     throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
                 }
 
+                var departmentDtos = departments.Select(d => new SelectListDepartmentDto
+                {
+                    Id = d.Id,
+                    Name = d.Name
+                }).ToList();
+
                 var job = await _unitOfWork.Job?.Value?.GetSelectList();
                 if (job == null)
                 {
@@ -85,7 +92,7 @@ namespace University_Web.Controllers
                 }
 
                 // استفاده از متد اکستنشن برای تبدیل به SelectListItem
-                createEmployee.Departments =_unitOfWork.Department.Value.ToDepartmentSelectListItems(departments);
+                createEmployee.Departments = _unitOfWork.Department.Value.ToDepartmentSelectListItems(departmentDtos);
                 createEmployee.Jobs = _unitOfWork.Job.Value.ToJobSelectListItems(job);
                 createEmployee.Skills = _unitOfWork.Skills.Value.ToSkilsSelectListItems(skills);
                 createEmployee.RecentProjects = _unitOfWork.RecentProjects.Value.ToRecentProjectsSelectListItems(recentProjects);
@@ -116,48 +123,48 @@ namespace University_Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(CreateEmployeeItem createEmployee)
         {
-            //try
-            //{
-            // بررسی اعتبار مدل
-            if (!ModelState.IsValid)
+            try
             {
-               return BadRequest();
-            }
+                // بررسی اعتبار مدل
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
 
-            // ایجاد نمونه کارمند
-            Employee employee = new(
-                    Username: createEmployee.Username,
-                    FirstName: createEmployee.FirstName,
-                    LastName: createEmployee.LastName,
-                    NationalCode: createEmployee.NationalCode,
-                    Mobile: createEmployee.Mobile,
-                    Homephone: createEmployee.Homephone,
-                    CountryName: createEmployee.CountryName,
-                    CityName: createEmployee.CityName,
-                    Address: createEmployee.Address,
-                    LastEducationalCertificate: createEmployee.LastEducationalCertificate,
-                    GPAOfThelastDegree: createEmployee.GPAOfThelastDegree,
-                    Gender: createEmployee.Gender,
-                    MaritalStatus: createEmployee.MaritalStatus,
-                    DateOfBirth: createEmployee.DateOfBirth,
-                    EmergencyContactNumber: createEmployee.EmergencyContactNumber,
-                    SpouseNationalID: createEmployee.SpouseNationalID,
-                    BloodType: createEmployee.BloodType,
-                    MedicalHistory: createEmployee.MedicalHistory,
-                    EmployeeNumber: createEmployee.EmployeeNumber,
-                    HireDate: createEmployee.HireDate,
-                    Salary: createEmployee.Salary,
-                    IsActive: createEmployee.IsActive,
-                    WeeklyWorkingHours: createEmployee.WeeklyWorkingHours,
-                    RemainingLeaveDays: createEmployee.RemainingLeaveDays,
-                    Supervisor: createEmployee.Supervisor,
-                    PerformanceReview: createEmployee.PerformanceReview,
-                    Password: createEmployee.Password,
-                    DepartmentId: createEmployee.DepartmentId,
-                    Email: createEmployee.Email,
-                    ImageName: "ali.png",
-                    JobId: createEmployee.JobId
-                );
+                // ایجاد نمونه کارمند
+                Employee employee = new(
+                        Username: createEmployee.Username,
+                        FirstName: createEmployee.FirstName,
+                        LastName: createEmployee.LastName,
+                        NationalCode: createEmployee.NationalCode,
+                        Mobile: createEmployee.Mobile,
+                        Homephone: createEmployee.Homephone,
+                        CountryName: createEmployee.CountryName,
+                        CityName: createEmployee.CityName,
+                        Address: createEmployee.Address,
+                        LastEducationalCertificate: createEmployee.LastEducationalCertificate,
+                        GPAOfThelastDegree: createEmployee.GPAOfThelastDegree,
+                        Gender: createEmployee.Gender,
+                        MaritalStatus: createEmployee.MaritalStatus,
+                        DateOfBirth: createEmployee.DateOfBirth,
+                        EmergencyContactNumber: createEmployee.EmergencyContactNumber,
+                        SpouseNationalID: createEmployee.SpouseNationalID,
+                        BloodType: createEmployee.BloodType,
+                        MedicalHistory: createEmployee.MedicalHistory,
+                        EmployeeNumber: createEmployee.EmployeeNumber,
+                        HireDate: createEmployee.HireDate,
+                        Salary: createEmployee.Salary,
+                        IsActive: createEmployee.IsActive,
+                        WeeklyWorkingHours: createEmployee.WeeklyWorkingHours,
+                        RemainingLeaveDays: createEmployee.RemainingLeaveDays,
+                        Supervisor: createEmployee.Supervisor,
+                        PerformanceReview: createEmployee.PerformanceReview,
+                        Password: createEmployee.Password,
+                        DepartmentId: createEmployee.DepartmentId,
+                        Email: createEmployee.Email,
+                        ImageName: createEmployee.ImageName,
+                        JobId: createEmployee.JobId
+                    );
 
                 // اضافه کردن کارمند به واحد کار
                 _unitOfWork.Employee.Value.Create(employee);
@@ -172,28 +179,28 @@ namespace University_Web.Controllers
                 {
                     return StatusCode(500, "عملیات ذخیره‌سازی با شکست مواجه شد.");
                 }
-            //}
-            //catch (DbUpdateException dbEx)
-            //{
-            //    // ثبت و مدیریت استثناهای DbUpdateException
-            //    var sqlEx = dbEx.GetBaseException() as SqlException;
-            //    if (sqlEx != null)
-            //    {
-            //        // بررسی خطاهای خاص SQL
-            //        if (sqlEx.Number == 2627) // مثال: خطای یکتایی کلید
-            //        {
-            //            return StatusCode(409, "تکراری بودن داده‌ها: " + sqlEx.Message);
-            //        }
-            //        // خطای شناخته شده دیگر
-            //        return StatusCode(500, "خطا در پایگاه داده: " + sqlEx.Message);
-            //    }
-            //    return StatusCode(500, "خطا در پایگاه داده: " + dbEx.Message);
-            //}
-            //catch (Exception ex)
-            //{
-            //    // ثبت و مدیریت سایر استثناها
-            //    return StatusCode(500, "خطای عمومی: " + ex.Message);
-            //}
+            }
+            catch (DbUpdateException dbEx)
+            {
+                // ثبت و مدیریت استثناهای DbUpdateException
+                var sqlEx = dbEx.GetBaseException() as SqlException;
+                if (sqlEx != null)
+                {
+                    // بررسی خطاهای خاص SQL
+                    if (sqlEx.Number == 2627) // مثال: خطای یکتایی کلید
+                    {
+                        return StatusCode(409, "تکراری بودن داده‌ها: " + sqlEx.Message);
+                    }
+                    // خطای شناخته شده دیگر
+                    return StatusCode(500, "خطا در پایگاه داده: " + sqlEx.Message);
+                }
+                return StatusCode(500, "خطا در پایگاه داده: " + dbEx.Message);
+            }
+            catch (Exception ex)
+            {
+                // ثبت و مدیریت سایر استثناها
+                return StatusCode(500, "خطای عمومی: " + ex.Message);
+            }
         }
 
 

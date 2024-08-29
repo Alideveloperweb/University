@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using University_Common.Enum;
 using University_Common.ResourceType;
 using CompareAttribute = System.ComponentModel.DataAnnotations.CompareAttribute;
 
@@ -127,14 +128,14 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Gender))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public bool Gender { get; set; }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// وضعیت تاهل 
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.MaritalStatus))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public bool MaritalStatus { get; set; }
+        public MaritalStatus MaritalStatus { get; set; }
 
 
         /// <summary>
