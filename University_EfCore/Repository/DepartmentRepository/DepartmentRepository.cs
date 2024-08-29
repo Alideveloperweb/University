@@ -41,7 +41,7 @@ namespace University_EfCore.Repository.DepartmentRepository
 
             return departments.Select(department => new SelectListItem
             {
-                Value = department.Id.ToString(), 
+                Value = department.Id.ToString(),
                 Text = department.Name
             }).ToList();
         }

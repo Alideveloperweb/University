@@ -55,7 +55,9 @@ namespace University_Web.Controllers
                 CreateEmployeeItem createEmployee = new CreateEmployeeItem();
 
                 // دریافت داده‌ها
-                var departments = await _unitOfWork.Department?.Value?.GetSelectList();
+                var entities = await _unitOfWork.Department?.Value?.GetSelectList();
+                var departments = entities.ToList();
+
                 if (departments == null)
                 {
                     throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
@@ -67,38 +69,40 @@ namespace University_Web.Controllers
                     Name = d.Name
                 }).ToList();
 
-                var job = await _unitOfWork.Job?.Value?.GetSelectList();
-                if (job == null)
+
+
+
+
+                var jobDtos = await _unitOfWork.Job?.Value?.GetSelectList();
+                if (jobDtos == null)
                 {
                     throw new Exception("داده‌های شغل‌ها یافت نشد.");
                 }
 
-                var skills = await _unitOfWork.Skills?.Value?.GetSelectList();
-                if (skills == null)
+                var skillDtos = await _unitOfWork.Skills?.Value?.GetSelectList();
+                if (skillDtos == null)
                 {
                     throw new Exception("داده‌های مهارت‌ها یافت نشد.");
                 }
 
-                var recentProjects = await _unitOfWork.RecentProjects?.Value?.GetSelectList();
-                if (recentProjects == null)
+                var recentProjectDtos = await _unitOfWork.RecentProjects?.Value?.GetSelectList();
+                if (recentProjectDtos == null)
                 {
                     throw new Exception("داده‌های پروژه‌های اخیر یافت نشد.");
                 }
 
-                var certifications = await _unitOfWork.Certifications?.Value?.GetSelectList();
-                if (certifications == null)
+                var certificationDtos = await _unitOfWork.Certifications?.Value?.GetSelectList();
+                if (certificationDtos == null)
                 {
                     throw new Exception("داده‌های گواهینامه‌ها یافت نشد.");
                 }
 
-                // استفاده از متد اکستنشن برای تبدیل به SelectListItem
+                // تبدیل DTO ها به SelectListItem ها
                 createEmployee.Departments = _unitOfWork.Department.Value.ToDepartmentSelectListItems(departmentDtos);
-                createEmployee.Jobs = _unitOfWork.Job.Value.ToJobSelectListItems(job);
-                createEmployee.Skills = _unitOfWork.Skills.Value.ToSkilsSelectListItems(skills);
-                createEmployee.RecentProjects = _unitOfWork.RecentProjects.Value.ToRecentProjectsSelectListItems(recentProjects);
-                createEmployee.Certifications = _unitOfWork.Certifications.Value.ToCertificationsSelectListItems(certifications);
-
-
+                createEmployee.Jobs = _unitOfWork.Job.Value.ToJobSelectListItems(jobDtos);
+                createEmployee.Skills = _unitOfWork.Skills.Value.ToSkilsSelectListItems(skillDtos);
+                createEmployee.RecentProjects = _unitOfWork.RecentProjects.Value.ToRecentProjectsSelectListItems(recentProjectDtos);
+                createEmployee.Certifications = _unitOfWork.Certifications.Value.ToCertificationsSelectListItems(certificationDtos);
 
                 // افزودن آیتم پیش‌فرض به ابتدای هر لیست
                 createEmployee.Departments.AddDefaultItem();
@@ -116,6 +120,7 @@ namespace University_Web.Controllers
                 return StatusCode(500, $"خطا: {ex.Message}");
             }
         }
+
 
 
 
