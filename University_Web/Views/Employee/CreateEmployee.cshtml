@@ -25,6 +25,7 @@
                         <label asp-for="Username"></label>
                         <input asp-for="Username" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="Username"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -32,6 +33,7 @@
                         <label asp-for="FirstName"></label>
                         <input asp-for="FirstName" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="FirstName"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -39,6 +41,7 @@
                         <label asp-for="LastName"></label>
                         <input asp-for="LastName" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="LastName"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -46,9 +49,10 @@
                         <label asp-for="NationalCode"></label>
                         <input asp-for="NationalCode" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="NationalCode"></span>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-12" style="margin-bottom: 15px;">
                     <div class="form-group">
                         <label asp-for="Gender"></label>
                         <div class="form-check">
@@ -63,11 +67,12 @@
                                 }
                             }
                         </div>
+                        <span asp-validation-for="Gender"></span>
                     </div>
                 </div>
 
 
-                <div class="col-md-12">
+                <div class="col-md-12" style="margin-bottom: 15px;">
                     <div class="form-group">
                         <label asp-for="MaritalStatus"></label>
                         <div class="form-check">
@@ -84,15 +89,17 @@
                                 }
                             }
                         </div>
+                        <span asp-validation-for="MaritalStatus"></span>
                     </div>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-12" style="margin-bottom: 15px;">
                     <div class="form-group">
                         @* !todo add persian date picker *@
-                        <label asp-for="DateOfBirth"></label>    
-                        <input type="text" placeholder="1403/6/13" class="usage pdp-el form-control" pdp-id="pdp-4762931" data-jdate="1403/6/13" data-gdate="2024/9/3">
+                        <label asp-for="DateOfBirth"></label>
+                        <input asp-for="DateOfBirth" type="text" placeholder="1403/6/13" class="usage pdp-el form-control">
                     </div>
+                    <span asp-validation-for="DateOfBirth"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -100,6 +107,7 @@
                         <label asp-for="SpouseNationalID "></label>
                         <input asp-for="SpouseNationalID " type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="SpouseNationalID"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -107,9 +115,10 @@
                         <label asp-for="MedicalHistory "></label>
                         <input asp-for="MedicalHistory " type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="MedicalHistory"></span>
                 </div>
 
-                <div class="col-md-12">
+@*                 <div class="col-md-12">
 
                     <div class="form-group">
                         <div class="add-img-user profile-img-edit1">
@@ -129,13 +138,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> *@
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="Mobile"></label>
                         <input asp-for="Mobile" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="Mobile"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -143,6 +153,7 @@
                         <label asp-for="Homephone"></label>
                         <input asp-for="Homephone" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="Homephone"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -150,6 +161,7 @@
                         <label asp-for="Email"></label>
                         <input asp-for="Email" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="Email"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -157,6 +169,7 @@
                         <label asp-for="EmergencyContactNumber"></label>
                         <input asp-for="EmergencyContactNumber" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="EmergencyContactNumber"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -164,13 +177,15 @@
                         <label asp-for="CountryName"></label>
                         <input asp-for="CountryName" type="text" class="form-control" />
                     </div>
+                    <span asp-validation-for="CountryName"></span>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="CityName "></label>
-                        <input asp-for="CityName " type="text" class="form-control"/>
+                        <input asp-for="CityName " type="text" class="form-control" />
                     </div>
+                    <span asp-validation-for="CityName"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -178,6 +193,7 @@
                         <label asp-for="Address"></label>
                         <textarea asp-for="Address" rows="3" class="form-control"></textarea>
                     </div>
+                    <span asp-validation-for="Address"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -185,6 +201,7 @@
                         <label asp-for="LastEducationalCertificate"></label>
                         <input asp-for="LastEducationalCertificate" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="LastEducationalCertificate"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -192,6 +209,7 @@
                         <label asp-for="GPAOfThelastDegree"></label>
                         <input asp-for="GPAOfThelastDegree" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="GPAOfThelastDegree"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -199,13 +217,13 @@
                         <div class="form-check">
                             <label asp-for="BloodType"></label>
                             <div class="custom-control custom-radio custom-control-inline w-100">
-                                <select asp-items="Html.GetEnumSelectList<BloodType>()"
-                                        asp-for="BloodType" class="form-control w-100">
+                                <select asp-items="Html.GetEnumSelectList<BloodType>()" asp-for="BloodType" class="form-control w-100">
                                     <option>انتخاب کنید</option>
                                 </select>
                             </div>
                         </div>
                     </div>
+                    <span asp-validation-for="BloodType"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -213,13 +231,15 @@
                         <label asp-for="EmployeeNumber"></label>
                         <input asp-for="EmployeeNumber" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="EmployeeNumber"></span>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="HireDate"></label>
-                        <input type="text" placeholder="1403/6/13" class="usage pdp-el form-control" pdp-id="pdp-4762931" data-jdate="1403/6/13" data-gdate="2024/9/3">
+                        <input asp-for="HireDate" type="text" placeholder="1403/6/13" class="usage pdp-el form-control">
                     </div>
+                    <span asp-validation-for="HireDate"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -227,80 +247,84 @@
                         <label asp-for="Salary"></label>
                         <input asp-for="Salary" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="Salary"></span>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
-                      @*  <label asp-for="DepartmentId"></label>
-                       @* !todo change all select 
-                       <select asp-for="DepartmentId" class="form-control" asp-items="Model.Departments">
-                           <option value="">انتخاب کنید</option> 
-                           @foreach (var department in Model.Departments) 
-                           { 
-                               <option value="@department.Value">@department.Text</option> 
-                           }
-                       </select>*@
-                        
-                        
-                        @Html.LabelFor(m=>m.DepartmentId)
-                        @Html.DropDownListFor(model=>model.DepartmentId,Model.Departments,new {@class="form-control"})
+                        <label asp-for="DepartmentId"></label>
+                        @*  !todo change all select*@
+                   @*      <select asp-for="DepartmentId" class="form-control" asp-items="Model.Departments">
+                            <option value="">انتخاب کنید</option>
+                            @foreach (var department in Model.Departments)
+                            {
+                                <option value="@department.Value">@department.Text</option>
+                            }
+                        </select> *@
+                        @Html.LabelFor(m => m.DepartmentId)
+                        @Html.DropDownListFor(model => model.DepartmentId, Model.Departments, new { @class = "form-control" })
                     </div>
+                    <span asp-validation-for="DepartmentId"></span>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="JobId"></label>
-                        <select asp-for="JobId" class="form-control"  asp-items="Model.Jobs">
-              @*               <option value="">انتخاب کنید</option>
-                            @foreach (var position in ViewBag.Job)
+                        <select asp-for="JobId" class="form-control" asp-items="Model.Jobs">
+                            <option value="">انتخاب کنید</option>
+                         @*    @foreach (var position in ViewBag.Job)
                             {
                                 <option value="@position.Value">@position.Text</option>
                             } *@
                         </select>
                     </div>
+                    <span asp-validation-for="JobId"></span>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>مهارت ها</label>
-                        <select  class="js-example-basic-multiple" name="states[]" multiple="multiple">
-                           @*  <option value="">حد اقل یک مهارت را انتخاب کنید</option> *@
-                            @foreach (var skills in Model.Skills)
+                        <select asp-for="Skills" class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                            <option value="">حد اقل یک مهارت را انتخاب کنید</option>
+                       @*      @foreach (var skills in Model.Skills)
                             {
                                 <option value="@skills.Value">@skills.Text</option>
-                            }
+                            } *@
 
                         </select>
                     </div>
+                    <span asp-validation-for="Skills"></span>
                 </div>
- 
+
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>پروژه ها</label>
-                        <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
-                         @*    <option value="">حد اقل یک پروژه را انتخاب کنید</option> *@
-                            @foreach (var recentProjects in Model.RecentProjects)
+                        <select asp-for="RecentProjects" class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                            <option value="">حد اقل یک پروژه را انتخاب کنید</option>
+                        @*     @foreach (var recentProjects in Model.RecentProjects)
                             {
                                 <option value="@recentProjects.Value">@recentProjects.Text</option>
-                            }
+                            } *@
 
                         </select>
                     </div>
+                    <span asp-validation-for="RecentProjects"></span>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>مدارک </label>
-                        <select  class="js-example-basic-multiple" name="states[]" multiple="multiple">
-                          @*   <option value="">حد اقل یک مدرک را انتخاب کنید</option> *@
-                            @foreach (var certifications in Model.Certifications)
+                        <select asp-for="Certifications" class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                            <option value="">حد اقل یک مدرک را انتخاب کنید</option>
+                         @*    @foreach (var certifications in Model.Certifications)
                             {
                                 <option value="@certifications.Value">@certifications.Text</option>
-                            }
+                            } *@
 
                         </select>
                     </div>
+                    <span asp-validation-for="Certifications"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -308,6 +332,7 @@
                         <label asp-for="RemainingLeaveDays"></label>
                         <input asp-for="RemainingLeaveDays" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="RemainingLeaveDays"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -315,6 +340,7 @@
                         <label asp-for="WeeklyWorkingHours"></label>
                         <input asp-for="WeeklyWorkingHours" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="WeeklyWorkingHours"></span>
                 </div>
 
                 <div class="col-md-12">
@@ -322,21 +348,24 @@
                         <label asp-for="Supervisor"></label>
                         <input asp-for="Supervisor" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="Supervisor"></span>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="PerformanceReview"></label>
-                        <input asp-for="PerformanceReview" type="text" class="form-control" >
+                        <input asp-for="PerformanceReview" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="PerformanceReview"></span>
                 </div>
 
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="Password"></label>
-                        <input asp-for="Password" type="text" class="form-control" >
+                        <input asp-for="Password" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="Password"></span>
                 </div>
 
 
@@ -346,43 +375,44 @@
                         <label asp-for="RePassword"></label>
                         <input asp-for="RePassword" type="text" class="form-control">
                     </div>
+                    <span asp-validation-for="RePassword"></span>
                 </div>
 
-                @*                 <div class="col-md-12">
-                <div class="form-group">
-                <label for="panno">Pan No: *</label>
-                <input type="text" class="form-control" id="panno" name="panno"
-                placeholder="Pan No.">
-                </div>
-                </div>
-                <div class="col-md-12">
-                <div class="form-group">
-                <label for="accno">Account No: *</label>
-                <input type="text" class="form-control" id="accno" name="accno"
-                placeholder="Account No.">
-                </div>
+@*                 <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="panno">Pan No: *</label>
+                        <input type="text" class="form-control" id="panno" name="panno"
+                               placeholder="Pan No.">
+                    </div>
                 </div>
                 <div class="col-md-12">
-                <div class="form-group">
-                <label for="holname">Account Holder Name: *</label>
-                <input type="text" class="form-control" id="holname" name="accname"
-                placeholder="Account Holder Name.">
-                </div>
+                    <div class="form-group">
+                        <label for="accno">Account No: *</label>
+                        <input type="text" class="form-control" id="accno" name="accno"
+                               placeholder="Account No.">
+                    </div>
                 </div>
                 <div class="col-md-12">
-                <div class="form-group">
-                <label for="ifsc">IFSC Code: *</label>
-                <input type="text" class="form-control" id="ifsc" name="ifsc"
-                placeholder="IFSC Code.">
+                    <div class="form-group">
+                        <label for="holname">Account Holder Name: *</label>
+                        <input type="text" class="form-control" id="holname" name="accname"
+                               placeholder="Account Holder Name.">
+                    </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="ifsc">IFSC Code: *</label>
+                        <input type="text" class="form-control" id="ifsc" name="ifsc"
+                               placeholder="IFSC Code.">
+                    </div>
                 </div> *@
 
-               <div class="col-md-12">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="IsActive"></label>
                         <input asp-for="IsActive" type="checkbox" style="float: right;margin-top: 8px;margin-right: 9px;">
-
                     </div>
+                    <span asp-validation-for="IsActive"></span>
                 </div>
 
 

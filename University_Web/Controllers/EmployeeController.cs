@@ -7,7 +7,6 @@ using University_Common.Domain;
 using University_Domain.EmployeeEntities;
 using University_Web.ViewModel.EmployeeViewModel;
 using University_Web.Extensions;
-using University_EfCore.Repository.DepartmentRepository;
 
 namespace University_Web.Controllers
 {
@@ -86,7 +85,6 @@ namespace University_Web.Controllers
                 }
 
                 // استفاده از متد اکستنشن برای تبدیل به SelectListItem
-                
                 createEmployee.Departments =_unitOfWork.Department.Value.ToDepartmentSelectListItems(departments);
                 createEmployee.Jobs = _unitOfWork.Job.Value.ToJobSelectListItems(job);
                 createEmployee.Skills = _unitOfWork.Skills.Value.ToSkilsSelectListItems(skills);
@@ -118,16 +116,16 @@ namespace University_Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(CreateEmployeeItem createEmployee)
         {
-            try
+            //try
+            //{
+            // بررسی اعتبار مدل
+            if (!ModelState.IsValid)
             {
-                // بررسی اعتبار مدل
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(new { Success = false, Message = "داده‌های ورودی نادرست است." });
-                }
+               return BadRequest();
+            }
 
-                // ایجاد نمونه کارمند
-                Employee employee = new(
+            // ایجاد نمونه کارمند
+            Employee employee = new(
                     Username: createEmployee.Username,
                     FirstName: createEmployee.FirstName,
                     LastName: createEmployee.LastName,
@@ -155,7 +153,7 @@ namespace University_Web.Controllers
                     Supervisor: createEmployee.Supervisor,
                     PerformanceReview: createEmployee.PerformanceReview,
                     Password: createEmployee.Password,
-                    DepartmentId: 1,
+                    DepartmentId: createEmployee.DepartmentId,
                     Email: createEmployee.Email,
                     ImageName: "ali.png",
                     JobId: createEmployee.JobId
@@ -174,28 +172,28 @@ namespace University_Web.Controllers
                 {
                     return StatusCode(500, "عملیات ذخیره‌سازی با شکست مواجه شد.");
                 }
-            }
-            catch (DbUpdateException dbEx)
-            {
-                // ثبت و مدیریت استثناهای DbUpdateException
-                var sqlEx = dbEx.GetBaseException() as SqlException;
-                if (sqlEx != null)
-                {
-                    // بررسی خطاهای خاص SQL
-                    if (sqlEx.Number == 2627) // مثال: خطای یکتایی کلید
-                    {
-                        return StatusCode(409, "تکراری بودن داده‌ها: " + sqlEx.Message);
-                    }
-                    // خطای شناخته شده دیگر
-                    return StatusCode(500, "خطا در پایگاه داده: " + sqlEx.Message);
-                }
-                return StatusCode(500, "خطا در پایگاه داده: " + dbEx.Message);
-            }
-            catch (Exception ex)
-            {
-                // ثبت و مدیریت سایر استثناها
-                return StatusCode(500, "خطای عمومی: " + ex.Message);
-            }
+            //}
+            //catch (DbUpdateException dbEx)
+            //{
+            //    // ثبت و مدیریت استثناهای DbUpdateException
+            //    var sqlEx = dbEx.GetBaseException() as SqlException;
+            //    if (sqlEx != null)
+            //    {
+            //        // بررسی خطاهای خاص SQL
+            //        if (sqlEx.Number == 2627) // مثال: خطای یکتایی کلید
+            //        {
+            //            return StatusCode(409, "تکراری بودن داده‌ها: " + sqlEx.Message);
+            //        }
+            //        // خطای شناخته شده دیگر
+            //        return StatusCode(500, "خطا در پایگاه داده: " + sqlEx.Message);
+            //    }
+            //    return StatusCode(500, "خطا در پایگاه داده: " + dbEx.Message);
+            //}
+            //catch (Exception ex)
+            //{
+            //    // ثبت و مدیریت سایر استثناها
+            //    return StatusCode(500, "خطای عمومی: " + ex.Message);
+            //}
         }
 
 

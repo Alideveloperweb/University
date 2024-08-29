@@ -30,7 +30,7 @@ namespace University_Domain.EmployeeEntities
         /// <summary>
         /// حقوق و دستمزد
         /// </summary>
-        public decimal Salary { get; set; }
+        public int Salary { get; set; }
 
         /// <summary>
         /// وضعیت شغلی (فعال/غیرفعال)
@@ -77,9 +77,9 @@ namespace University_Domain.EmployeeEntities
         #region Create
 
         public Employee(string Username, string FirstName, string LastName, string NationalCode, string Mobile, string Homephone, string CountryName, string CityName, string Address,
-                        string LastEducationalCertificate, double GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
+                        string LastEducationalCertificate, float GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
                         string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber,
-                        DateTime HireDate, decimal Salary, bool IsActive, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor/*, List<string> Skills,*/
+                        DateTime HireDate, int Salary, bool IsActive, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor/*, List<string> Skills,*/
                         /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password ,int DepartmentId,string Email,string ImageName,int JobId)
         {
             this.Username = Username;
@@ -123,9 +123,9 @@ namespace University_Domain.EmployeeEntities
         #region Edit
 
         public void Edit(string Username, string FirstName, string LastName, string NationalCode, string Mobile, string Homephone, string CountryName, string CityName, string Address,
-                        string LastEducationalCertificate, double GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
+                        string LastEducationalCertificate, float GPAOfThelastDegree, bool Gender, bool MaritalStatus, DateTime DateOfBirth, string EmergencyContactNumber,
                         string SpouseNationalID, string BloodType, string MedicalHistory, string EmployeeNumber,
-                        DateTime HireDate, decimal Salary, bool IsActive, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor/*, List<string> Skills,*/
+                        DateTime HireDate, int Salary, bool IsActive, int WeeklyWorkingHours, int RemainingLeaveDays, string Supervisor/*, List<string> Skills,*/
                         /*List<string> Certifications*/, string PerformanceReview/*, List<string> RecentProjects*/, string Password, int DepartmentId, string Email, string ImageName, int JobId)
         {
             this.Username = Username;

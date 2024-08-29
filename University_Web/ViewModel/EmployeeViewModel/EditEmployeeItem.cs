@@ -120,7 +120,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.GPAOfThelastDegree))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public double GPAOfThelastDegree { get; set; }
+        public float GPAOfThelastDegree { get; set; }
 
         /// <summary>
         /// جنسیت     
@@ -203,7 +203,7 @@ namespace University_Web.ViewModel.EmployeeViewModel
         /// </summary>
         [Display(ResourceType = typeof(Language_Fa), Name = nameof(Language_Fa.Salary))]
         [Required(ErrorMessage = "وارد کردن {0} اجباری میباشد")]
-        public decimal Salary { get; set; }
+        public int Salary { get; set; }
 
         /// <summary>
         /// وضعیت شغلی (فعال/غیرفعال)

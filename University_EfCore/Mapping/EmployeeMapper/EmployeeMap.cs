@@ -40,15 +40,13 @@ namespace University_EfCore.Mapping.EmployeeMapper
             builder.Property(p => p.WeeklyWorkingHours);
             builder.Property(p => p.RemainingLeaveDays);
             builder.Property(p => p.Supervisor);
-            //builder.Property(p => p.Skills);
-            //builder.Property(p => p.Certifications);
             builder.Property(p => p.PerformanceReview);
-          //  builder.Property(p => p.RecentProjects);
 
             #endregion
 
             
             #region Relation
+
             builder.HasOne(j => j.Job)
                .WithMany(e => e.Employees)
                .HasForeignKey(e => e.JobId).OnDelete(DeleteBehavior.Restrict); 

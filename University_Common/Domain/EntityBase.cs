@@ -15,6 +15,8 @@ namespace University_Common.Domain
         public EntityBase()
         {
             CreateDate = DateTime.Now;
+            LastUpdate = DateTime.Now;
+
             IsRemove = false;
         }
         #endregion

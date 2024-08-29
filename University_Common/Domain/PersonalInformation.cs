@@ -99,7 +99,7 @@ namespace University_Common.Domain
         /// <summary>
         /// معدل آخرین مدرک تحصیلی
         /// </summary>
-        public double GPAOfThelastDegree { get; set; }
+        public float GPAOfThelastDegree { get; set; }
 
         #endregion
 
