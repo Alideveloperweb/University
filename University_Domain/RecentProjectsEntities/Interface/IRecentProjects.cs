@@ -6,7 +6,7 @@ namespace University_Domain.RecentProjectsEntities.Interface
 {
     public interface IRecentProjects:IRepositoryBase<int, RecentProjects>
     {
-        List<SelectListRecentProjectsDto> GetSelectListRecentProjectsDtos();
+      Task<List<SelectListRecentProjectsDto>> GetSelectListRecentProjectsDtos();
         List<SelectListItem> ToRecentProjectsSelectListItems(IEnumerable<RecentProjects> recentProjects);
     }
 }

@@ -3,19 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University_Application", "University_Application\University_Application.csproj", "{CEECD34C-5DBE-4B10-8247-B2677281478B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University_Application", "University_Application\University_Application.csproj", "{CEECD34C-5DBE-4B10-8247-B2677281478B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University_Common", "University_Common\University_Common.csproj", "{F8ED9C74-EDBA-4C79-83DE-43A2C42A4E1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University_Common", "University_Common\University_Common.csproj", "{F8ED9C74-EDBA-4C79-83DE-43A2C42A4E1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University_Configuration", "University_Configuration\University_Configuration.csproj", "{7DEB13A7-83B8-4B46-8A16-AB6868ABBCDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University_Configuration", "University_Configuration\University_Configuration.csproj", "{7DEB13A7-83B8-4B46-8A16-AB6868ABBCDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University_Contract", "University_Contract\University_Contract.csproj", "{2FDACDA9-496C-44C9-8EC6-5F368B60FA6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University_Contract", "University_Contract\University_Contract.csproj", "{2FDACDA9-496C-44C9-8EC6-5F368B60FA6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University_Domain", "University_Domain\University_Domain.csproj", "{B7DE27AB-2B81-49B4-BFA7-5324B9E072E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University_Domain", "University_Domain\University_Domain.csproj", "{B7DE27AB-2B81-49B4-BFA7-5324B9E072E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University_EfCore", "University_EfCore\University_EfCore.csproj", "{84329889-198A-4F1C-8372-F69259B98F67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University_EfCore", "University_EfCore\University_EfCore.csproj", "{84329889-198A-4F1C-8372-F69259B98F67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University_Web", "University_Web\University_Web.csproj", "{043B7883-DA75-4759-9117-FC11BFAA9C35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "University_Web", "University_Web\University_Web.csproj", "{043B7883-DA75-4759-9117-FC11BFAA9C35}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CFDB549A-A8B4-4046-86D3-40771725FB3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "University_Application.Test", "University_Application.Test\University_Application.Test.csproj", "{33DE3823-BDC5-43A5-B3B0-0546EA24BBE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,9 +55,16 @@ Global
 		{043B7883-DA75-4759-9117-FC11BFAA9C35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{043B7883-DA75-4759-9117-FC11BFAA9C35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{043B7883-DA75-4759-9117-FC11BFAA9C35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33DE3823-BDC5-43A5-B3B0-0546EA24BBE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33DE3823-BDC5-43A5-B3B0-0546EA24BBE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33DE3823-BDC5-43A5-B3B0-0546EA24BBE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33DE3823-BDC5-43A5-B3B0-0546EA24BBE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33DE3823-BDC5-43A5-B3B0-0546EA24BBE5} = {CFDB549A-A8B4-4046-86D3-40771725FB3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D91B5924-A16C-46A5-8602-4C5699F03BC7}

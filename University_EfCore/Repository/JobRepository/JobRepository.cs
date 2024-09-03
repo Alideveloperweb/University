@@ -20,15 +20,17 @@ namespace University_EfCore.Repository.JobRepository
             this.db = dbSet.Set<Job>();
         }
 
-        public List<SelectListJobsDto> SelectListDepartmentDtos()
+        #endregion
+
+        public async Task<List<SelectListJobsDto>> SelectListJobsDtos()
         {
-            return db.Select(j => new SelectListJobsDto
+            return await db.Select(j => new SelectListJobsDto
             {
                 Id = j.Id,
-                Title= j.Title,
-            }).ToList();
+                Title = j.Title,
+            }).ToListAsync();
         }
-        #endregion
+
 
         public List<SelectListItem> ToJobSelectListItems(IEnumerable<Job> job)
         {

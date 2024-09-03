@@ -1,21 +1,16 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using University_Domain.DTO;
 
 namespace University_Web.Extensions
 {
     public static class SelectListItemHelper
     {
-        public static List<SelectListItem> ToSelectListItems<T>(this IEnumerable<T> items, Func<T, string> getValue, Func<T, string> getText)
+        public static List<SelectListItem> ToSelectListItems(this List<SelectListDepartmentDto> departments)
         {
-            if (items == null)
+            return departments.Select(dto => new SelectListItem
             {
-                return new List<SelectListItem>();
-            }
-
-            return items.Select(item => new SelectListItem
-            {
-                Value = getValue(item),
-                Text = getText(item)
+                Value = dto.Id.ToString(), 
+                Text = dto.Name
             }).ToList();
         }
     }

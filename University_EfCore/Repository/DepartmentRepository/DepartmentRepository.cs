@@ -23,13 +23,13 @@ namespace University_EfCore.Repository.DepartmentRepository
 
         #endregion
 
-        public List<SelectListDepartmentDto> SelectListDepartmentDtos()
+        public async Task<List<SelectListDepartmentDto>> SelectListDepartmentDtos()
         {
-            return db.Select(d => new SelectListDepartmentDto 
+            return  await db.Select(d => new SelectListDepartmentDto 
             {
                 Id = d.Id,
                 Name = d.Name,
-            }).ToList();
+            }).ToListAsync();
         }
 
         public List<SelectListItem> ToDepartmentSelectListItems(IEnumerable<SelectListDepartmentDto> departments)

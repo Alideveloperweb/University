@@ -6,7 +6,7 @@ namespace University_Domain.CertificationsEntities.Interface
 {
     public interface ICertificationsRepository:IRepositoryBase<int, Certifications>
     {
-        List<SelectListCertificationsDto> SelectListDepartmentDtos();
+       Task<List<SelectListCertificationsDto>> SelectListCertificationsDtos();
         List<SelectListItem> ToCertificationsSelectListItems(IEnumerable<Certifications> certifications);
     }
 }

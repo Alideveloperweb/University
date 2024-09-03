@@ -7,6 +7,7 @@ namespace University_Domain.SkillsEntities.Interface
     public interface ISkilsRepository : IRepositoryBase<int,Skills>
     {
         List<SelectListSkillsDto> GetSkillsByEmployeeId(int employeeId);
+        Task<List<SelectListSkillsDto>> SelectListSkillsDtos();
         List<SelectListItem> ToSkilsSelectListItems(IEnumerable<Skills> skils);
     }
 }

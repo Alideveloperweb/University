@@ -23,13 +23,13 @@ namespace University_EfCore.Repository.CertificationsRepository
 
         #endregion
 
-        public List<SelectListCertificationsDto> SelectListDepartmentDtos()
+        public async Task<List<SelectListCertificationsDto>> SelectListCertificationsDtos()
         {
-            return db.Select(c => new SelectListCertificationsDto
+            return await db.Select(c => new SelectListCertificationsDto
             {
                Id= c.Id,
                 Name = c.Name,
-            }).ToList();
+            }).ToListAsync();
         }
 
         public List<SelectListItem> ToCertificationsSelectListItems(IEnumerable<Certifications> certifications)

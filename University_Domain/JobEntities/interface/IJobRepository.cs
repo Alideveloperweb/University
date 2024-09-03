@@ -7,7 +7,7 @@ namespace University_Domain.JobEntities
 {
     public interface IJobRepository : IRepositoryBase<int, Job>
     {
-        List<SelectListJobsDto> SelectListDepartmentDtos();
+       Task<List<SelectListJobsDto>> SelectListJobsDtos();
         List<SelectListItem> ToJobSelectListItems(IEnumerable<Job> job);
     }
 }
