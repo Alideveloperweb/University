@@ -8,7 +8,7 @@ namespace University_Domain.DepartmentsEntities.Interface
 {
     public interface IDepartmentRepository:IRepositoryBase<int, Department>
     {
-       Task<List<SelectListDepartmentDto>> SelectListDepartmentDtos();
-        List<SelectListItem> ToDepartmentSelectListItems(IEnumerable<Department> departments);
+       Task<List<SelectListDto>> ToDepartmentDtos();
+      //  List<SelectListItem> ToDepartmentSelectListItems(IEnumerable<Department> departments);
     }
 }

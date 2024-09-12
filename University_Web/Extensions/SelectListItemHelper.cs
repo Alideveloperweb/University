@@ -5,8 +5,12 @@ namespace University_Web.Extensions
 {
     public static class SelectListItemHelper
     {
-        public static List<SelectListItem> ToSelectListItems(this List<SelectListDepartmentDto> departments)
+        public static async Task<List<SelectListItem>> ToSelectListItems(this Task<List<SelectListDto>> departmentsTask)
         {
+            // ابتدا Task را await کنید تا لیست SelectListDto دریافت شود
+            var departments = await departmentsTask;
+
+            // سپس از Select برای تبدیل هر آیتم استفاده کنید
             return departments.Select(dto => new SelectListItem
             {
                 Value = dto.Id.ToString(),

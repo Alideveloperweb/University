@@ -23,41 +23,41 @@ namespace University_EfCore.Repository.DepartmentRepository
 
         #endregion
 
-        public async Task<List<SelectListDepartmentDto>> SelectListDepartmentDtos()
+        public async Task<List<SelectListDto>> ToDepartmentDtos()
         {
-            return  await db.Select(d => new SelectListDepartmentDto 
+            return  await db.Select(d => new SelectListDto
             {
                 Id = d.Id,
                 Name = d.Name,
             }).ToListAsync();
         }
 
-        public List<SelectListItem> ToDepartmentSelectListItems(IEnumerable<SelectListDepartmentDto> departments)
-        {
-            if (departments == null || !departments.Any())
-            {
-                return new List<SelectListItem>();
-            }
+        //public async Task<List<SelectListDto>> ToDepartmentDtos(IEnumerable<SelectListDto> departments)
+        //{
+        //    if (departments == null || !departments.Any())
+        //    {
+        //        return new List<SelectListDto>();
+        //    }
 
-            return departments.Select(department => new SelectListItem
-            {
-                Value = department.Id.ToString(),
-                Text = department.Name
-            }).ToList();
-        }
+        //    return departments.Select(department => new SelectListDto
+        //    {
+        //        Id = department.Id.,
+        //        Name = department.Name
+        //    }).ToList();
+        //}
 
-        public List<SelectListItem> ToDepartmentSelectListItems(IEnumerable<Department> departments)
-        {
-            if (departments == null || !departments.Any())
-            {
-                return new List<SelectListItem>();
-            }
+        //public List<SelectListItem> ToDepartmentSelectListItems(IEnumerable<Department> departments)
+        //{
+        //    if (departments == null || !departments.Any())
+        //    {
+        //        return new List<SelectListItem>();
+        //    }
 
-            return departments.Select(department => new SelectListItem
-            {
-                Value = department.Id.ToString(),
-                Text = department.Name
-            }).ToList();
-        }
+        //    return departments.Select(department => new SelectListItem
+        //    {
+        //        Value = department.Id.ToString(),
+        //        Text = department.Name
+        //    }).ToList();
+        //}
     }
 }

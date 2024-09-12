@@ -20,12 +20,12 @@ namespace University_EfCore.Repository.RecentProjectsRepository
             db=dbSet.Set<RecentProjects>();
         }
 
-        public async Task<List<SelectListRecentProjectsDto>> GetSelectListRecentProjectsDtos()
+        public async Task<List<SelectListDto>> GetSelectListRecentProjectsDtos()
         {
-            return await db.Select(rp => new SelectListRecentProjectsDto
+            return await db.Select(rp => new SelectListDto
             {
                 Id = rp.Id, 
-                Title=rp.Name
+                Name=rp.Name
             }).ToListAsync();
         }
 

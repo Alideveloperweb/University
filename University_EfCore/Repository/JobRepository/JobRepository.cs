@@ -22,12 +22,12 @@ namespace University_EfCore.Repository.JobRepository
 
         #endregion
 
-        public async Task<List<SelectListJobsDto>> SelectListJobsDtos()
+        public async Task<List<SelectListDto>> SelectListJobsDtos()
         {
-            return await db.Select(j => new SelectListJobsDto
+            return await db.Select(j => new SelectListDto
             {
                 Id = j.Id,
-                Title = j.Title,
+                Name = j.Title,
             }).ToListAsync();
         }
 

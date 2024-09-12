@@ -57,29 +57,31 @@ namespace University_Web.Controllers
 
 
                 //// دریافت داده‌ها
-                var department = await _unitOfWork.Department?.Value?.GetSelectList();
+                //var department = await _unitOfWork.Department?.Value?.GetSelectList();
 
-                var jobDtos = await _unitOfWork.Job?.Value?.GetSelectList();
+                //var jobDtos = await _unitOfWork.Job?.Value?.GetSelectList();
 
-                var skillDtos = await _unitOfWork.Skills?.Value?.GetSelectList();
+                //var skillDtos = await _unitOfWork.Skills?.Value?.GetSelectList();
 
-                var recentProjectDtos = await _unitOfWork.RecentProjects?.Value?.GetSelectList();
+                //var recentProjectDtos = await _unitOfWork.RecentProjects?.Value?.GetSelectList();
 
-                var certificationDtos = await _unitOfWork.Certifications?.Value?.GetSelectList();
+                //var certificationDtos = await _unitOfWork.Certifications?.Value?.GetSelectList();
+
+
 
                 ////// تبدیل DTO ها به SelectListItem ها
-                createEmployee.Departments = department;
-                createEmployee.Jobs = jobDtos;
-                createEmployee.Skills = skillDtos;
-                createEmployee.RecentProjects = recentProjectDtos;
-                createEmployee.Certifications = certificationDtos;
+                createEmployee.Departments = await _unitOfWork.Department?.Value?.ToDepartmentDtos().ToSelectListItems().AddDefaultItem();
+                createEmployee.Jobs = await _unitOfWork.Job?.Value?.SelectListJobsDtos().ToSelectListItems().AddDefaultItem();
+                createEmployee.Skills = await _unitOfWork.Skills?.Value?.SelectListSkillsDtos().ToSelectListItems().AddDefaultItem();
+                createEmployee.RecentProjects = await _unitOfWork.RecentProjects?.Value?.GetSelectListRecentProjectsDtos().ToSelectListItems().AddDefaultItem();
+                createEmployee.Certifications = await _unitOfWork.Certifications?.Value?.SelectListCertificationsDtos().ToSelectListItems().AddDefaultItem();
 
                 ////// افزودن آیتم پیش‌فرض به ابتدای هر لیست
-                createEmployee.Departments.AddDefaultItem();
-                createEmployee.Jobs.AddDefaultItem();
-                createEmployee.Skills.AddDefaultItem();
-                createEmployee.RecentProjects.AddDefaultItem();
-                createEmployee.Certifications.AddDefaultItem();
+                //createEmployee.Departments.AddDefaultItem();
+                //createEmployee.Jobs.AddDefaultItem();
+                //createEmployee.Skills.AddDefaultItem();
+                //createEmployee.RecentProjects.AddDefaultItem();
+                //createEmployee.Certifications.AddDefaultItem();
 
                 return View(createEmployee);
             }
@@ -150,7 +152,7 @@ namespace University_Web.Controllers
 
                 // ذخیره تغییرات
                 await _unitOfWork.SaveAsync();
-               return RedirectToAction("index");
+                return RedirectToAction("index");
 
             }
             catch (DbUpdateException dbEx)

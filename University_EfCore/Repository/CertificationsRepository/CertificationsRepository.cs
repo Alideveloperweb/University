@@ -23,9 +23,9 @@ namespace University_EfCore.Repository.CertificationsRepository
 
         #endregion
 
-        public async Task<List<SelectListCertificationsDto>> SelectListCertificationsDtos()
+        public async Task<List<SelectListDto>> SelectListCertificationsDtos()
         {
-            return await db.Select(c => new SelectListCertificationsDto
+            return await db.Select(c => new SelectListDto
             {
                Id= c.Id,
                 Name = c.Name,

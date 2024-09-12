@@ -26,21 +26,21 @@ namespace University_EfCore.Repository.SkilsRepository
 
         #region 
 
-        public async Task<List<SelectListSkillsDto>> SelectListSkillsDtos()
+        public async Task<List<SelectListDto>> SelectListSkillsDtos()
         {
-            return await db.Select(j => new SelectListSkillsDto
+            return await db.Select(j => new SelectListDto
             {
                 Id = j.Id,
-                Title = j.Name,
+                Name = j.Name,
             }).ToListAsync();
         }
 
-        public List<SelectListSkillsDto> GetSkillsByEmployeeId(int employeeId)
+        public List<SelectListDto> GetSkillsByEmployeeId(int employeeId)
         {
-            return db.Select(s => new SelectListSkillsDto
+            return db.Select(s => new SelectListDto
             {
                 Id = s.Id,
-                Title=s.Name,
+                Name=s.Name,
             }).ToList();  
         }
 
