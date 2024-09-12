@@ -70,11 +70,11 @@ namespace University_Web.Controllers
 
 
                 ////// تبدیل DTO ها به SelectListItem ها
-                createEmployee.Departments = await _unitOfWork.Department?.Value?.ToDepartmentDtos().ToSelectListItems().AddDefaultItem();
-                createEmployee.Jobs = await _unitOfWork.Job?.Value?.SelectListJobsDtos().ToSelectListItems().AddDefaultItem();
-                createEmployee.Skills = await _unitOfWork.Skills?.Value?.SelectListSkillsDtos().ToSelectListItems().AddDefaultItem();
-                createEmployee.RecentProjects = await _unitOfWork.RecentProjects?.Value?.GetSelectListRecentProjectsDtos().ToSelectListItems().AddDefaultItem();
-                createEmployee.Certifications = await _unitOfWork.Certifications?.Value?.SelectListCertificationsDtos().ToSelectListItems().AddDefaultItem();
+              createEmployee.Departments = await _unitOfWork.Department?.Value?.ToDepartmentDtos().ToSelectListItems().AddDefaultItem();
+               createEmployee.Jobs = await _unitOfWork.Job?.Value?.SelectListJobsDtos().ToSelectListItems().AddDefaultItem();
+               createEmployee.Skills = await _unitOfWork.Skills?.Value?.SelectListSkillsDtos().ToSelectListItems().AddDefaultItem();
+               createEmployee.RecentProjects = await _unitOfWork.RecentProjects?.Value?.GetSelectListRecentProjectsDtos().ToSelectListItems().AddDefaultItem();
+               createEmployee.Certifications = await _unitOfWork.Certifications?.Value?.SelectListCertificationsDtos().ToSelectListItems().AddDefaultItem();
 
                 ////// افزودن آیتم پیش‌فرض به ابتدای هر لیست
                 //createEmployee.Departments.AddDefaultItem();

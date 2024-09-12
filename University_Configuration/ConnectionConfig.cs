@@ -14,12 +14,12 @@ namespace University_Configuration
             });
 
         }
-        public static void ConfigureSqlite(this IServiceCollection services, string Connection)
-        {
-            services.AddDbContext<SqliteDbContext>(options =>
-            {
-                options.UseSqlite(Connection);
-            });
-        }
+        //public static void ConfigureSqlite(this IServiceCollection services, string Connection)
+        //{
+        //    services.AddDbContext<SqliteDbContext>(options =>
+        //    {
+        //        options.UseSqlite(Connection);
+        //    });
+        //}
     }
 }
