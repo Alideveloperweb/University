@@ -16,7 +16,6 @@ namespace University_Web.ViewModel.EmployeeViewModel
         public int JobId { get; set; }
         public string? JobTitle { get; set; } = "";
 
-
         /// <summary>
         /// نام کاربری 
         /// </summary>

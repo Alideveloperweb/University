@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using University_Common.Domain;
 
@@ -154,6 +155,19 @@ namespace University_Common.Application
         public IQueryable<TEntity> AsQueryable(Expression<Func<TEntity, bool>> predicate)
         {
             return db.Where(predicate).AsQueryable();
+        }
+
+        async Task<List<SelectListItem>> IRepositoryBase<TKey, TEntity>.GetSelectList()
+        {
+            var entities = await db.ToListAsync();
+
+            var selectList = entities.Select(e => new SelectListItem
+            {
+                Value = e.Id.ToString(), // فرض بر این است که TEntity یک خاصیت Id دارد
+                Text = e.Name // فرض بر این است که TEntity یک خاصیت Name دارد
+            }).ToList();
+
+            return selectList;
         }
 
         #endregion

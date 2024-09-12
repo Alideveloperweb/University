@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq.Expressions;
 
 
 namespace University_Common.Domain
@@ -9,7 +10,7 @@ namespace University_Common.Domain
         Task<TEntity> GetFirstOrDefaultAsync(string name);
         
         // !todo this must return a list of dto like selectlistitem (dont use IQueryable)
-        Task<IQueryable<TEntity>> GetSelectList();
+        Task<List<SelectListItem>> GetSelectList();
         IQueryable<TEntity> GetAllRemove(bool isRemove);
         IQueryable<TEntity> GetAllActive(bool isActive);
         bool Create(TEntity entity);

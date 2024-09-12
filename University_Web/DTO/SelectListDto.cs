@@ -1,7 +1,7 @@
 ﻿
 namespace University_Domain.DTO
 {
-    public class SelectListCertificationsDto
+    public class SelectListDto
     {
         public int Id { get; set; }
         public string? Name { get; set; }

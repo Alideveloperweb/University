@@ -1,4 +1,5 @@
 ﻿@using University_Common.Enum
+@using University_Web.Extensions;
 @using University_Web.ViewModel.EmployeeViewModel
 @model CreateEmployeeItem
 
@@ -253,19 +254,44 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="DepartmentId"></label>
-                        @*  !todo change all select*@
-                   @*      <select asp-for="DepartmentId" class="form-control" asp-items="Model.Departments">
+                        <select asp-for="DepartmentId" class="form-control" asp-items="Model.Departments">
+                            <!-- اگر نیاز به گزینه پیش‌فرض دارید، می‌توانید آن را در مدل اضافه کنید -->
                             <option value="">انتخاب کنید</option>
-                            @foreach (var department in Model.Departments)
+                        </select>
+                        <span asp-validation-for="DepartmentId"></span>
+                    </div>
+                </div>
+
+@*                 <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="DepartmentId"></label>
+                        <select asp-for="DepartmentId" class="form-control">
+                            <option value="">انتخاب کنید</option>
+                            @foreach (var department in ViewBag.Department.ToSelectListItems())
                             {
                                 <option value="@department.Value">@department.Text</option>
                             }
-                        </select> *@
-                        @Html.LabelFor(m => m.DepartmentId)
-                        @Html.DropDownListFor(model => model.DepartmentId, Model.Departments, new { @class = "form-control" })
+                        </select>
+                        <span asp-validation-for="DepartmentId"></span>
+                    </div>
+                </div> *@
+
+@*                 <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="DepartmentId"></label>
+                        @*  !todo change all select
+                        <select asp-for="DepartmentId" class="form-control" asp-items="Model.Departments">
+                            <option value="">انتخاب کنید</option>
+                            @foreach (var department in Model.Departments.ToSelectListItems())
+                            {
+                                <option value="@department.Value">@department.Text</option>
+                            }
+                        </select>
+                 @*        @Html.LabelFor(m => m.DepartmentId)
+                        @Html.DropDownListFor(model => model.DepartmentId, Model.Departments, new { @class = "form-control" }) 
                     </div>
                     <span asp-validation-for="DepartmentId"></span>
-                </div>
+                </div> *@
 
                 <div class="col-md-12">
                     <div class="form-group">

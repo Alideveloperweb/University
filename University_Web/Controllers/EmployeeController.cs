@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using University_Common.Domain;
@@ -14,13 +13,15 @@ namespace University_Web.Controllers
     {
         #region Cnstarctor
 
+        private readonly IExceptionHandler _exceptionHandler;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public EmployeeController(IUnitOfWork unitOfWork, IMapper mapper)
+        public EmployeeController(IUnitOfWork unitOfWork, IMapper mapper, IExceptionHandler exceptionHandler)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _exceptionHandler = exceptionHandler;
         }
 
         #endregion
@@ -53,25 +54,27 @@ namespace University_Web.Controllers
             {
                 CreateEmployeeItem createEmployee = new CreateEmployeeItem();
 
-                // دریافت داده‌ها
-                var entities = await _unitOfWork.Department?.Value?.SelectListDepartmentDtos();
 
-                var jobDtos = await _unitOfWork.Job?.Value?.SelectListJobsDtos();
 
-                var skillDtos = await _unitOfWork.Skills?.Value?.SelectListSkillsDtos();
+                //// دریافت داده‌ها
+                var department = await _unitOfWork.Department?.Value?.GetSelectList();
 
-                var recentProjectDtos = await _unitOfWork.RecentProjects?.Value?.GetSelectListRecentProjectsDtos();
+                var jobDtos = await _unitOfWork.Job?.Value?.GetSelectList();
 
-                var certificationDtos = await _unitOfWork.Certifications?.Value?.SelectListCertificationsDtos();
+                var skillDtos = await _unitOfWork.Skills?.Value?.GetSelectList();
 
-                // تبدیل DTO ها به SelectListItem ها
-                createEmployee.Departments = entities?.ToSelectListItems();
-                createEmployee.Jobs = jobDtos?.ToSelectListItems();
-                createEmployee.Skills = skillDtos?.ToSelectListItems();
-                createEmployee.RecentProjects = recentProjectDtos?.ToSelectListItems();
-                createEmployee.Certifications = certificationDtos?.ToSelectListItems();
+                var recentProjectDtos = await _unitOfWork.RecentProjects?.Value?.GetSelectList();
 
-                // افزودن آیتم پیش‌فرض به ابتدای هر لیست
+                var certificationDtos = await _unitOfWork.Certifications?.Value?.GetSelectList();
+
+                ////// تبدیل DTO ها به SelectListItem ها
+                createEmployee.Departments = department;
+                createEmployee.Jobs = jobDtos;
+                createEmployee.Skills = skillDtos;
+                createEmployee.RecentProjects = recentProjectDtos;
+                createEmployee.Certifications = certificationDtos;
+
+                ////// افزودن آیتم پیش‌فرض به ابتدای هر لیست
                 createEmployee.Departments.AddDefaultItem();
                 createEmployee.Jobs.AddDefaultItem();
                 createEmployee.Skills.AddDefaultItem();
@@ -84,7 +87,8 @@ namespace University_Web.Controllers
             {
                 // ثبت خطا در لاگ (در صورت نیاز) و نمایش پیام خطا
                 // Log.Error(ex, "خطا در ایجاد کارمند");
-                return StatusCode(500, $"خطا: {ex.Message}");
+                await _exceptionHandler.HandleExceptionAsync(HttpContext, ex);
+                return StatusCode(500, "خطایی رخ داده است.");
             }
         }
 
@@ -145,15 +149,9 @@ namespace University_Web.Controllers
                 _unitOfWork.Employee.Value.Create(employee);
 
                 // ذخیره تغییرات
-                int save = await _unitOfWork.SaveAsync();
-                if (save > 0)
-                {
-                    return Ok(new { Success = true, Message = "کارمند با موفقیت ذخیره شد." });
-                }
-                else
-                {
-                    return StatusCode(500, "عملیات ذخیره‌سازی با شکست مواجه شد.");
-                }
+                await _unitOfWork.SaveAsync();
+               return RedirectToAction("index");
+
             }
             catch (DbUpdateException dbEx)
             {
@@ -228,65 +226,14 @@ namespace University_Web.Controllers
             };
 
             var departments = await _unitOfWork.Department?.Value?.GetSelectList();
-            if (departments == null)
-            {
-                throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
-            }
-
-            // تنظیم ViewBag برای دپارتمان‌ها
-            ViewBag.Departments = departments.Select(d => new SelectListItem
-            {
-                Value = d.Id.ToString(),
-                Text = d.Name
-            }).ToList();
 
             var job = await _unitOfWork.Job?.Value?.GetSelectList();
-            if (job == null)
-            {
-                throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
-            }
-
-            ViewBag.Job = job.Select(d => new SelectListItem
-            {
-                Value = d.Id.ToString(),
-                Text = d.Title
-            }).ToList();
 
             var skills = await _unitOfWork.Skills?.Value?.GetSelectList();
-            if (skills == null)
-            {
-                throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
-            }
-
-            ViewBag.Skills = skills.Select(d => new SelectListItem
-            {
-                Value = d.Id.ToString(),
-                Text = d.Name
-            }).ToList();
 
             var recentProjects = await _unitOfWork.RecentProjects?.Value?.GetSelectList();
-            if (recentProjects == null)
-            {
-                throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
-            }
-
-            ViewBag.RecentProjects = recentProjects.Select(d => new SelectListItem
-            {
-                Value = d.Id.ToString(),
-                Text = d.Name
-            }).ToList();
 
             var certifications = await _unitOfWork.Certifications?.Value?.GetSelectList();
-            if (certifications == null)
-            {
-                throw new Exception("داده‌های دپارتمان‌ها یافت نشد.");
-            }
-
-            ViewBag.Certifications = certifications.Select(d => new SelectListItem
-            {
-                Value = d.Id.ToString(),
-                Text = d.Name
-            }).ToList();
 
             return View(viewModel);
         }
