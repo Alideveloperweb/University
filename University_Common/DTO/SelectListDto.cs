@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace University_Domain.DTO
+namespace University_Common.DTO
 {
     public class SelectListDto
     {

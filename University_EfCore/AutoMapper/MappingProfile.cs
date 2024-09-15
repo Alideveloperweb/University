@@ -2,14 +2,7 @@
 
 
 using AutoMapper;
-using System.Web.Mvc;
-using University_Domain.DepartmentsEntities;
-using University_Domain.JobEntities;
 
-using University_Domain.DTO;
-using University_Domain.SkillsEntities;
-using University_Domain.RecentProjectsEntities;
-using University_Domain.CertificationsEntities;
 
 
 namespace University_EfCore.AutoMapper

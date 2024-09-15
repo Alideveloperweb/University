@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using System.Web.Mvc;
-using University_Domain.DTO;
+﻿
 
 
 namespace University_EfCore.AutoMapper

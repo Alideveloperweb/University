@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using University_Common.Application;
-using University_Domain.DepartmentsEntities;
-using University_Domain.DTO;
+using University_Common.DTO;
 using University_Domain.SkillsEntities;
 using University_Domain.SkillsEntities.Interface;
-using University_EfCore.Context;
 
 namespace University_EfCore.Repository.SkilsRepository
 {

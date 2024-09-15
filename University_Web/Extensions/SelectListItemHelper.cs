@@ -1,33 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using University_Domain.DTO;
+using University_Common.DTO;
+
 
 namespace University_Web.Extensions
 {
     public static class SelectListItemHelper
     {
-        public static async Task<List<SelectListItem>> ToSelectListItems(this Task<List<SelectListDto>> departmentsTask)
-        {
-            // ابتدا Task را await کنید تا لیست SelectListDto دریافت شود
-            var departments = await departmentsTask;
-
-            // سپس از Select برای تبدیل هر آیتم استفاده کنید
-            return departments.Select(dto => new SelectListItem
+     
+            public static async Task<List<SelectListItem>> ToSelectListItems(this Task<List<SelectListDto>> departmentsTask)
             {
-                Value = dto.Id.ToString(),
-                Text = dto.Name
-            }).ToList();
-        }
+                var departments = await departmentsTask;
+                return departments.Select(dto => new SelectListItem
+                {
+                    Value = dto.Id.ToString(),
+                    Text = dto.Name
+                }).ToList();
+            }
 
-        public static void AddDefaultItem(this List<SelectListItem> list, string text = "انتخاب کنید", string value = "")
+
+
+        public static async Task<List<SelectListItem>> AddDefaultItem(this Task<List<SelectListItem>> taskList, string text = "انتخاب کنید", string value = "")
         {
-            // اگر لیست نال بود، ایجاد یک لیست جدید
+            var list = await taskList;
+
             if (list == null)
             {
                 list = new List<SelectListItem>();
             }
 
-            // بررسی اینکه آیا گزینه پیش‌فرض از قبل وجود دارد یا خیر
-            // اگر وجود ندارد، اضافه کردن آن به ابتدای لیست
             if (!list.Any(item => item.Value == value))
             {
                 list.Insert(0, new SelectListItem
@@ -36,6 +36,9 @@ namespace University_Web.Extensions
                     Value = value
                 });
             }
+
+            return list;
         }
+
     }
 }

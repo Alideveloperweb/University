@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Threading.Tasks;
-using University_Common.Domain;
-using University_Domain.DTO;
+﻿using University_Common.Domain;
+using University_Common.DTO;
+
 
 namespace University_Domain.DepartmentsEntities.Interface
 {

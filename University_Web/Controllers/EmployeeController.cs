@@ -12,16 +12,14 @@ namespace University_Web.Controllers
     public class EmployeeController : Controller
     {
         #region Cnstarctor
-
-        private readonly IExceptionHandler _exceptionHandler;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public EmployeeController(IUnitOfWork unitOfWork, IMapper mapper, IExceptionHandler exceptionHandler)
+        public EmployeeController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _exceptionHandler = exceptionHandler;
+      
         }
 
         #endregion
@@ -54,34 +52,12 @@ namespace University_Web.Controllers
             {
                 CreateEmployeeItem createEmployee = new CreateEmployeeItem();
 
-
-
-                //// دریافت داده‌ها
-                //var department = await _unitOfWork.Department?.Value?.GetSelectList();
-
-                //var jobDtos = await _unitOfWork.Job?.Value?.GetSelectList();
-
-                //var skillDtos = await _unitOfWork.Skills?.Value?.GetSelectList();
-
-                //var recentProjectDtos = await _unitOfWork.RecentProjects?.Value?.GetSelectList();
-
-                //var certificationDtos = await _unitOfWork.Certifications?.Value?.GetSelectList();
-
-
-
                 ////// تبدیل DTO ها به SelectListItem ها
-              createEmployee.Departments = await _unitOfWork.Department?.Value?.ToDepartmentDtos().ToSelectListItems().AddDefaultItem();
-               createEmployee.Jobs = await _unitOfWork.Job?.Value?.SelectListJobsDtos().ToSelectListItems().AddDefaultItem();
-               createEmployee.Skills = await _unitOfWork.Skills?.Value?.SelectListSkillsDtos().ToSelectListItems().AddDefaultItem();
-               createEmployee.RecentProjects = await _unitOfWork.RecentProjects?.Value?.GetSelectListRecentProjectsDtos().ToSelectListItems().AddDefaultItem();
-               createEmployee.Certifications = await _unitOfWork.Certifications?.Value?.SelectListCertificationsDtos().ToSelectListItems().AddDefaultItem();
-
-                ////// افزودن آیتم پیش‌فرض به ابتدای هر لیست
-                //createEmployee.Departments.AddDefaultItem();
-                //createEmployee.Jobs.AddDefaultItem();
-                //createEmployee.Skills.AddDefaultItem();
-                //createEmployee.RecentProjects.AddDefaultItem();
-                //createEmployee.Certifications.AddDefaultItem();
+                createEmployee.Departments = await _unitOfWork.Department?.Value?.ToDepartmentDtos().ToSelectListItems().AddDefaultItem();
+                createEmployee.Jobs = await _unitOfWork.Job?.Value?.SelectListJobsDtos().ToSelectListItems().AddDefaultItem();
+                createEmployee.Skills = await _unitOfWork.Skills?.Value?.SelectListSkillsDtos().ToSelectListItems().AddDefaultItem();
+                createEmployee.RecentProjects = await _unitOfWork.RecentProjects?.Value?.GetSelectListRecentProjectsDtos().ToSelectListItems().AddDefaultItem();
+                createEmployee.Certifications = await _unitOfWork.Certifications?.Value?.SelectListCertificationsDtos().ToSelectListItems().AddDefaultItem();
 
                 return View(createEmployee);
             }
@@ -89,7 +65,7 @@ namespace University_Web.Controllers
             {
                 // ثبت خطا در لاگ (در صورت نیاز) و نمایش پیام خطا
                 // Log.Error(ex, "خطا در ایجاد کارمند");
-                await _exceptionHandler.HandleExceptionAsync(HttpContext, ex);
+               
                 return StatusCode(500, "خطایی رخ داده است.");
             }
         }

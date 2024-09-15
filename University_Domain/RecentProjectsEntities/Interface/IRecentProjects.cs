@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using University_Common.Domain;
-using University_Domain.DTO;
+using University_Common.DTO;
+
 
 namespace University_Domain.RecentProjectsEntities.Interface
 {

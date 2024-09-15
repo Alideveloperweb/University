@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using University_Common.Application;
 using University_Domain.DepartmentsEntities;
 using University_Domain.DepartmentsEntities.Interface;
-using University_Domain.DTO;
+using University_Common.DTO;
 
 
 namespace University_EfCore.Repository.DepartmentRepository

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using University_Common.Application;
+using University_Common.DTO;
 using University_Domain.CertificationsEntities;
 using University_Domain.CertificationsEntities.Interface;
-using University_Domain.DTO;
-using University_Domain.RecentProjectsEntities;
+
 
 namespace University_EfCore.Repository.CertificationsRepository
 {

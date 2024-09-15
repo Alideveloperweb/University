@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using University_Common.Application;
-using University_Domain.DTO;
+using University_Common.DTO;
 using University_Domain.RecentProjectsEntities;
 using University_Domain.RecentProjectsEntities.Interface;
 
